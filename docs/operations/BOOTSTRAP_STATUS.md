@@ -18,9 +18,10 @@
 
 ## Current resumable state
 
-- Registry revision: `2`.
-- Active Product applications: `0` (no Product Blueprint has been approved).
-- Next safe action: register the first rights-authorized APK after the Drive-to-CI identity and untrusted static-runner gates are satisfied.
+- Registry revision: `3`.
+- Active provisional applications: `1` (`docvault-lasttime-fusion`).
+- Intake status: five deduplicated source artifacts are staged privately; analysis has not started.
+- Next safe action: record the explicit rights/analysis/reuse profile, then verify the Drive artifacts before capability analysis.
 - Portable new-chat instructions: `docs/operations/NEW_CHAT_BOOTSTRAP.md` and the matching file in Drive `00_CONTROL`.
 
 ## Blocked before APK #1

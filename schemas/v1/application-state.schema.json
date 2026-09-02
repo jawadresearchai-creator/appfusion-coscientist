@@ -69,6 +69,8 @@
       "properties": {
         "product_repository": {"type": ["string", "null"]},
         "drive_workspace_id": {"type": ["string", "null"]},
+        "source_bundle_manifest_file_id": {"type": ["string", "null"]},
+        "application_state_file_id": {"type": ["string", "null"]},
         "product_blueprint_sha256": {
           "type": ["string", "null"],
           "pattern": "^[0-9a-f]{64}$"

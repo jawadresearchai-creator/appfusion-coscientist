@@ -18,7 +18,7 @@
         "kind": {"enum": ["GOOGLE_DRIVE", "GITHUB_RELEASE_ASSET", "AUTHORIZED_OBJECT_STORE"]},
         "locator": {"type": "string", "minLength": 1},
         "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
-        "file_name": {"type": "string", "pattern": "^[^/\\\\]+\\.apk$"}
+        "file_name": {"type": "string", "pattern": "^[^/\\\\]+\\.(apk|apkm|xapk)$"}
       }
     },
     "authorization_profile": {"$ref": "analysis-authorization-profile.schema.json"},

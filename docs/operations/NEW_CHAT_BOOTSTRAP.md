@@ -28,4 +28,4 @@ Selection is deterministic:
 - one active app: select and resume it automatically;
 - two or more active apps: show a concise candidate list and ask the user to select one.
 
-At bootstrap time there are no active Product applications because no Product Blueprint has yet been approved.
+The registry currently contains one active provisional application, `docvault-lasttime-fusion`, so a new session should select it automatically. Product implementation remains gated until its exact Product Blueprint is approved.

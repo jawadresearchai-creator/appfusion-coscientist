@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "bundle_id": "docvault-lasttime-fusion-20260902",
+  "application_id": "docvault-lasttime-fusion",
+  "display_name": "DocVault + LastTime Fusion",
+  "created_at": "2026-09-02T16:01:38Z",
+  "authorization_state": "PENDING_ANALYSIS_AUTHORIZATION_PROFILE",
+  "sources": [
+    {
+      "source_id": "docvault-source-d6194d4",
+      "role": "AUTHORITATIVE_EDITABLE_SOURCE",
+      "artifact_format": "SOURCE_ZIP",
+      "file_name": "Document-Vault-source-d6194d4.zip",
+      "sha256": "5b1df8326cc5322c46d6749cd964f7b551a171f93c99ee9155d8d378ed682a6a",
+      "size_bytes": 304584,
+      "source_commit": "d6194d4c0b9487e58130b92c7f24d73f06509082",
+      "package_id": "com.aistudio.docvault.pkrzvm",
+      "version_name": "1.0",
+      "reuse_scope": "PENDING_AUTHORIZATION",
+      "storage": {
+        "kind": "GOOGLE_DRIVE_FILE",
+        "drive_file_id": "1Wlx8H6rICtUQbDF53KfvsOtnH60tuFcB"
+      }
+    },
+    {
+      "source_id": "lasttime-source-a748ee6",
+      "role": "AUTHORITATIVE_EDITABLE_SOURCE",
+      "artifact_format": "SOURCE_ZIP",
+      "file_name": "LastTime-source-a748ee6.zip",
+      "sha256": "0aa4f4222308a03fc7c9371d86d2f40a81c36be89e87b6ac8efb2ac42f69191f",
+      "size_bytes": 437479,
+      "source_commit": "a748ee656e3c810fec0765afc6057416beec9c8e",
+      "package_id": "com.lasttime.app",
+      "version_name": "1.0.0",
+      "reuse_scope": "PENDING_AUTHORIZATION",
+      "storage": {
+        "kind": "GOOGLE_DRIVE_FILE",
+        "drive_file_id": "14i2cOmgCg2SFYNZxIqY5prHHhAhNixGe"
+      }
+    },
+    {
+      "source_id": "lasttime-antigravity-e80bd67",
+      "role": "SOURCE_VARIANT",
+      "artifact_format": "SOURCE_ZIP",
+      "file_name": "LastTime-Antigravity-source-e80bd67.zip",
+      "sha256": "57af99bfe88f46a61f80c94e12342b798cf50163e811433292c68fac3543c073",
+      "size_bytes": 408329,
+      "source_commit": "e80bd67b0fa824f341f7dade8e83d466f50c4cd1",
+      "package_id": "com.lasttime.app",
+      "version_name": "1.0.0",
+      "reuse_scope": "PENDING_AUTHORIZATION",
+      "storage": {
+        "kind": "GOOGLE_DRIVE_FILE",
+        "drive_file_id": "1QoVg2_2I4HKsYjGZnBxFzvEW8PmvVzIn"
+      }
+    },
+    {
+      "source_id": "docvault-apk-87b20d4e",
+      "role": "COMPILED_BASELINE",
+      "artifact_format": "APK",
+      "file_name": "Docvault-87b20d4e.apk",
+      "sha256": "87b20d4e423dcbffc7442cf30076762c22e878f713703c6e6efe4b0621097286",
+      "size_bytes": 67152965,
+      "package_id": "com.aistudio.docvault.pkrzvm",
+      "version_name": "1.0",
+      "reuse_scope": "PENDING_AUTHORIZATION",
+      "storage": {
+        "kind": "GOOGLE_DRIVE_FILE",
+        "drive_file_id": "1PGYeCKISRn-vIHsMPg7y-KhBlKHspov4"
+      }
+    },
+    {
+      "source_id": "camscanner-apkm-2f62abc3",
+      "role": "BEHAVIORAL_REFERENCE",
+      "artifact_format": "APKM",
+      "file_name": "APK.apkm",
+      "sha256": "2f62abc367c8e34c6234bde6108c5b317aec027e132237a8673cf43c11cb0a52",
+      "size_bytes": 211194345,
+      "package_id": "com.intsig.camscanner",
+      "version_name": "7.23.5.2608050000",
+      "reuse_scope": "BEHAVIORAL_BENCHMARK_ONLY",
+      "storage": {
+        "kind": "GOOGLE_DRIVE_CHUNKED",
+        "drive_folder_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
+        "reconstruction_order": [
+          {
+            "sequence": 1,
+            "file_name": "CamScanner-7.23.5-2f62abc3.apkm.part001",
+            "drive_file_id": "1tZdXQtECTYxSSxp_T-YAbaf6nVO_lFu8",
+            "sha256": "d5dd8a32e16977f30b0d647c662c8f0010c14e3f832628a2b5296e78bb6c373b",
+            "size_bytes": 94371840
+          },
+          {
+            "sequence": 2,
+            "file_name": "CamScanner-7.23.5-2f62abc3.apkm.part002a",
+            "drive_file_id": "1YiPW4hSL7fDTZxkIyAbZtSf8BsEdHSnS",
+            "sha256": "fae9b462d58fd2968f5792a167384309f521a63a6c04e14be35db98ce20ea7a1",
+            "size_bytes": 47185920
+          },
+          {
+            "sequence": 3,
+            "file_name": "CamScanner-7.23.5-2f62abc3.apkm.part002b",
+            "drive_file_id": "197bzwGdB2_8EzcUJI7jvhruUtHqR4cPQ",
+            "sha256": "022f775ec75c48cc211340afb2613814e0b985f75dd2142f013e6f47f4850087",
+            "size_bytes": 47185920
+          },
+          {
+            "sequence": 4,
+            "file_name": "CamScanner-7.23.5-2f62abc3.apkm.part003",
+            "drive_file_id": "1XE0VJhILMwB2uZx1mbp4bzJke9AtJxJ1",
+            "sha256": "124990b4c373d0cf72665c581cd0a77555c26cfda6328e39a0a6e97effb7c410",
+            "size_bytes": 22450665
+          }
+        ]
+      }
+    }
+  ],
+  "excluded_inputs": [
+    {
+      "label": "LastTime-golden-preserved",
+      "reason": "Its committed golden baseline is already an ancestor of the current LastTime repository."
+    },
+    {
+      "label": "LastTime-artifacts-backup",
+      "reason": "Generated test evidence, build products, device captures, and historical snapshots are not required for the source baseline."
+    },
+    {
+      "label": "Duplicate local APK and build outputs",
+      "reason": "The uploaded DocVault APK is byte-identical to the current Document Vault debug output; LastTime binaries can be reproduced from source."
+    },
+    {
+      "label": "Local caches, logs, emulator data, local.properties, and keystores",
+      "reason": "They are environment-specific, generated, sensitive, or reproducible and must not enter canonical intake."
+    }
+  ],
+  "prior_evidence": [
+    {
+      "repository": "jawadresearchai-creator/android-app-architecture-lab",
+      "path": "reports/user-upload/REFERENCE_FILE_PROVENANCE.md",
+      "url": "https://github.com/jawadresearchai-creator/android-app-architecture-lab/blob/main/reports/user-upload/REFERENCE_FILE_PROVENANCE.md"
+    },
+    {
+      "repository": "jawadresearchai-creator/android-app-architecture-lab",
+      "path": "reports/user-upload/DOCVAULT_BASELINE_INVENTORY.md",
+      "url": "https://github.com/jawadresearchai-creator/android-app-architecture-lab/blob/main/reports/user-upload/DOCVAULT_BASELINE_INVENTORY.md"
+    },
+    {
+      "repository": "jawadresearchai-creator/android-app-architecture-lab",
+      "path": "reports/user-upload/decompiled/DOCVAULT_MASTER_PARITY_ROADMAP.md",
+      "url": "https://github.com/jawadresearchai-creator/android-app-architecture-lab/blob/main/reports/user-upload/decompiled/DOCVAULT_MASTER_PARITY_ROADMAP.md"
+    }
+  ]
+}

@@ -65,6 +65,7 @@ REQUIRED_SCHEMA_NAMES = frozenset(
         "ApplicationState",
         "ProjectRegistry",
         "SessionBootstrap",
+        "SourceBundle",
     }
 )
 

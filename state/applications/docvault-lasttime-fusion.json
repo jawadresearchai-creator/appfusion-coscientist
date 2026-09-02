@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "app_id": "docvault-lasttime-fusion",
+  "display_name": "DocVault + LastTime Fusion",
+  "active_for_selection": true,
+  "lifecycle_state": "REGISTERED",
+  "phase": "INTAKE_STAGED",
+  "updated_at": "2026-09-02T16:04:34Z",
+  "last_completed_event": {
+    "event_type": "SOURCE_BUNDLE_STAGED_PRIVATE",
+    "occurred_at": "2026-09-02T16:04:34Z",
+    "summary": "Five deduplicated source artifacts were fingerprinted and staged in the private Drive intake workspace."
+  },
+  "next_safe_action": "Obtain an explicit AnalysisAuthorizationProfile for the source bundle, then verify the Drive artifacts before capability analysis.",
+  "blockers": [
+    {
+      "id": "RIGHTS_ATTESTATION",
+      "summary": "The user must state the rights basis and permitted analysis/reuse scope for the supplied sources."
+    },
+    {
+      "id": "DRIVE_TO_CI_IDENTITY",
+      "summary": "Configure a narrow Drive-to-CI workload identity.",
+      "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
+    },
+    {
+      "id": "UNTRUSTED_RUNNER_ATTESTATION",
+      "summary": "Attest the isolated static-analysis runner before processing APK contents.",
+      "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/2"
+    }
+  ],
+  "artifact_locations": {
+    "product_repository": "jawadresearchai-creator/appfusion-product",
+    "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
+    "source_bundle_manifest_file_id": "12Qjms57CorUzpMqPrQ9dh8TrS3slxN5M",
+    "application_state_file_id": "1kurtVziDCgOGXvPujRaW5JrYPBQ9SkgX",
+    "product_blueprint_sha256": null
+  }
+}

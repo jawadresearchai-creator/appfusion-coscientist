@@ -63,14 +63,46 @@ def test_cloud_is_authoritative_and_local_is_optional():
     assert manifest["local_environment"]["required_for_operation"] is False
 
 
-def test_project_registry_is_valid_and_has_no_active_product_yet():
+def test_project_registry_is_valid_and_auto_selects_the_staged_product():
     registry = load_json(ROOT / "state/APPFUSION_PROJECT_REGISTRY.json")
     validate(registry, ROOT / "schemas/v1/project-registry.schema.json")
     assert select_application(registry) == {
-        "selection_decision": "NO_ACTIVE_APPLICATIONS",
-        "selected_app_id": None,
-        "candidate_app_ids": [],
+        "selection_decision": "AUTO_SELECTED",
+        "selected_app_id": "docvault-lasttime-fusion",
+        "candidate_app_ids": ["docvault-lasttime-fusion"],
     }
+    application_state = load_json(ROOT / "state/applications/docvault-lasttime-fusion.json")
+    validate(application_state, ROOT / "schemas/v1/application-state.schema.json")
+
+
+def test_source_bundle_is_valid_and_apkm_is_an_accepted_intake_format():
+    bundle = load_json(ROOT / "intake/source-bundles/docvault-lasttime-fusion.json")
+    validate(bundle, ROOT / "schemas/v1/source-bundle.schema.json")
+    assert len(bundle["sources"]) == 5
+
+    request = {
+        "schema_version": "1.0.0",
+        "request_id": "57797468-d68a-4ea3-8157-ef13b5c516eb",
+        "submitted_by": "authenticated-user",
+        "submitted_at": "2026-09-02T16:01:38Z",
+        "source": {
+            "kind": "GOOGLE_DRIVE",
+            "locator": "drive-folder-and-chunk-manifest",
+            "sha256": "2f62abc367c8e34c6234bde6108c5b317aec027e132237a8673cf43c11cb0a52",
+            "file_name": "APK.apkm"
+        },
+        "authorization_profile": {
+            "profile_id": "f49bf440-edff-4b89-9305-d2c0ce841aaa",
+            "rights_basis": "OTHER_DOCUMENTED_BASIS",
+            "static_analysis_allowed": True,
+            "dynamic_analysis_allowed": False,
+            "network_interception_allowed": False,
+            "accepted_by": "authenticated-user",
+            "accepted_at": "2026-09-02T16:01:38Z",
+            "constraints": ["Fixture only; no authorization is asserted by this test."]
+        }
+    }
+    validate(request, ROOT / "schemas/v1/intake-request.schema.json")
 
 
 def test_project_selection_is_automatic_for_one_and_interactive_for_many():

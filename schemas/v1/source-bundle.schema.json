@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/source-bundle.schema.json",
+  "title": "SourceBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "application_id",
+    "display_name",
+    "created_at",
+    "authorization_state",
+    "sources",
+    "excluded_inputs",
+    "prior_evidence"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "bundle_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
+    "application_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "authorization_state": {"enum": ["PENDING_ANALYSIS_AUTHORIZATION_PROFILE", "AUTHORIZED", "REJECTED"]},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "role", "artifact_format", "file_name", "sha256", "size_bytes", "reuse_scope", "storage"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "role": {"enum": ["AUTHORITATIVE_EDITABLE_SOURCE", "SOURCE_VARIANT", "COMPILED_BASELINE", "BEHAVIORAL_REFERENCE"]},
+          "artifact_format": {"enum": ["SOURCE_ZIP", "APK", "APKM", "XAPK"]},
+          "file_name": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 1},
+          "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "package_id": {"type": "string", "minLength": 1},
+          "version_name": {"type": "string", "minLength": 1},
+          "reuse_scope": {"enum": ["PENDING_AUTHORIZATION", "BEHAVIORAL_BENCHMARK_ONLY", "AUTHORIZED_SOURCE_REUSE"]},
+          "storage": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "drive_file_id"],
+                "properties": {
+                  "kind": {"const": "GOOGLE_DRIVE_FILE"},
+                  "drive_file_id": {"type": "string", "minLength": 1}
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "drive_folder_id", "reconstruction_order"],
+                "properties": {
+                  "kind": {"const": "GOOGLE_DRIVE_CHUNKED"},
+                  "drive_folder_id": {"type": "string", "minLength": 1},
+                  "reconstruction_order": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["sequence", "file_name", "drive_file_id", "sha256", "size_bytes"],
+                      "properties": {
+                        "sequence": {"type": "integer", "minimum": 1},
+                        "file_name": {"type": "string", "minLength": 1},
+                        "drive_file_id": {"type": "string", "minLength": 1},
+                        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                        "size_bytes": {"type": "integer", "minimum": 1}
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "excluded_inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "reason"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "prior_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "path", "url"],
+        "properties": {
+          "repository": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"}
+        }
+      }
+    }
+  }
+}
