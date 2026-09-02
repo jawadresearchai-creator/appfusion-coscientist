@@ -1,0 +1,171 @@
+name: Trusted Drive Package Intake Bootstrap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/trusted-drive-package-intake-bootstrap.yml
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  retrieve-hash-and-static-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - request_id: docvault-apk-87b20d4e
+            request_path: requests/pending/docvault-apk-87b20d4e.json
+          - request_id: camscanner-apkm-2f62abc3
+            request_path: requests/pending/camscanner-apkm-2f62abc3.json
+    env:
+      REQUEST_PATH: ${{ matrix.request_path }}
+      BUNDLE_PATH: intake/source-bundles/docvault-lasttime-fusion.json
+      EVIDENCE_DIR: runs/trusted-intake/${{ github.run_id }}/${{ matrix.request_id }}
+      GCP_PROJECT_ID: ${{ vars.APPFUSION_GCP_PROJECT_ID }}
+      GCP_WIF_PROVIDER: ${{ vars.APPFUSION_GCP_WIF_PROVIDER }}
+      GCP_DRIVE_READER_SERVICE_ACCOUNT: ${{ vars.APPFUSION_GCP_DRIVE_READER_SERVICE_ACCOUNT }}
+
+    steps:
+      - name: Check out trusted Foundry source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Enforce request bundle and identity preconditions
+        shell: bash
+        run: |
+          case "$REQUEST_PATH" in
+            requests/pending/*.json) ;;
+            *) echo 'request_path must be requests/pending/*.json' >&2; exit 2 ;;
+          esac
+          case "$BUNDLE_PATH" in
+            intake/source-bundles/*.json) ;;
+            *) echo 'bundle_path must be intake/source-bundles/*.json' >&2; exit 2 ;;
+          esac
+          test -f "$REQUEST_PATH"
+          test -f "$BUNDLE_PATH"
+          for value in "$GCP_PROJECT_ID" "$GCP_WIF_PROVIDER" "$GCP_DRIVE_READER_SERVICE_ACCOUNT"; do
+            if [ -z "$value" ]; then
+              echo 'BLOCKED_AUTHORIZATION: Drive-to-CI Workload Identity Federation variables are not configured.' >&2
+              exit 3
+            fi
+          done
+
+      - name: Install pinned Foundry contract dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+
+      - name: Validate IntakeRequest and SourceBundle contracts
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from appfusion_foundry.contracts import load_json, validate
+
+          request_path = Path(os.environ['REQUEST_PATH'])
+          bundle_path = Path(os.environ['BUNDLE_PATH'])
+          request = load_json(request_path)
+          bundle = load_json(bundle_path)
+          validate(request, Path('schemas/v1/intake-request.schema.json'))
+          validate(bundle, Path('schemas/v1/source-bundle.schema.json'))
+          if bundle['authorization_state'] != 'AUTHORIZED':
+              raise SystemExit('BLOCKED_AUTHORIZATION: SourceBundle is not AUTHORIZED')
+          if not request['authorization_profile']['static_analysis_allowed']:
+              raise SystemExit('BLOCKED_AUTHORIZATION: static analysis is not authorized')
+          print('TRUSTED_INTAKE_CONTRACTS_VALIDATED')
+          PY
+
+      - name: Authenticate to Google with short-lived Workload Identity Federation
+        id: google_auth
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ env.GCP_WIF_PROVIDER }}
+          service_account: ${{ env.GCP_DRIVE_READER_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/drive.readonly
+          create_credentials_file: false
+          export_environment_variables: false
+
+      - name: Retrieve only SourceBundle-bound Drive objects and verify hashes
+        id: retrieve
+        env:
+          GDRIVE_ACCESS_TOKEN: ${{ steps.google_auth.outputs.access_token }}
+        shell: bash
+        run: |
+          mkdir -p "$EVIDENCE_DIR"
+          PACKAGE_DIR="$RUNNER_TEMP/appfusion-intake-${GITHUB_RUN_ID}-${{ matrix.request_id }}"
+          mkdir -p "$PACKAGE_DIR"
+          python scripts/trusted_drive_retrieve.py "$REQUEST_PATH" "$BUNDLE_PATH" "$PACKAGE_DIR" "$EVIDENCE_DIR/retrieval-record.json"
+          FILE_NAME=$(python -c 'import json,os; print(json.load(open(os.environ["EVIDENCE_DIR"] + "/retrieval-record.json"))["file_name"])')
+          echo "package_dir=$PACKAGE_DIR" >> "$GITHUB_OUTPUT"
+          echo "file_name=$FILE_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Set up pinned Go toolchain action
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version: '1.25.1'
+          cache: false
+
+      - name: Rebuild the attested static parser image
+        shell: bash
+        run: |
+          mkdir -p build
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w -buildid=' -o build/static-apk-inventory cmd/static-apk-inventory/main.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w -buildid=' -o build/sandbox-probe cmd/sandbox-probe/main.go
+          docker build --network=none -f .github/static-runner/Dockerfile -t appfusion-static-analyzer:intake .
+
+      - name: Re-prove container isolation before verified package parsing
+        shell: bash
+        run: |
+          docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 128m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            --entrypoint /sandbox-probe appfusion-static-analyzer:intake > "$EVIDENCE_DIR/sandbox.json"
+          python - <<'PY'
+          import json, os
+          result = json.load(open(os.environ['EVIDENCE_DIR'] + '/sandbox.json', encoding='utf-8'))
+          assert result == {
+              'schema_version': '1.0.0',
+              'public_network_blocked': True,
+              'metadata_network_blocked': True,
+              'sensitive_environment': [],
+          }, result
+          print('STATIC_CONTAINER_ISOLATION_REPROVED')
+          PY
+
+      - name: Verify package again and run static inventory with no Drive credential
+        shell: bash
+        run: |
+          PACKAGE_DIR='${{ steps.retrieve.outputs.package_dir }}'
+          FILE_NAME='${{ steps.retrieve.outputs.file_name }}'
+          EXPECTED_SHA=$(python -c 'import json,os; print(json.load(open(os.environ["EVIDENCE_DIR"] + "/retrieval-record.json"))["verified_sha256"])')
+          EXPECTED_SIZE=$(python -c 'import json,os; print(json.load(open(os.environ["EVIDENCE_DIR"] + "/retrieval-record.json"))["verified_size_bytes"])')
+          ACTUAL_SHA=$(sha256sum "$PACKAGE_DIR/$FILE_NAME" | awk '{print $1}')
+          ACTUAL_SIZE=$(stat -c%s "$PACKAGE_DIR/$FILE_NAME")
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          test "$ACTUAL_SIZE" = "$EXPECTED_SIZE"
+          docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 256m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            -v "$PACKAGE_DIR:/input:ro" -v "$PWD/$EVIDENCE_DIR:/output:rw" \
+            appfusion-static-analyzer:intake "/input/$FILE_NAME" /output/static-inventory.json
+          python scripts/validate_static_inventory.py "$EVIDENCE_DIR/static-inventory.json" "$EXPECTED_SHA" "$EXPECTED_SIZE"
+
+      - name: Destroy package bytes before evidence upload
+        if: always()
+        shell: bash
+        run: rm -rf '${{ steps.retrieve.outputs.package_dir }}'
+
+      - name: Preserve trusted intake and static inventory evidence only
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: trusted-drive-intake-${{ github.run_id }}-${{ matrix.request_id }}
+          path: |
+            ${{ env.EVIDENCE_DIR }}/retrieval-record.json
+            ${{ env.EVIDENCE_DIR }}/sandbox.json
+            ${{ env.EVIDENCE_DIR }}/static-inventory.json
+          if-no-files-found: error
+          retention-days: 30
