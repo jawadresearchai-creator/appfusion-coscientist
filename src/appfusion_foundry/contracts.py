@@ -62,6 +62,9 @@ REQUIRED_SCHEMA_NAMES = frozenset(
         "FoundryEvaluationResult",
         "StageOutcome",
         "UntrustedRunnerProfile",
+        "ApplicationState",
+        "ProjectRegistry",
+        "SessionBootstrap",
     }
 )
 

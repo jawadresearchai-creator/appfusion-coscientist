@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/project-registry.schema.json",
+  "title": "ProjectRegistry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_id",
+    "registry_revision",
+    "updated_at",
+    "state_authority",
+    "system",
+    "applications",
+    "selection_policy"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "registry_id": {"type": "string", "minLength": 1},
+    "registry_revision": {"type": "integer", "minimum": 1},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "state_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "drive_control_folder_id", "drive_registry_file_id", "github_mirror", "mirror_policy", "conflict_policy"],
+      "properties": {
+        "primary": {"const": "GOOGLE_DRIVE"},
+        "drive_control_folder_id": {"type": "string", "minLength": 1},
+        "drive_registry_file_id": {"type": "string", "minLength": 1},
+        "github_mirror": {"type": "string", "minLength": 1},
+        "mirror_policy": {"const": "MILESTONE_APPROVAL_RELEASE"},
+        "conflict_policy": {"const": "HIGHEST_VALID_REVISION_ELSE_PAUSE"}
+      }
+    },
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "status", "phase", "current_milestone", "last_completed_event", "next_safe_action", "blockers"],
+      "properties": {
+        "system_id": {"const": "appfusion-coscientist"},
+        "status": {"type": "string", "minLength": 1},
+        "phase": {"type": "string", "minLength": 1},
+        "current_milestone": {"type": "string", "minLength": 1},
+        "last_completed_event": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["event_type", "occurred_at", "summary"],
+          "properties": {
+            "event_type": {"type": "string", "minLength": 1},
+            "occurred_at": {"type": "string", "format": "date-time"},
+            "summary": {"type": "string", "minLength": 1}
+          }
+        },
+        "next_safe_action": {"type": "string", "minLength": 1},
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "summary"],
+            "properties": {
+              "id": {"type": "string", "minLength": 1},
+              "summary": {"type": "string", "minLength": 1},
+              "url": {"type": "string", "format": "uri"}
+            }
+          }
+        }
+      }
+    },
+    "applications": {
+      "type": "array",
+      "items": {"$ref": "application-state.schema.json"}
+    },
+    "selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zero_active", "one_active", "multiple_active"],
+      "properties": {
+        "zero_active": {"const": "REPORT_NONE_AND_REQUEST_REGISTRATION"},
+        "one_active": {"const": "AUTO_SELECT_AND_RESUME"},
+        "multiple_active": {"const": "ASK_USER_TO_SELECT"}
+      }
+    }
+  }
+}

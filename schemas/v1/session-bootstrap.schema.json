@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/session-bootstrap.schema.json",
+  "title": "SessionBootstrap",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "started_at", "registry_revision", "selection_decision", "candidate_app_ids", "surface"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "session_id": {"type": "string", "format": "uuid"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "registry_revision": {"type": "integer", "minimum": 1},
+    "selection_decision": {"enum": ["NO_ACTIVE_APPLICATIONS", "AUTO_SELECTED", "USER_SELECTION_REQUIRED"]},
+    "selected_app_id": {"type": ["string", "null"]},
+    "candidate_app_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "surface": {"enum": ["CHATGPT_WEB", "CODEX_DESKTOP", "PERSISTENT_COORDINATOR_API", "OPTIONAL_LOCAL_CLI"]}
+  }
+}

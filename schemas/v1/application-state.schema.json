@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/application-state.schema.json",
+  "title": "ApplicationState",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "app_id",
+    "display_name",
+    "active_for_selection",
+    "lifecycle_state",
+    "phase",
+    "updated_at",
+    "last_completed_event",
+    "next_safe_action",
+    "blockers",
+    "artifact_locations"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "app_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "active_for_selection": {"type": "boolean"},
+    "lifecycle_state": {
+      "enum": [
+        "REGISTERED",
+        "FOUNDRY_ANALYSIS",
+        "AWAITING_BLUEPRINT_APPROVAL",
+        "PRODUCT_CONSTRUCTION",
+        "VALIDATION",
+        "RELEASE_CANDIDATE",
+        "RELEASED",
+        "PAUSED",
+        "FAILED",
+        "ARCHIVED"
+      ]
+    },
+    "phase": {"type": "string", "minLength": 1},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "last_completed_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_type", "occurred_at", "summary"],
+      "properties": {
+        "event_type": {"type": "string", "minLength": 1},
+        "occurred_at": {"type": "string", "format": "date-time"},
+        "summary": {"type": "string", "minLength": 1}
+      }
+    },
+    "next_safe_action": {"type": "string", "minLength": 1},
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "summary"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "summary": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"}
+        }
+      }
+    },
+    "artifact_locations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_repository", "drive_workspace_id"],
+      "properties": {
+        "product_repository": {"type": ["string", "null"]},
+        "drive_workspace_id": {"type": ["string", "null"]},
+        "product_blueprint_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

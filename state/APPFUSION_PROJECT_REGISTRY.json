@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "appfusion-project-registry",
+  "registry_revision": 1,
+  "updated_at": "2026-09-02T15:37:07Z",
+  "state_authority": {
+    "primary": "GOOGLE_DRIVE",
+    "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
+    "drive_registry_file_id": "15-oC17tb-17N_5h6vKsYGct7_D_xGGqI",
+    "github_mirror": "jawadresearchai-creator/appfusion-coscientist:state/APPFUSION_PROJECT_REGISTRY.json",
+    "mirror_policy": "MILESTONE_APPROVAL_RELEASE",
+    "conflict_policy": "HIGHEST_VALID_REVISION_ELSE_PAUSE"
+  },
+  "system": {
+    "system_id": "appfusion-coscientist",
+    "status": "READY_WITH_BLOCKERS",
+    "phase": "FOUNDRY_BOOTSTRAP",
+    "current_milestone": "FOUNDRY_VERTICAL_SLICE_ALPHA",
+    "last_completed_event": {
+      "event_type": "CLOUD_BOOTSTRAP_COMPLETED",
+      "occurred_at": "2026-09-02T15:31:53Z",
+      "summary": "Private Foundry repositories, Drive hierarchy, versioned contracts, deterministic tests, and initial CI were established."
+    },
+    "next_safe_action": "Register the first rights-authorized APK intake after Drive-to-CI identity and the untrusted static-analysis runner are attested.",
+    "blockers": [
+      {
+        "id": "DRIVE_TO_CI_IDENTITY",
+        "summary": "Configure a narrow Drive-to-CI workload identity.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
+      },
+      {
+        "id": "UNTRUSTED_RUNNER_ATTESTATION",
+        "summary": "Attest the untrusted static-analysis runner before processing APK contents.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/2"
+      }
+    ]
+  },
+  "applications": [],
+  "selection_policy": {
+    "zero_active": "REPORT_NONE_AND_REQUEST_REGISTRATION",
+    "one_active": "AUTO_SELECT_AND_RESUME",
+    "multiple_active": "ASK_USER_TO_SELECT"
+  }
+}

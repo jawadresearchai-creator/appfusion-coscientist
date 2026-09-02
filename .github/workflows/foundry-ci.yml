@@ -3,8 +3,30 @@ name: Foundry CI
 on:
   push:
     branches: [main]
+    paths:
+      - .github/workflows/foundry-ci.yml
+      - environment-manifest.json
+      - plugins/**
+      - policies/**
+      - pyproject.toml
+      - schemas/**
+      - src/**
+      - tests/**
   pull_request:
+    paths:
+      - .github/workflows/foundry-ci.yml
+      - environment-manifest.json
+      - plugins/**
+      - policies/**
+      - pyproject.toml
+      - schemas/**
+      - src/**
+      - tests/**
   workflow_dispatch:
+
+concurrency:
+  group: foundry-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

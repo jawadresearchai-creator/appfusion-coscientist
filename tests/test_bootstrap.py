@@ -7,6 +7,7 @@ from appfusion_foundry.approval import create_approval_artifacts
 from appfusion_foundry.contracts import STAGE_OUTCOMES, load_json, validate
 from appfusion_foundry.state import create_run
 from appfusion_foundry.static_inventory import inventory_apk
+from appfusion_foundry.project_registry import select_application
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +61,39 @@ def test_cloud_is_authoritative_and_local_is_optional():
     manifest = json.loads((ROOT / "environment-manifest.json").read_text(encoding="utf-8"))
     assert manifest["canonical_state"]["authority"] == "CLOUD"
     assert manifest["local_environment"]["required_for_operation"] is False
+
+
+def test_project_registry_is_valid_and_has_no_active_product_yet():
+    registry = load_json(ROOT / "state/APPFUSION_PROJECT_REGISTRY.json")
+    validate(registry, ROOT / "schemas/v1/project-registry.schema.json")
+    assert select_application(registry) == {
+        "selection_decision": "NO_ACTIVE_APPLICATIONS",
+        "selected_app_id": None,
+        "candidate_app_ids": [],
+    }
+
+
+def test_project_selection_is_automatic_for_one_and_interactive_for_many():
+    registry = {"applications": []}
+    first = {
+        "app_id": "alpha-app",
+        "display_name": "Alpha",
+        "active_for_selection": True,
+    }
+    second = {
+        "app_id": "beta-app",
+        "display_name": "Beta",
+        "active_for_selection": True,
+    }
+    registry["applications"] = [first]
+    assert select_application(registry)["selected_app_id"] == "alpha-app"
+    assert select_application(registry)["selection_decision"] == "AUTO_SELECTED"
+
+    registry["applications"] = [second, first]
+    decision = select_application(registry)
+    assert decision["selection_decision"] == "USER_SELECTION_REQUIRED"
+    assert decision["selected_app_id"] is None
+    assert decision["candidate_app_ids"] == ["alpha-app", "beta-app"]
 
 
 def test_approval_envelope_and_product_attestation_are_separate():

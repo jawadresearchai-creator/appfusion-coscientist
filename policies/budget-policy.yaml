@@ -7,3 +7,42 @@ classes:
   THIRD_PARTY_SERVICE: {mode: blocked_until_explicit_authorization}
   SIGNING_DISTRIBUTION: {mode: blocked_until_explicit_authorization}
 on_exhaustion: preserve_state_and_pause
+github_usage:
+  policy: ESSENTIAL_ONLY
+  required_for:
+    - version_controlled_source_and_contracts
+    - reproducible_builds_and_tests
+    - security_and_clean_room_gates
+    - approval_milestone_and_release_checkpoints
+  prohibited_for:
+    - ordinary_reasoning_or_document_review
+    - idle_polling
+    - high_frequency_working_state
+    - bulky_source_inputs_reports_screenshots_or_videos
+    - duplicate_work_already_verified_on_another_approved_surface
+  controls:
+    - path_filtered_workflows
+    - cancel_superseded_runs
+    - bounded_timeouts
+    - no_paid_overage_without_explicit_authorization
+routing:
+  CHATGPT_WEB:
+    - reasoning
+    - capability_comparison
+    - planning_and_report_drafting
+    - interactive_decisions_within_existing_authority
+  GOOGLE_DRIVE:
+    - freshest_project_and_application_state
+    - apk_and_other_source_inputs
+    - reports_and_evidence
+    - screenshots_videos_and_large_artifacts
+  GITHUB:
+    - source_code
+    - schemas_and_policies
+    - small_checkpoint_manifests
+    - reproducible_ci_gates
+    - releases
+  OPTIONAL_LOCAL:
+    - diagnostics
+    - development_acceleration
+    - noncanonical_preflight_tests

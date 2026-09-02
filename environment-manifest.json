@@ -16,6 +16,13 @@
       "product_releases_id": "1JzDipBUULYnBK5RSUHUv4j_hNhWvzMuo",
       "audit_id": "1IfXvU3A8fT80TRRdXRmaiUPwu8tWzNVd",
       "quarantine_id": "1nPKp-thVJEvezk0oBbGUnQ_cmyEgKDCV"
+    },
+    "project_registry": {
+      "primary": "GOOGLE_DRIVE",
+      "drive_control_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
+      "drive_file_id": "15-oC17tb-17N_5h6vKsYGct7_D_xGGqI",
+      "github_mirror": "state/APPFUSION_PROJECT_REGISTRY.json",
+      "mirror_policy": "MILESTONE_APPROVAL_RELEASE"
     }
   },
   "control_surfaces": [
@@ -35,6 +42,7 @@
     "untrusted_dynamic_runner": "BLOCKED_SECURITY_ENVIRONMENT"
   },
   "budgets": {
-    "paid_overage_authorized": false
+    "paid_overage_authorized": false,
+    "github_usage_policy": "ESSENTIAL_ONLY"
   }
 }

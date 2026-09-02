@@ -1,6 +1,12 @@
 schema_version: 1.0.0
 canonical_authority: CLOUD
 durable_state:
+  freshest_working_state:
+    authority: GOOGLE_DRIVE
+    control_folder_id: 1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw
+  github_state_mirror:
+    path: state/APPFUSION_PROJECT_REGISTRY.json
+    cadence: MILESTONE_APPROVAL_RELEASE
   repositories:
     capability_foundry: jawadresearchai-creator/appfusion-coscientist
     product_foundry: jawadresearchai-creator/appfusion-product
@@ -27,3 +33,9 @@ rules:
   - every_command_uses_versioned_contracts
   - retries_are_idempotent
   - session_loss_does_not_erase_completed_deterministic_work
+  - every_new_session_bootstraps_from_the_cloud_registry
+  - zero_active_apps_are_reported
+  - one_active_app_is_resumed_automatically
+  - multiple_active_apps_require_user_selection
+  - highest_valid_registry_revision_wins
+  - equal_revision_conflicts_pause_instead_of_guessing
