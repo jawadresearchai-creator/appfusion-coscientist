@@ -1,1 +1,69 @@
-{"schema_version":"1.0.0","registry_id":"appfusion-project-registry","registry_revision":5,"updated_at":"2026-09-02T16:20:47Z","state_authority":{"primary":"GOOGLE_DRIVE","drive_control_folder_id":"1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw","drive_registry_file_id":"15-oC17tb-17N_5h6vKsYGct7_D_xGGqI","github_mirror":"jawadresearchai-creator/appfusion-coscientist:state/APPFUSION_PROJECT_REGISTRY.json","mirror_policy":"MILESTONE_APPROVAL_RELEASE","conflict_policy":"HIGHEST_VALID_REVISION_ELSE_PAUSE"},"system":{"system_id":"appfusion-coscientist","status":"READY_WITH_BLOCKERS","phase":"FOUNDRY_ANALYSIS","current_milestone":"FOUNDRY_VERTICAL_SLICE_ALPHA","last_completed_event":{"event_type":"FIRST_PRODUCT_ANALYSIS_AUTHORIZED","occurred_at":"2026-09-02T16:20:47Z","summary":"AnalysisAuthorizationProfile accepted and schema-valid; canonical SHA-256 8e160e4a477ee5aababd81c438ed59335f1a18bd67eaf4026b2f9c96d7d45baf. SourceBundle authorized. All Drive locators/names/sizes verified; the three editable source ZIPs re-hashed exactly to manifest SHA-256. APK/APKM byte-level hashing/parsing remains deferred to the compliant hostile-input lane."},"next_safe_action":"Analyze the three authorized editable source ZIPs without executing them; in parallel, prepare schema-valid APK/APKM IntakeRequests. Do not parse or execute APK/APKM bytes until DRIVE_TO_CI_IDENTITY and UNTRUSTED_RUNNER_ATTESTATION are cleared.","blockers":[{"id":"DRIVE_TO_CI_IDENTITY","summary":"Configure a narrow Drive-to-CI workload identity.","url":"https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"},{"id":"UNTRUSTED_RUNNER_ATTESTATION","summary":"Attest the isolated static-analysis runner before processing APK contents.","url":"https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/2"}]},"applications":[{"schema_version":"1.0.0","app_id":"docvault-lasttime-fusion","display_name":"DocVault + LastTime Fusion","active_for_selection":true,"lifecycle_state":"FOUNDRY_ANALYSIS","phase":"AUTHORIZED_SOURCE_ANALYSIS","updated_at":"2026-09-02T16:20:47Z","last_completed_event":{"event_type":"ANALYSIS_AUTHORIZATION_AND_SOURCE_INTEGRITY_VALIDATED","occurred_at":"2026-09-02T16:20:47Z","summary":"AnalysisAuthorizationProfile accepted and schema-valid; canonical SHA-256 8e160e4a477ee5aababd81c438ed59335f1a18bd67eaf4026b2f9c96d7d45baf. SourceBundle authorized. All Drive locators/names/sizes verified; the three editable source ZIPs re-hashed exactly to manifest SHA-256. APK/APKM byte-level hashing/parsing remains deferred to the compliant hostile-input lane."},"next_safe_action":"Analyze the three authorized editable source ZIPs without executing them; in parallel, prepare schema-valid APK/APKM IntakeRequests. Do not parse or execute APK/APKM bytes until DRIVE_TO_CI_IDENTITY and UNTRUSTED_RUNNER_ATTESTATION are cleared.","blockers":[{"id":"DRIVE_TO_CI_IDENTITY","summary":"Configure a narrow Drive-to-CI workload identity.","url":"https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"},{"id":"UNTRUSTED_RUNNER_ATTESTATION","summary":"Attest the isolated static-analysis runner before processing APK contents.","url":"https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/2"}],"artifact_locations":{"product_repository":"jawadresearchai-creator/appfusion-product","drive_workspace_id":"1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt","source_bundle_manifest_file_id":"12Qjms57CorUzpMqPrQ9dh8TrS3slxN5M","application_state_file_id":"1kurtVziDCgOGXvPujRaW5JrYPBQ9SkgX","product_blueprint_sha256":null}}],"selection_policy":{"zero_active":"REPORT_NONE_AND_REQUEST_REGISTRATION","one_active":"AUTO_SELECT_AND_RESUME","multiple_active":"ASK_USER_TO_SELECT"}}
+{
+  "schema_version": "1.0.0",
+  "registry_id": "appfusion-project-registry",
+  "registry_revision": 6,
+  "updated_at": "2026-09-02T16:54:44Z",
+  "state_authority": {
+    "primary": "GOOGLE_DRIVE",
+    "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
+    "drive_registry_file_id": "15-oC17tb-17N_5h6vKsYGct7_D_xGGqI",
+    "github_mirror": "jawadresearchai-creator/appfusion-coscientist:state/APPFUSION_PROJECT_REGISTRY.json",
+    "mirror_policy": "MILESTONE_APPROVAL_RELEASE",
+    "conflict_policy": "HIGHEST_VALID_REVISION_ELSE_PAUSE"
+  },
+  "system": {
+    "system_id": "appfusion-coscientist",
+    "status": "READY_WITH_BLOCKERS",
+    "phase": "FOUNDRY_ANALYSIS",
+    "current_milestone": "FOUNDRY_VERTICAL_SLICE_ALPHA",
+    "last_completed_event": {
+      "event_type": "UNTRUSTED_STATIC_RUNNER_ATTESTED",
+      "occurred_at": "2026-09-02T16:54:00Z",
+      "summary": "The static hostile-input lane is attested for package parsing under network-none, metadata-denied, no-sensitive-environment, read-only/no-capability controls; trusted output validation and digest-bound GitHub OIDC evidence passed. Dynamic execution remains blocked."
+    },
+    "next_safe_action": "Configure the narrow Drive-to-CI workload identity; then retrieve and hash authorized package bytes in the trusted intake coordinator and feed verified bytes into the attested static lane. Continue source-only Foundry analysis in parallel.",
+    "blockers": [
+      {
+        "id": "DRIVE_TO_CI_IDENTITY",
+        "summary": "Configure a narrow Drive-to-CI workload identity.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
+      }
+    ]
+  },
+  "applications": [
+    {
+      "schema_version": "1.0.0",
+      "app_id": "docvault-lasttime-fusion",
+      "display_name": "DocVault + LastTime Fusion",
+      "active_for_selection": true,
+      "lifecycle_state": "FOUNDRY_ANALYSIS",
+      "phase": "STATIC_RUNNER_ATTESTED_AWAITING_RETRIEVAL_IDENTITY",
+      "updated_at": "2026-09-02T16:54:44Z",
+      "last_completed_event": {
+        "event_type": "UNTRUSTED_STATIC_RUNNER_ATTESTED",
+        "occurred_at": "2026-09-02T16:54:00Z",
+        "summary": "Static hostile-input lane attested at Foundry commit 0d60d991e495e5edd74c4057437eb0ef06ed9067. Foundry CI passed. GitHub Actions run 33657688890 proved network denial, cloud-metadata denial, absence of sensitive environment, read-only/no-capability container controls, traversal/symlink rejection, trusted positive-schema output validation, and GitHub-OIDC binding of the promotion-manifest digest. Evidence artifact 9857399979 has digest sha256:eec2d13d1c18bb620d9a19b954ec1b8b85b2afe46585a2356a57cafc762ee452. Dynamic execution remains disabled."
+      },
+      "next_safe_action": "Configure the narrow Drive-to-CI workload identity. After it is attested, retrieve and hash the authorized DocVault APK and CamScanner APKM chunks in the trusted intake coordinator, then pass only verified bytes into the attested static lane. Continue source-only Foundry analysis in parallel.",
+      "blockers": [
+        {
+          "id": "DRIVE_TO_CI_IDENTITY",
+          "summary": "Configure a narrow Drive-to-CI workload identity.",
+          "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
+        }
+      ],
+      "artifact_locations": {
+        "product_repository": "jawadresearchai-creator/appfusion-product",
+        "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
+        "source_bundle_manifest_file_id": "12Qjms57CorUzpMqPrQ9dh8TrS3slxN5M",
+        "application_state_file_id": "1kurtVziDCgOGXvPujRaW5JrYPBQ9SkgX",
+        "product_blueprint_sha256": null
+      }
+    }
+  ],
+  "selection_policy": {
+    "zero_active": "REPORT_NONE_AND_REQUEST_REGISTRATION",
+    "one_active": "AUTO_SELECT_AND_RESUME",
+    "multiple_active": "ASK_USER_TO_SELECT"
+  }
+}

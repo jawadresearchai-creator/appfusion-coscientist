@@ -1,6 +1,6 @@
 schema_version: 1.0.0
 profile_id: github-hosted-static-isolated-v1
-status: PARTIALLY_IMPLEMENTED
+status: ATTESTED_STATIC_ONLY
 github_token_permissions: {}
 persist_checkout_credentials: false
 secrets:
@@ -18,14 +18,42 @@ triggers:
   pull_request_target_for_untrusted_execution: forbidden
 network:
   policy: deny_or_mediated
-  enforcement_status: BLOCKED_SECURITY_ENVIRONMENT
+  enforcement_status: ENFORCED_STATIC_CONTAINER_ONLY
   authorized_allowlist_required: true
+  static_container:
+    network_mode: none
+    public_egress_probe: blocked
+    cloud_metadata_probe: blocked
 cloud_metadata:
   access: denied
+untrusted_container:
+  inherited_sensitive_environment: false
+  root_filesystem: read_only
+  capabilities: all_dropped
+  no_new_privileges: true
+  user: "65532:65532"
 outputs:
   schema_validated: required
-  signed_job_manifest: required
+  signed_job_manifest: GITHUB_OIDC_AUDIENCE_BOUND_SHA256
   one_way_promotion: required
+attestation:
+  outcome: PASS
+  foundry_commit: 0d60d991e495e5edd74c4057437eb0ef06ed9067
+  workflow_run_id: 33657688890
+  workflow_job_id: 100340232968
+  artifact_id: 9857399979
+  artifact_digest: sha256:eec2d13d1c18bb620d9a19b954ec1b8b85b2afe46585a2356a57cafc762ee452
+  controls_proved:
+    - network_denial
+    - cloud_metadata_denial
+    - sensitive_environment_absence
+    - read_only_root_filesystem
+    - all_capabilities_dropped
+    - no_new_privileges
+    - traversal_entry_rejection
+    - symlink_entry_rejection
+    - trusted_positive_schema_output_validation
+    - digest_bound_github_oidc_job_identity
 dynamic_execution:
   enabled: false
-  reason: GitHub-hosted emulator lane has not yet demonstrated enforceable egress isolation
+  reason: Static parser isolation is attested; emulator/runtime execution requires a separate dynamic-lane security attestation before use.
