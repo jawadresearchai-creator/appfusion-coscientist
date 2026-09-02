@@ -5,21 +5,29 @@ on:
     branches: [main]
     paths:
       - .github/workflows/foundry-ci.yml
+      - .github/workflows/untrusted-static-runner-attestation.yml
+      - .github/static-runner/**
+      - cmd/**
       - environment-manifest.json
       - plugins/**
       - policies/**
       - pyproject.toml
       - schemas/**
+      - scripts/**
       - src/**
       - tests/**
   pull_request:
     paths:
       - .github/workflows/foundry-ci.yml
+      - .github/workflows/untrusted-static-runner-attestation.yml
+      - .github/static-runner/**
+      - cmd/**
       - environment-manifest.json
       - plugins/**
       - policies/**
       - pyproject.toml
       - schemas/**
+      - scripts/**
       - src/**
       - tests/**
   workflow_dispatch:

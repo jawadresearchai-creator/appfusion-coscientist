@@ -1,0 +1,193 @@
+name: Untrusted Static Runner Attestation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/untrusted-static-runner-attestation.yml
+      - .github/static-runner/**
+      - cmd/static-apk-inventory/**
+      - cmd/sandbox-probe/**
+      - scripts/validate_static_inventory.py
+      - src/appfusion_foundry/bootstrap.py
+      - policies/untrusted-runner-profile.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  attest-static-lane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out trusted control-plane source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Set up pinned Go toolchain action
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version: '1.25.1'
+          cache: false
+
+      - name: Generate synthetic hostile-input fixtures
+        shell: bash
+        run: |
+          mkdir -p security-fixtures security-output build
+          python - <<'PY'
+          import stat
+          import zipfile
+          from pathlib import Path
+
+          root = Path('security-fixtures')
+          with zipfile.ZipFile(root / 'good.apk', 'w', compression=zipfile.ZIP_STORED) as archive:
+              archive.writestr('AndroidManifest.xml', b'fixture')
+              archive.writestr('classes.dex', b'fixture')
+              archive.writestr('lib/arm64-v8a/libdemo.so', b'fixture')
+              archive.writestr('resources.arsc', b'fixture')
+
+          with zipfile.ZipFile(root / 'path-traversal.apk', 'w') as archive:
+              archive.writestr('../escape', b'fixture')
+
+          with zipfile.ZipFile(root / 'symlink.apk', 'w') as archive:
+              info = zipfile.ZipInfo('link')
+              info.create_system = 3
+              info.external_attr = (stat.S_IFLNK | 0o777) << 16
+              archive.writestr(info, 'target')
+          PY
+          chmod 0777 security-output
+
+      - name: Build static parser and sandbox probe
+        shell: bash
+        run: |
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w -buildid=' -o build/static-apk-inventory cmd/static-apk-inventory/main.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w -buildid=' -o build/sandbox-probe cmd/sandbox-probe/main.go
+          sha256sum build/static-apk-inventory build/sandbox-probe
+
+      - name: Build scratch analysis image without build-network access
+        shell: bash
+        run: |
+          docker build --network=none -f .github/static-runner/Dockerfile -t appfusion-static-analyzer:ci .
+
+      - name: Prove network metadata secret and filesystem isolation
+        shell: bash
+        run: |
+          COMMON=(--rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 128m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m)
+          docker run "${COMMON[@]}" --entrypoint /sandbox-probe appfusion-static-analyzer:ci > security-output/sandbox.json
+          python - <<'PY'
+          import json
+          result = json.load(open('security-output/sandbox.json', encoding='utf-8'))
+          assert result == {
+              'schema_version': '1.0.0',
+              'public_network_blocked': True,
+              'metadata_network_blocked': True,
+              'sensitive_environment': [],
+          }, result
+          print('SANDBOX_ISOLATION_PROVED')
+          PY
+
+      - name: Parse a benign fixture inside the untrusted container
+        shell: bash
+        run: |
+          docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 128m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            -v "$PWD/security-fixtures:/input:ro" -v "$PWD/security-output:/output:rw" \
+            appfusion-static-analyzer:ci /input/good.apk /output/good.json
+
+      - name: Reject traversal and symlink package entries
+        shell: bash
+        run: |
+          for fixture in path-traversal.apk symlink.apk; do
+            if docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 128m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+              -v "$PWD/security-fixtures:/input:ro" -v "$PWD/security-output:/output:rw" \
+              appfusion-static-analyzer:ci "/input/$fixture" "/output/rejected.json"; then
+              echo "Unsafe fixture unexpectedly passed: $fixture" >&2
+              exit 1
+            fi
+          done
+          rm -f security-output/rejected.json
+
+      - name: Validate promoted output in the trusted wrapper
+        shell: bash
+        run: |
+          GOOD_SHA=$(sha256sum security-fixtures/good.apk | awk '{print $1}')
+          GOOD_SIZE=$(stat -c%s security-fixtures/good.apk)
+          python scripts/validate_static_inventory.py security-output/good.json "$GOOD_SHA" "$GOOD_SIZE"
+
+      - name: Build digest-bound promotion manifest
+        shell: bash
+        run: |
+          export IMAGE_ID=$(docker image inspect appfusion-static-analyzer:ci --format '{{.Id}}')
+          export PARSER_SHA=$(sha256sum build/static-apk-inventory | awk '{print $1}')
+          export PROBE_BINARY_SHA=$(sha256sum build/sandbox-probe | awk '{print $1}')
+          export INPUT_SHA=$(sha256sum security-fixtures/good.apk | awk '{print $1}')
+          export OUTPUT_SHA=$(sha256sum security-output/good.json | awk '{print $1}')
+          export SANDBOX_SHA=$(sha256sum security-output/sandbox.json | awk '{print $1}')
+          python - <<'PY'
+          import json
+          import os
+
+          manifest = {
+              'schema_version': '1.0.0',
+              'profile_id': 'github-hosted-static-isolated-v1',
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'commit_sha': os.environ['GITHUB_SHA'],
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'image_id': os.environ['IMAGE_ID'],
+              'parser_sha256': os.environ['PARSER_SHA'],
+              'sandbox_probe_sha256': os.environ['PROBE_BINARY_SHA'],
+              'fixture_input_sha256': os.environ['INPUT_SHA'],
+              'validated_output_sha256': os.environ['OUTPUT_SHA'],
+              'sandbox_result_sha256': os.environ['SANDBOX_SHA'],
+              'controls': {
+                  'network': 'none',
+                  'capabilities': 'all-dropped',
+                  'no_new_privileges': True,
+                  'root_filesystem': 'read-only',
+                  'container_user': '65532:65532',
+                  'cloud_metadata': 'blocked-by-network-namespace',
+                  'sensitive_environment': 'absent',
+                  'output_validation': 'trusted-positive-schema',
+              },
+          }
+          with open('promotion-manifest.json', 'w', encoding='utf-8') as handle:
+              json.dump(manifest, handle, sort_keys=True, separators=(',', ':'))
+              handle.write('\n')
+          PY
+          sha256sum promotion-manifest.json
+
+      - name: Bind the promotion-manifest digest to GitHub job identity
+        shell: bash
+        run: |
+          MANIFEST_SHA=$(sha256sum promotion-manifest.json | awk '{print $1}')
+          export AUDIENCE="appfusion-static-manifest-sha256:$MANIFEST_SHA"
+          AUDIENCE_ENCODED=$(python -c 'import os, urllib.parse; print(urllib.parse.quote(os.environ["AUDIENCE"], safe=""))')
+          RESPONSE=$(curl --fail --silent --show-error -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${AUDIENCE_ENCODED}")
+          printf '%s' "$RESPONSE" | python -c 'import json,sys; print(json.load(sys.stdin)["value"])' > promotion-manifest.oidc.jwt
+          python - <<'PY'
+          import base64
+          import json
+          import os
+
+          token = open('promotion-manifest.oidc.jwt', encoding='utf-8').read().strip()
+          parts = token.split('.')
+          assert len(parts) == 3
+          payload = json.loads(base64.urlsafe_b64decode(parts[1] + '=' * (-len(parts[1]) % 4)))
+          assert payload['aud'] == os.environ['AUDIENCE'], payload
+          assert payload['repository'] == os.environ['GITHUB_REPOSITORY'], payload
+          print('OIDC_MANIFEST_BINDING_PROVED')
+          PY
+
+      - name: Preserve static-lane attestation evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: untrusted-static-runner-attestation-${{ github.run_id }}
+          path: |
+            promotion-manifest.json
+            promotion-manifest.oidc.jwt
+            security-output/good.json
+            security-output/sandbox.json
+          if-no-files-found: error
+          retention-days: 30

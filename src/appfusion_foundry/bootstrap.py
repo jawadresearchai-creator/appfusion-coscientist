@@ -35,6 +35,31 @@ def bootstrap_check(repository_root: Path) -> list[str]:
         errors.append("Untrusted runner must declare empty GitHub token permissions")
     if profile.get("persist_checkout_credentials") is not False:
         errors.append("Untrusted runner must disable checkout credential persistence")
+    if profile.get("dynamic_execution", {}).get("enabled") is not False:
+        errors.append("Dynamic execution must remain disabled until separately attested")
+
+    security_workflow_path = repository_root / ".github" / "workflows" / "untrusted-static-runner-attestation.yml"
+    if security_workflow_path.exists():
+        security_workflow = security_workflow_path.read_text(encoding="utf-8")
+        required_controls = (
+            "--network none",
+            "--cap-drop ALL",
+            "--security-opt no-new-privileges:true",
+            "--read-only",
+            "--pids-limit 64",
+            "--user 65532:65532",
+            "sandbox-probe",
+            "validate_static_inventory.py",
+            "ACTIONS_ID_TOKEN_REQUEST_URL",
+            "appfusion-static-manifest-sha256:",
+        )
+        for control in required_controls:
+            if control not in security_workflow:
+                errors.append(f"Static runner attestation workflow is missing control {control!r}")
+        if "pull_request_target" in security_workflow:
+            errors.append("Static runner attestation workflow must not use pull_request_target")
+    else:
+        errors.append("Static runner attestation workflow is missing")
 
     scan_roots = [repository_root / "policies", repository_root / ".github" / "workflows"]
     for root in scan_roots:
