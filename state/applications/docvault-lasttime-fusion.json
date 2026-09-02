@@ -3,20 +3,19 @@
   "app_id": "docvault-lasttime-fusion",
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
-  "lifecycle_state": "FOUNDRY_ANALYSIS",
-  "phase": "SOURCE_ARCHITECTURE_RECONCILED_AWAITING_RETRIEVAL_IDENTITY",
-  "updated_at": "2026-09-02T17:31:02Z",
+  "lifecycle_state": "AWAITING_BLUEPRINT_APPROVAL",
+  "phase": "AWAITING_EXACT_HASH_BLUEPRINT_APPROVAL",
+  "updated_at": "2026-09-02T18:37:19Z",
   "last_completed_event": {
-    "event_type": "SOURCE_ARCHITECTURE_RECONCILIATION_COMPLETED",
-    "occurred_at": "2026-09-02T17:31:02Z",
-    "summary": "Deep source architecture reconciliation completed and preserved in Drive file 1j3VwIkts2WzIHpcL7hXAUiK4nkwKdbiL. Source truth now explicitly distinguishes LastTime canonical Room persistence and singular reminder runtime from stale JSON/legacy reminder documentation/code; cross-domain integration is defined through bounded ports, typed entity references, separate initial Room stores, DocVault document crypto, LastTime shared scheduling transport, and non-destructive migration gates. Package/reference evidence remains blocked only by the external WIF Drive identity."
+    "event_type": "FOUNDRY_DOSSIER_AND_PRODUCT_BLUEPRINT_COMPILED",
+    "occurred_at": "2026-09-02T18:37:19Z",
+    "summary": "Trusted WIF package intake completed on GitHub Actions run 33667661344 for the compiled baseline and behavioral-reference bundle; all SourceBundle hashes/sizes matched, the isolated static lane passed, and package bytes were destroyed before evidence promotion. Package reconciliation is stored in Drive file 1M1QyjGEvi4G_TlaEV94NohlyN0YJ80JV and the private FoundryDecisionDossier in 1tmf-mr_qFE77mVaWFwuv4uozypUO2Pe1. Clean-room ProductBlueprint JSON is stored in 1UNLffngCEoROT0OPpAOTcfY9heYqODqR, passed schema validation and source-identity leakage canaries, and is bound to SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc. Dynamic reference comparison remains BLOCKED_SECURITY_ENVIRONMENT and is explicitly carried as blueprint uncertainty."
   },
-  "next_safe_action": "Provision the external Google Cloud Workload Identity Federation provider and dedicated Drive-reader service account, set the three APPFUSION_GCP_* repository variables, and share only the dedicated AppFusion intake workspace/exact staged files with that service account as reader. Then run the trusted Drive package-intake workflow for DocVault and CamScanner, reconcile package/reference evidence against the source architecture reports, and continue Foundry dossier generation. Do not begin dynamic/emulator analysis or Product implementation.",
+  "next_safe_action": "Present ProductBlueprint SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc for explicit authenticated human approval. Do not begin Product construction until that exact hash is approved. If the user requests any semantic change, generate a new blueprint and hash.",
   "blockers": [
     {
-      "id": "DRIVE_TO_CI_IDENTITY",
-      "summary": "Provision and prove the short-lived Google Cloud WIF Drive-reader identity for trusted CI intake.",
-      "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
+      "id": "BLUEPRINT_APPROVAL",
+      "summary": "Explicit authenticated approval is required for the exact ProductBlueprint SHA-256 before Product construction."
     }
   ],
   "artifact_locations": {
@@ -24,6 +23,6 @@
     "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
     "source_bundle_manifest_file_id": "12Qjms57CorUzpMqPrQ9dh8TrS3slxN5M",
     "application_state_file_id": "1kurtVziDCgOGXvPujRaW5JrYPBQ9SkgX",
-    "product_blueprint_sha256": null
+    "product_blueprint_sha256": "2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc"
   }
 }
