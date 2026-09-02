@@ -1,5 +1,6 @@
 name: Trusted Drive Package Intake Bootstrap
 
+# one-shot trigger after verified WIF provisioning
 on:
   push:
     branches: [main]
