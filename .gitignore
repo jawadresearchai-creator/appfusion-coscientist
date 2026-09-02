@@ -16,3 +16,4 @@ runs/
 *.p12
 *.mobileprovision
 .env
+gha-creds-*.json
