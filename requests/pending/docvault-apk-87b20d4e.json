@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "d78b229b-debc-40af-8037-fc2585b03075",
+  "submitted_by": "jawadresearchai-creator",
+  "submitted_at": "2026-09-02T16:25:30Z",
+  "source": {
+    "kind": "GOOGLE_DRIVE",
+    "locator": "https://drive.google.com/file/d/1PGYeCKISRn-vIHsMPg7y-KhBlKHspov4/view",
+    "sha256": "87b20d4e423dcbffc7442cf30076762c22e878f713703c6e6efe4b0621097286",
+    "file_name": "Docvault-87b20d4e.apk"
+  },
+  "authorization_profile": {
+    "profile_id": "fd59a453-3b4f-4a2d-a9b9-9ce60e892db9",
+    "rights_basis": "OTHER_DOCUMENTED_BASIS",
+    "static_analysis_allowed": true,
+    "dynamic_analysis_allowed": true,
+    "network_interception_allowed": false,
+    "accepted_by": "jawadresearchai-creator",
+    "accepted_at": "2026-09-02T16:17:04Z",
+    "constraints": [
+      "Scope: docvault-lasttime-fusion / source bundle docvault-lasttime-fusion-20260902.",
+      "Document Vault editable source and compiled APK: static analysis authorized; ordinary local/runtime dynamic analysis authorized; source/code reuse, modification, refactoring, and derivative implementation authorized.",
+      "LastTime current editable source and Antigravity source variant: static analysis authorized; ordinary local/runtime dynamic analysis authorized; source/code reuse, modification, refactoring, and derivative implementation authorized.",
+      "CamScanner APKM: analysis is authorized only to understand externally observable functionality/architecture and to produce a clean-room behavioral specification and behavioral benchmark.",
+      "CamScanner direct copying/reuse of proprietary source, protected implementation code, assets, branding, keys, or other proprietary material is prohibited.",
+      "Network interception, MITM, traffic decryption, credential extraction, authentication bypass, licensing bypass, and access-control circumvention are prohibited.",
+      "AppFusion clean-room, security, budget, exact-hash approval, blueprint-approval, and material-deviation gates remain mandatory."
+    ]
+  },
+  "requested_mode": "INTERACTIVE_RESUMABLE",
+  "notes": "Registered after explicit rights authorization. Retrieval/hash verification and APK parsing must not start until DRIVE_TO_CI_IDENTITY and UNTRUSTED_RUNNER_ATTESTATION are satisfied."
+}
