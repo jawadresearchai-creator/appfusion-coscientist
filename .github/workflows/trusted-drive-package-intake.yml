@@ -147,15 +147,20 @@ jobs:
           ACTUAL_SIZE=$(stat -c%s "$PACKAGE_DIR/$FILE_NAME")
           test "$ACTUAL_SHA" = "$EXPECTED_SHA"
           test "$ACTUAL_SIZE" = "$EXPECTED_SIZE"
+          STATIC_OUTPUT_DIR="$RUNNER_TEMP/appfusion-static-output-${GITHUB_RUN_ID}"
+          install -d -m 0777 "$STATIC_OUTPUT_DIR"
           docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges:true --read-only --pids-limit 64 --memory 256m --cpus 1 --user 65532:65532 --tmpfs /tmp:rw,noexec,nosuid,size=16m \
-            -v "$PACKAGE_DIR:/input:ro" -v "$PWD/$EVIDENCE_DIR:/output:rw" \
+            -v "$PACKAGE_DIR:/input:ro" -v "$STATIC_OUTPUT_DIR:/output:rw" \
             appfusion-static-analyzer:intake "/input/$FILE_NAME" /output/static-inventory.json
-          python scripts/validate_static_inventory.py "$EVIDENCE_DIR/static-inventory.json" "$EXPECTED_SHA" "$EXPECTED_SIZE"
+          python scripts/validate_static_inventory.py "$STATIC_OUTPUT_DIR/static-inventory.json" "$EXPECTED_SHA" "$EXPECTED_SIZE"
+          install -m 0644 "$STATIC_OUTPUT_DIR/static-inventory.json" "$EVIDENCE_DIR/static-inventory.json"
 
-      - name: Destroy package bytes before evidence upload
+      - name: Destroy package bytes and disposable static output
         if: always()
         shell: bash
-        run: rm -rf '${{ steps.retrieve.outputs.package_dir }}'
+        run: |
+          rm -rf '${{ steps.retrieve.outputs.package_dir }}'
+          rm -rf "$RUNNER_TEMP/appfusion-static-output-${GITHUB_RUN_ID}"
 
       - name: Preserve trusted intake and static inventory evidence only
         if: success()
