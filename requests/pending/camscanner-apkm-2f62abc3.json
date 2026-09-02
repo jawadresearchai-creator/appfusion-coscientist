@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "e76c2676-4ef3-45c4-861a-dedb7a7d984b",
+  "submitted_by": "jawadresearchai-creator",
+  "submitted_at": "2026-09-02T16:25:30Z",
+  "source": {
+    "kind": "GOOGLE_DRIVE",
+    "locator": "https://drive.google.com/drive/folders/1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
+    "sha256": "2f62abc367c8e34c6234bde6108c5b317aec027e132237a8673cf43c11cb0a52",
+    "file_name": "APK.apkm"
+  },
+  "authorization_profile": {
+    "profile_id": "fd59a453-3b4f-4a2d-a9b9-9ce60e892db9",
+    "rights_basis": "OTHER_DOCUMENTED_BASIS",
+    "static_analysis_allowed": true,
+    "dynamic_analysis_allowed": true,
+    "network_interception_allowed": false,
+    "accepted_by": "jawadresearchai-creator",
+    "accepted_at": "2026-09-02T16:17:04Z",
+    "constraints": [
+      "Scope: docvault-lasttime-fusion / source bundle docvault-lasttime-fusion-20260902.",
+      "Document Vault editable source and compiled APK: static analysis authorized; ordinary local/runtime dynamic analysis authorized; source/code reuse, modification, refactoring, and derivative implementation authorized.",
+      "LastTime current editable source and Antigravity source variant: static analysis authorized; ordinary local/runtime dynamic analysis authorized; source/code reuse, modification, refactoring, and derivative implementation authorized.",
+      "CamScanner APKM: analysis is authorized only to understand externally observable functionality/architecture and to produce a clean-room behavioral specification and behavioral benchmark.",
+      "CamScanner direct copying/reuse of proprietary source, protected implementation code, assets, branding, keys, or other proprietary material is prohibited.",
+      "Network interception, MITM, traffic decryption, credential extraction, authentication bypass, licensing bypass, and access-control circumvention are prohibited.",
+      "AppFusion clean-room, security, budget, exact-hash approval, blueprint-approval, and material-deviation gates remain mandatory."
+    ]
+  },
+  "requested_mode": "INTERACTIVE_RESUMABLE",
+  "notes": "Logical APKM is chunked in Drive and bound by SourceBundle `docvault-lasttime-fusion-20260902`: part001=1tZdXQtECTYxSSxp_T-YAbaf6nVO_lFu8, part002a=1YiPW4hSL7fDTZxkIyAbZtSf8BsEdHSnS, part002b=197bzwGdB2_8EzcUJI7jvhruUtHqR4cPQ, part003=1XE0VJhILMwB2uZx1mbp4bzJke9AtJxJ1, in that order with manifest chunk hashes. Reconstruction, hashing, parsing, or execution must not start until DRIVE_TO_CI_IDENTITY and UNTRUSTED_RUNNER_ATTESTATION are satisfied. Behavioral-benchmark-only clean-room constraint applies."
+}
