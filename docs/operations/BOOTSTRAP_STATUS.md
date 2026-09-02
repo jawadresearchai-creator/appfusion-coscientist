@@ -18,7 +18,7 @@
 
 ## Current resumable state
 
-- Registry revision: `3`.
+- Registry revision: `4`.
 - Active provisional applications: `1` (`docvault-lasttime-fusion`).
 - Intake status: five deduplicated source artifacts are staged privately; analysis has not started.
 - Next safe action: record the explicit rights/analysis/reuse profile, then verify the Drive artifacts before capability analysis.

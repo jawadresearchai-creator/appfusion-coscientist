@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 3,
-  "updated_at": "2026-09-02T16:04:34Z",
+  "registry_revision": 4,
+  "updated_at": "2026-09-02T16:08:28Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -17,15 +17,16 @@
     "phase": "FOUNDRY_BOOTSTRAP",
     "current_milestone": "FOUNDRY_VERTICAL_SLICE_ALPHA",
     "last_completed_event": {
-      "event_type": "FIRST_PRODUCT_INTAKE_STAGED",
-      "occurred_at": "2026-09-02T16:04:34Z",
-      "summary": "The deduplicated DocVault, LastTime, LastTime Antigravity, DocVault APK, and CamScanner APKM source bundle was staged in private Drive."
+      "event_type": "FIRST_PRODUCT_INTAKE_ENVIRONMENT_READY",
+      "occurred_at": "2026-09-02T16:08:28Z",
+      "summary": "The private source bundle, state records, authorization gate, and SourceBundle contracts are cloud-addressable and passed Foundry CI."
     },
     "next_safe_action": "Collect the explicit AnalysisAuthorizationProfile for DocVault + LastTime Fusion, then verify its Drive artifacts before analysis.",
     "blockers": [
       {
         "id": "RIGHTS_ATTESTATION",
-        "summary": "Record the rights basis and permitted analysis/reuse scope for the staged source bundle."
+        "summary": "Record the rights basis and permitted analysis/reuse scope for the staged source bundle.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/4"
       },
       {
         "id": "DRIVE_TO_CI_IDENTITY",
@@ -47,17 +48,18 @@
       "active_for_selection": true,
       "lifecycle_state": "REGISTERED",
       "phase": "INTAKE_STAGED",
-      "updated_at": "2026-09-02T16:04:34Z",
+      "updated_at": "2026-09-02T16:08:28Z",
       "last_completed_event": {
-        "event_type": "SOURCE_BUNDLE_STAGED_PRIVATE",
-        "occurred_at": "2026-09-02T16:04:34Z",
-        "summary": "Five deduplicated source artifacts were fingerprinted and staged in the private Drive intake workspace."
+        "event_type": "INTAKE_STAGING_VALIDATED",
+        "occurred_at": "2026-09-02T16:08:28Z",
+        "summary": "Five deduplicated source artifacts were staged privately, their contracts passed Foundry CI, and the authorization gate was recorded."
       },
       "next_safe_action": "Obtain an explicit AnalysisAuthorizationProfile for the source bundle, then verify the Drive artifacts before capability analysis.",
       "blockers": [
         {
           "id": "RIGHTS_ATTESTATION",
-          "summary": "The user must state the rights basis and permitted analysis/reuse scope for the supplied sources."
+          "summary": "The user must state the rights basis and permitted analysis/reuse scope for the supplied sources.",
+          "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/4"
         },
         {
           "id": "DRIVE_TO_CI_IDENTITY",
