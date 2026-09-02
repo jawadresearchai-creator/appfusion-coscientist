@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "replace-with-uuid",
+  "submitted_by": "authenticated-user-principal",
+  "submitted_at": "2026-09-02T00:00:00Z",
+  "source": {
+    "kind": "GOOGLE_DRIVE",
+    "locator": "replace-with-private-drive-file-id",
+    "sha256": "replace-with-64-character-sha256",
+    "file_name": "authorized-input.apk"
+  },
+  "authorization_profile": {
+    "profile_id": "replace-with-uuid",
+    "rights_basis": "OWNER",
+    "static_analysis_allowed": true,
+    "dynamic_analysis_allowed": false,
+    "network_interception_allowed": false,
+    "accepted_by": "authenticated-user-principal",
+    "accepted_at": "2026-09-02T00:00:00Z",
+    "constraints": []
+  },
+  "requested_mode": "INTERACTIVE_RESUMABLE",
+  "notes": "Example only; never copy placeholder values into a live request."
+}

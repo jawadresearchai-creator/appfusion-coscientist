@@ -5,6 +5,7 @@ from pathlib import Path
 from appfusion_foundry.bootstrap import bootstrap_check
 from appfusion_foundry.approval import create_approval_artifacts
 from appfusion_foundry.contracts import STAGE_OUTCOMES, load_json, validate
+from appfusion_foundry.state import create_run
 from appfusion_foundry.static_inventory import inventory_apk
 
 
@@ -82,3 +83,16 @@ def test_approval_envelope_and_product_attestation_are_separate():
     assert "foundry_dossier_sha256" in envelope
     assert "foundry_dossier_sha256" not in attestation
     assert envelope["product_blueprint_sha256"] == attestation["product_blueprint_sha256"]
+
+
+def test_run_registration_is_idempotent(tmp_path):
+    request = {
+        "schema_version": "1.0.0",
+        "request_id": "ecce5b1e-791d-47b3-beac-d4aad4a719fe",
+        "submitted_by": "authenticated-user",
+        "submitted_at": "2026-09-02T00:00:00Z",
+    }
+    first = create_run(request, tmp_path)
+    second = create_run(request, tmp_path)
+    assert first == second
+    assert (first / "events.jsonl").read_text(encoding="utf-8").count("RUN_REGISTERED") == 1
