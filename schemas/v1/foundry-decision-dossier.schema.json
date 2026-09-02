@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/foundry-decision-dossier.schema.json",
+  "title": "FoundryDecisionDossier",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dossier_id", "run_id", "source_records", "decisions"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dossier_id": {"type": "string", "format": "uuid"},
+    "run_id": {"type": "string", "format": "uuid"},
+    "source_records": {"type": "array", "items": {"type": "object"}},
+    "decisions": {"type": "array", "items": {"type": "object"}},
+    "foundry_only_evidence": {"type": "array", "items": {"type": "object"}}
+  }
+}

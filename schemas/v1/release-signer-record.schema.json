@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/release-signer-record.schema.json",
+  "title": "ReleaseSignerRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "signer_id", "environment", "artifact_sha256", "blueprint_sha256", "approval_id", "signed_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "signer_id": {"type": "string"},
+    "environment": {"type": "string"},
+    "artifact_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "blueprint_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "approval_id": {"type": "string", "format": "uuid"},
+    "signed_at": {"type": "string", "format": "date-time"}
+  }
+}

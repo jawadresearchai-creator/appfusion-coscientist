@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+canonical_authority: CLOUD
+durable_state:
+  repositories:
+    capability_foundry: jawadresearchai-creator/appfusion-coscientist
+    product_foundry: jawadresearchai-creator/appfusion-product
+  drive_root_id: 16VrxDweS__ykJylsjGXk2lE1dYImzm71
+surfaces:
+  CHATGPT_WEB:
+    enabled: true
+    role: interactive_reasoning_and_authenticated_control
+    required_local_filesystem: false
+  CODEX_DESKTOP:
+    enabled: true
+    role: optional_engineering_control_surface
+    required_for_operation: false
+  OPTIONAL_LOCAL_CLI:
+    enabled: true
+    role: adapter_and_diagnostics_only
+    required_for_operation: false
+  PERSISTENT_COORDINATOR_API:
+    enabled: false
+    role: required_for_SYSTEM_V1_UA
+    blocked_reason: BLOCKED_AUTHORIZATION
+rules:
+  - no_control_surface_owns_canonical_state
+  - every_command_uses_versioned_contracts
+  - retries_are_idempotent
+  - session_loss_does_not_erase_completed_deterministic_work

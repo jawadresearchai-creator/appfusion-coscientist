@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/product-engine-feasibility-record.schema.json",
+  "title": "ProductEngineFeasibilityRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "license", "platforms", "build_probe", "functional_probe", "security_maintenance_risk", "decision"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "candidate_id": {"type": "string"},
+    "license": {"type": "object"},
+    "platforms": {"type": "object"},
+    "build_probe": {"type": "object"},
+    "functional_probe": {"type": "object"},
+    "benchmark": {"type": "object"},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "security_maintenance_risk": {"type": "object"},
+    "decision": {"enum": ["APPROVED_CANDIDATE", "REJECTED_CANDIDATE", "BLOCKED_CANDIDATE"]}
+  }
+}

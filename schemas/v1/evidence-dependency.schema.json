@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/evidence-dependency.schema.json",
+  "title": "EvidenceDependency",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evidence_id", "dependency_type", "dependency_id", "version", "integrity"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evidence_id": {"type": "string"},
+    "dependency_type": {"enum": ["SOURCE_INPUT", "TOOL", "MODEL_RUNTIME", "PROMPT_TEMPLATE", "SDK_FINGERPRINT_DB", "FIXTURE", "POLICY", "AUTHORIZATION", "LICENSE_DECISION", "ENVIRONMENT"]},
+    "dependency_id": {"type": "string"},
+    "version": {"type": "string"},
+    "integrity": {"type": "string"}
+  }
+}

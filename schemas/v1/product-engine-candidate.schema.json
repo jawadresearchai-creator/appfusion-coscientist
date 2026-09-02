@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/product-engine-candidate.schema.json",
+  "title": "ProductEngineCandidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "capability_id", "engine", "maturity_state"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "candidate_id": {"type": "string"},
+    "capability_id": {"type": "string"},
+    "engine": {"type": "string"},
+    "maturity_state": {"enum": ["DISCOVERED", "LICENSE_REVIEWED", "PLATFORM_COMPATIBLE", "BUILD_PROBED", "FUNCTIONALLY_PROBED", "BENCHMARKED", "APPROVED_CANDIDATE", "REJECTED_CANDIDATE", "BLOCKED_CANDIDATE"]}
+  }
+}

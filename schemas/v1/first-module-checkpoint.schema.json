@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/first-module-checkpoint.schema.json",
+  "title": "FirstModuleCheckpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "module_id", "commit", "test_summary", "contract_conformance", "published_at", "continue_automatically"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "module_id": {"type": "string"},
+    "commit": {"type": "string"},
+    "test_summary": {"type": "object"},
+    "contract_conformance": {"enum": ["PASS", "FAIL", "INCONCLUSIVE"]},
+    "published_at": {"type": "string", "format": "date-time"},
+    "continue_automatically": {"const": true},
+    "risks": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/security-finding.schema.json",
+  "title": "SecurityFinding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "finding_id", "severity", "status", "summary", "evidence_ids"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "finding_id": {"type": "string"},
+    "severity": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "status": {"enum": ["OPEN", "ACCEPTED", "MITIGATED", "FALSE_POSITIVE", "BLOCKED"]},
+    "summary": {"type": "string"},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}}
+  }
+}

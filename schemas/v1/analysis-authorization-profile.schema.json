@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/analysis-authorization-profile.schema.json",
+  "title": "AnalysisAuthorizationProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile_id", "rights_basis", "static_analysis_allowed", "dynamic_analysis_allowed", "network_interception_allowed", "accepted_by", "accepted_at"],
+  "properties": {
+    "profile_id": {"type": "string", "format": "uuid"},
+    "rights_basis": {"enum": ["OWNER", "LICENSED", "EXPLICIT_PERMISSION", "OTHER_DOCUMENTED_BASIS"]},
+    "static_analysis_allowed": {"type": "boolean"},
+    "dynamic_analysis_allowed": {"type": "boolean"},
+    "network_interception_allowed": {"type": "boolean"},
+    "accepted_by": {"type": "string", "minLength": 1},
+    "accepted_at": {"type": "string", "format": "date-time"},
+    "constraints": {"type": "array", "items": {"type": "string"}}
+  }
+}

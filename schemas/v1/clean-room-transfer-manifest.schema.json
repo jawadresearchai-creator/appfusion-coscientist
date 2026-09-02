@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/clean-room-transfer-manifest.schema.json",
+  "title": "CleanRoomTransferManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "transfer_id", "product_blueprint_sha256", "approval_attestation_sha256", "files", "leakage_canary_outcome"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "transfer_id": {"type": "string", "format": "uuid"},
+    "product_blueprint_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "approval_attestation_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "files": {"type": "array", "items": {"type": "object"}},
+    "leakage_canary_outcome": {"enum": ["PASS", "FAIL"]}
+  }
+}

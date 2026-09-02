@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/intake-request.schema.json",
+  "title": "IntakeRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "request_id", "submitted_by", "submitted_at", "source", "authorization_profile"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "request_id": {"type": "string", "format": "uuid"},
+    "submitted_by": {"type": "string", "minLength": 1},
+    "submitted_at": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "locator", "sha256", "file_name"],
+      "properties": {
+        "kind": {"enum": ["GOOGLE_DRIVE", "GITHUB_RELEASE_ASSET", "AUTHORIZED_OBJECT_STORE"]},
+        "locator": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+        "file_name": {"type": "string", "pattern": "^[^/\\\\]+\\.apk$"}
+      }
+    },
+    "authorization_profile": {"$ref": "analysis-authorization-profile.schema.json"},
+    "requested_mode": {"enum": ["INTERACTIVE_RESUMABLE", "UNATTENDED_AGENTIC"]},
+    "notes": {"type": "string"}
+  }
+}

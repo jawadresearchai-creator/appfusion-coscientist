@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/license-decision.schema.json",
+  "title": "LicenseDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "decision_id", "subject", "license", "product_use", "decided_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "decision_id": {"type": "string"},
+    "subject": {"type": "string"},
+    "license": {"type": "string"},
+    "product_use": {"enum": ["ALLOWED", "ALLOWED_WITH_CONDITIONS", "FORBIDDEN", "INCONCLUSIVE"]},
+    "conditions": {"type": "array", "items": {"type": "string"}},
+    "decided_at": {"type": "string", "format": "date-time"}
+  }
+}

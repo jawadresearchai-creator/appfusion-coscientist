@@ -1,0 +1,18 @@
+{
+  "name": "appfusion-operator",
+  "version": "0.1.0",
+  "description": "Operate the cloud-first AppFusion Foundry from ChatGPT or Codex using versioned GitHub and Google Drive contracts.",
+  "author": {
+    "name": "AppFusion"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AppFusion Operator",
+    "shortDescription": "Submit and monitor AppFusion Foundry runs.",
+    "longDescription": "Uses GitHub and Google Drive as the durable AppFusion control plane; no local workstation is required.",
+    "developerName": "AppFusion",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Operate AppFusion from the current cloud state, preserving authorization, clean-room, approval, and budget gates."
+  }
+}

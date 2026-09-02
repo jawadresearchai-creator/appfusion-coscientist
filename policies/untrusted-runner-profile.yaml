@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+profile_id: github-hosted-static-isolated-v1
+status: PARTIALLY_IMPLEMENTED
+github_token_permissions: {}
+persist_checkout_credentials: false
+secrets:
+  production_secrets: forbidden
+  release_signing_secrets: forbidden
+  product_service_credentials: forbidden
+checkout:
+  private_product_repository: forbidden
+  untrusted_code_with_privileged_context: forbidden
+caches:
+  shared_with_privileged_jobs: false
+actions:
+  pin_to_full_commit_sha: required
+triggers:
+  pull_request_target_for_untrusted_execution: forbidden
+network:
+  policy: deny_or_mediated
+  enforcement_status: BLOCKED_SECURITY_ENVIRONMENT
+  authorized_allowlist_required: true
+cloud_metadata:
+  access: denied
+outputs:
+  schema_validated: required
+  signed_job_manifest: required
+  one_way_promotion: required
+dynamic_execution:
+  enabled: false
+  reason: GitHub-hosted emulator lane has not yet demonstrated enforceable egress isolation

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/model-invocation.schema.json",
+  "title": "ModelInvocation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "invocation_id", "runtime", "model", "prompt_template_hash", "started_at", "outcome"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "invocation_id": {"type": "string"},
+    "runtime": {"type": "string"},
+    "model": {"type": "string"},
+    "prompt_template_hash": {"type": "string"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "outcome": {"type": "string"},
+    "usage": {"type": "object"}
+  }
+}

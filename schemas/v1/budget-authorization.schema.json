@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/budget-authorization.schema.json",
+  "title": "BudgetAuthorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "budget_class", "paid_overage_authorized"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "budget_class": {"enum": ["CI_COMPUTE", "METERED_MODEL_RUNTIME", "STORAGE", "THIRD_PARTY_SERVICE", "SIGNING_DISTRIBUTION"]},
+    "paid_overage_authorized": {"type": "boolean"},
+    "currency": {"type": "string"},
+    "per_run_cap": {"type": "number", "minimum": 0},
+    "cumulative_cap": {"type": "number", "minimum": 0}
+  }
+}

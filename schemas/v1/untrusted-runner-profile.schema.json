@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/untrusted-runner-profile.schema.json",
+  "title": "UntrustedRunnerProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "github_token_permissions", "persist_checkout_credentials", "secrets", "network", "outputs"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "profile_id": {"type": "string"},
+    "github_token_permissions": {"type": "object", "maxProperties": 0},
+    "persist_checkout_credentials": {"const": false},
+    "secrets": {"type": "object"},
+    "network": {"type": "object"},
+    "outputs": {"type": "object"}
+  }
+}

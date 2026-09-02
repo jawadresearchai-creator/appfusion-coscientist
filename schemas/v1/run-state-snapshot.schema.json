@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/run-state-snapshot.schema.json",
+  "title": "RunStateSnapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "state", "last_event_sequence", "recorded_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "run_id": {"type": "string", "format": "uuid"},
+    "state": {"enum": ["REGISTERED", "AUTHORIZATION_VALIDATED", "INTAKE_VERIFIED", "STATIC_ANALYSIS_RECORDED", "DYNAMIC_ANALYSIS_RECORDED", "CAPABILITIES_RECONCILED", "DOSSIER_GENERATED", "BLUEPRINT_GENERATED", "AWAITING_BLUEPRINT_APPROVAL", "BLUEPRINT_APPROVED", "PRODUCT_TRANSFERRED", "COMPLETED", "FAILED", "CANCELLED", "PAUSED_MODEL_CAPACITY", "PAUSED_REASONING_RUNTIME", "PAUSED_CI_BUDGET", "PAUSED_AUTHORIZATION", "PAUSED_BLUEPRINT_REVOKED", "PAUSED_USER_INTERVENTION"]},
+    "last_event_sequence": {"type": "integer", "minimum": 1},
+    "recorded_at": {"type": "string", "format": "date-time"}
+  }
+}

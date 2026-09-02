@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/foundry-evaluation-protocol.schema.json",
+  "title": "FoundryEvaluationProtocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "taxonomy_version", "supported_domains", "calibration_corpus_hash", "holdout_corpus_hash", "minimum_holdout_size", "repeat_runs", "scoring_rules", "contamination_controls"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "taxonomy_version": {"type": "string"},
+    "supported_domains": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "calibration_corpus_hash": {"type": "string"},
+    "holdout_corpus_hash": {"type": "string"},
+    "minimum_holdout_size": {"type": "integer", "minimum": 1},
+    "label_distribution_requirements": {"type": "object"},
+    "repeat_runs": {"type": "integer", "minimum": 3},
+    "model_versions": {"type": "array", "items": {"type": "string"}},
+    "prompt_template_hashes": {"type": "array", "items": {"type": "string"}},
+    "scoring_rules": {"type": "object"},
+    "confidence_interval_method": {"type": "string"},
+    "partially_observable_policy": {"type": "string"},
+    "ground_truth_adjudicator": {"type": "string"},
+    "contamination_controls": {"type": "array", "items": {"type": "string"}}
+  }
+}

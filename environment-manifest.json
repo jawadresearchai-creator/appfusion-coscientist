@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "system_blueprint": "APPFUSION_COSCIENTIST_SYSTEM_BLUEPRINT_v1.0_LOCKED",
+  "canonical_state": {
+    "authority": "CLOUD",
+    "repositories": {
+      "capability_foundry": "jawadresearchai-creator/appfusion-coscientist",
+      "product_foundry": "jawadresearchai-creator/appfusion-product"
+    },
+    "drive": {
+      "root_id": "16VrxDweS__ykJylsjGXk2lE1dYImzm71",
+      "control_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
+      "intake_private_id": "1Sa0nXBwRSpIeIqwUrI-harZV86P9swDB",
+      "foundry_reports_private_id": "1EiH41KPIs97MNifCcFelbn9GB1TOBkZJ",
+      "clean_room_blueprints_id": "1OZgNahbIykWZZdvVUy3u34ZrRQnT7RQB",
+      "product_releases_id": "1JzDipBUULYnBK5RSUHUv4j_hNhWvzMuo",
+      "audit_id": "1IfXvU3A8fT80TRRdXRmaiUPwu8tWzNVd",
+      "quarantine_id": "1nPKp-thVJEvezk0oBbGUnQ_cmyEgKDCV"
+    }
+  },
+  "control_surfaces": [
+    "CHATGPT_WEB",
+    "CODEX_DESKTOP",
+    "PERSISTENT_COORDINATOR_API",
+    "OPTIONAL_LOCAL_CLI"
+  ],
+  "local_environment": {
+    "role": "OPTIONAL_ADAPTER",
+    "required_for_operation": false,
+    "canonical_state_allowed": false
+  },
+  "execution": {
+    "default_mode": "INTERACTIVE_RESUMABLE",
+    "unattended_mode": "REQUIRES_PERSISTENT_COORDINATOR",
+    "untrusted_dynamic_runner": "BLOCKED_SECURITY_ENVIRONMENT"
+  },
+  "budgets": {
+    "paid_overage_authorized": false
+  }
+}
