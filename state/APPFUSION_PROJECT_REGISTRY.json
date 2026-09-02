@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 10,
-  "updated_at": "2026-09-02T18:50:00Z",
+  "registry_revision": 11,
+  "updated_at": "2026-09-02T19:11:36Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,13 +15,13 @@
     "system_id": "appfusion-coscientist",
     "status": "READY",
     "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "PRODUCT_CONSTRUCTION_ALPHA",
+    "current_milestone": "KMP_SHARED_CORE_ENGINE_LOCKED",
     "last_completed_event": {
-      "event_type": "PRODUCT_BLUEPRINT_APPROVED",
-      "occurred_at": "2026-09-02T18:50:00Z",
-      "summary": "Authenticated human approval recorded for the exact clean-room ProductBlueprint Drive file 1UNLffngCEoROT0OPpAOTcfY9heYqODqR, SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc. The Drive bytes were re-fetched and independently re-hashed before accepting the approval. Product construction is now authorized under that exact blueprint; any semantic blueprint change requires a new hash and approval."
+      "event_type": "KMP_SHARED_CORE_FEASIBILITY_PASSED",
+      "occurred_at": "2026-09-02T19:11:36Z",
+      "summary": "Clean-room shared-core feasibility passed and is preserved in Drive file 1c32EeVo4NGhsJLbHpt-TD4R9FMrUHMbm. Product commit aeae7829364b51442dacfbfdda353f592364da2a passed Product Boundary CI run 33671219655 and Product Construction CI run 33671219767; Android/JVM compilation and common tests passed, Kotlin/Native iOS Simulator ARM64 tests passed, and the iOS framework linked successfully. Kotlin Multiplatform is therefore locked as the shared business-logic engine under approved ProductBlueprint SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc; this is an implementation selection contemplated by the approved blueprint, not a semantic blueprint change."
     },
-    "next_safe_action": "Persist the exact approved ProductBlueprint and ProductApprovalAttestation in the clean-room Product repository, align the Product boundary verifier with the locked exact-artifact SHA-256 semantics, run Product Boundary CI, then execute the approved cross-platform engine feasibility probe and first shared-contract construction slice. Do not import Foundry/source-specific artifacts into the Product repository.",
+    "next_safe_action": "Probe the concrete cross-platform persistence adapter using stable Room KMP 2.8.4 with SQLite 2.6.2 behind domain-separated repository boundaries. Require Android and iOS build evidence plus deterministic database round-trip and migration/rollback tests before locking persistence. Then probe platform secure-key adapters behind SecureBlob. Do not import source-aware Foundry artifacts into the Product repository and do not begin dynamic-reference execution.",
     "blockers": []
   },
   "applications": [
@@ -31,14 +31,14 @@
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "APPROVED_BLUEPRINT_CONSTRUCTION_BOOTSTRAP",
-      "updated_at": "2026-09-02T18:50:00Z",
+      "phase": "KMP_SHARED_CORE_LOCKED_PERSISTENCE_PROBE",
+      "updated_at": "2026-09-02T19:11:36Z",
       "last_completed_event": {
-        "event_type": "PRODUCT_BLUEPRINT_APPROVED",
-        "occurred_at": "2026-09-02T18:50:00Z",
-        "summary": "Authenticated human approval recorded for the exact clean-room ProductBlueprint Drive file 1UNLffngCEoROT0OPpAOTcfY9heYqODqR, SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc. The Drive bytes were re-fetched and independently re-hashed before accepting the approval. Product construction is now authorized under that exact blueprint; any semantic blueprint change requires a new hash and approval."
+        "event_type": "KMP_SHARED_CORE_FEASIBILITY_PASSED",
+        "occurred_at": "2026-09-02T19:11:36Z",
+        "summary": "Clean-room shared-core feasibility passed and is preserved in Drive file 1c32EeVo4NGhsJLbHpt-TD4R9FMrUHMbm. Product commit aeae7829364b51442dacfbfdda353f592364da2a passed Product Boundary CI run 33671219655 and Product Construction CI run 33671219767; Android/JVM compilation and common tests passed, Kotlin/Native iOS Simulator ARM64 tests passed, and the iOS framework linked successfully. Kotlin Multiplatform is therefore locked as the shared business-logic engine under approved ProductBlueprint SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc; this is an implementation selection contemplated by the approved blueprint, not a semantic blueprint change."
       },
-      "next_safe_action": "Persist the exact approved ProductBlueprint and ProductApprovalAttestation in the clean-room Product repository, align the Product boundary verifier with the locked exact-artifact SHA-256 semantics, run Product Boundary CI, then execute the approved cross-platform engine feasibility probe and first shared-contract construction slice. Do not import Foundry/source-specific artifacts into the Product repository.",
+      "next_safe_action": "Probe the concrete cross-platform persistence adapter using stable Room KMP 2.8.4 with SQLite 2.6.2 behind domain-separated repository boundaries. Require Android and iOS build evidence plus deterministic database round-trip and migration/rollback tests before locking persistence. Then probe platform secure-key adapters behind SecureBlob. Do not import source-aware Foundry artifacts into the Product repository and do not begin dynamic-reference execution.",
       "blockers": [],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",
