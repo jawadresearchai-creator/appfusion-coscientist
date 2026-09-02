@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 1,
-  "updated_at": "2026-09-02T15:37:07Z",
+  "registry_revision": 2,
+  "updated_at": "2026-09-02T15:40:06Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -17,9 +17,9 @@
     "phase": "FOUNDRY_BOOTSTRAP",
     "current_milestone": "FOUNDRY_VERTICAL_SLICE_ALPHA",
     "last_completed_event": {
-      "event_type": "CLOUD_BOOTSTRAP_COMPLETED",
-      "occurred_at": "2026-09-02T15:31:53Z",
-      "summary": "Private Foundry repositories, Drive hierarchy, versioned contracts, deterministic tests, and initial CI were established."
+      "event_type": "SESSION_CONTINUITY_AND_BUDGET_ROUTING_IMPLEMENTED",
+      "occurred_at": "2026-09-02T15:40:06Z",
+      "summary": "Drive-first multi-app session bootstrap, application selection contracts, and essential-only GitHub CI routing were implemented and verified."
     },
     "next_safe_action": "Register the first rights-authorized APK intake after Drive-to-CI identity and the untrusted static-analysis runner are attested.",
     "blockers": [
