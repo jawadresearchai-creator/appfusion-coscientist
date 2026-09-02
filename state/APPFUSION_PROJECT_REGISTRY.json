@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 11,
-  "updated_at": "2026-09-02T19:11:36Z",
+  "registry_revision": 12,
+  "updated_at": "2026-09-02T19:33:48Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,13 +15,13 @@
     "system_id": "appfusion-coscientist",
     "status": "READY",
     "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "KMP_SHARED_CORE_ENGINE_LOCKED",
+    "current_milestone": "ROOM3_DOMAIN_PERSISTENCE_LOCKED",
     "last_completed_event": {
-      "event_type": "KMP_SHARED_CORE_FEASIBILITY_PASSED",
-      "occurred_at": "2026-09-02T19:11:36Z",
-      "summary": "Clean-room shared-core feasibility passed and is preserved in Drive file 1c32EeVo4NGhsJLbHpt-TD4R9FMrUHMbm. Product commit aeae7829364b51442dacfbfdda353f592364da2a passed Product Boundary CI run 33671219655 and Product Construction CI run 33671219767; Android/JVM compilation and common tests passed, Kotlin/Native iOS Simulator ARM64 tests passed, and the iOS framework linked successfully. Kotlin Multiplatform is therefore locked as the shared business-logic engine under approved ProductBlueprint SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc; this is an implementation selection contemplated by the approved blueprint, not a semantic blueprint change."
+      "event_type": "ROOM3_DOMAIN_PERSISTENCE_FEASIBILITY_PASSED",
+      "occurred_at": "2026-09-02T19:32:31Z",
+      "summary": "Cross-platform domain-separated persistence feasibility passed and is preserved in Drive file 1mSFPUo0x23eMUoU7wTajYHnZsr_ObzWJ. Product commit 4a0c8a33d770a1a1b4bf9ad0f3076dbfdb63d3d4 passed Product Boundary CI run 33673449744 and Product Construction CI run 33673449750. Room3 3.0.2 with Bundled SQLite 2.7.0 and KSP 2.3.10 built on Android/JVM and iOS Simulator ARM64; independent domain-store round trips, version 1→2 migration, and deliberate migration-failure rollback preserving schema version, column set, and legacy data all passed. Room3 domain persistence is therefore locked under the approved ProductBlueprint without semantic deviation."
     },
-    "next_safe_action": "Probe the concrete cross-platform persistence adapter using stable Room KMP 2.8.4 with SQLite 2.6.2 behind domain-separated repository boundaries. Require Android and iOS build evidence plus deterministic database round-trip and migration/rollback tests before locking persistence. Then probe platform secure-key adapters behind SecureBlob. Do not import source-aware Foundry artifacts into the Product repository and do not begin dynamic-reference execution.",
+    "next_safe_action": "Probe the SecureBlob contract with product-owned authenticated envelope semantics and replaceable platform secure-key adapters. Require deterministic shared envelope/integrity/migration tests, Android Keystore build/runtime feasibility evidence, and Apple Keychain iOS Simulator build/runtime feasibility evidence before locking the crypto adapter. Keep long-lived wrapping keys non-exportable where the platform permits; do not import Foundry/source-aware artifacts and do not begin dynamic behavioral-reference execution.",
     "blockers": []
   },
   "applications": [
@@ -31,14 +31,14 @@
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "KMP_SHARED_CORE_LOCKED_PERSISTENCE_PROBE",
-      "updated_at": "2026-09-02T19:11:36Z",
+      "phase": "ROOM3_PERSISTENCE_LOCKED_SECUREBLOB_PROBE",
+      "updated_at": "2026-09-02T19:33:48Z",
       "last_completed_event": {
-        "event_type": "KMP_SHARED_CORE_FEASIBILITY_PASSED",
-        "occurred_at": "2026-09-02T19:11:36Z",
-        "summary": "Clean-room shared-core feasibility passed and is preserved in Drive file 1c32EeVo4NGhsJLbHpt-TD4R9FMrUHMbm. Product commit aeae7829364b51442dacfbfdda353f592364da2a passed Product Boundary CI run 33671219655 and Product Construction CI run 33671219767; Android/JVM compilation and common tests passed, Kotlin/Native iOS Simulator ARM64 tests passed, and the iOS framework linked successfully. Kotlin Multiplatform is therefore locked as the shared business-logic engine under approved ProductBlueprint SHA-256 2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc; this is an implementation selection contemplated by the approved blueprint, not a semantic blueprint change."
+        "event_type": "ROOM3_DOMAIN_PERSISTENCE_FEASIBILITY_PASSED",
+        "occurred_at": "2026-09-02T19:32:31Z",
+        "summary": "Cross-platform domain-separated persistence feasibility passed and is preserved in Drive file 1mSFPUo0x23eMUoU7wTajYHnZsr_ObzWJ. Product commit 4a0c8a33d770a1a1b4bf9ad0f3076dbfdb63d3d4 passed Product Boundary CI run 33673449744 and Product Construction CI run 33673449750. Room3 3.0.2 with Bundled SQLite 2.7.0 and KSP 2.3.10 built on Android/JVM and iOS Simulator ARM64; independent domain-store round trips, version 1→2 migration, and deliberate migration-failure rollback preserving schema version, column set, and legacy data all passed. Room3 domain persistence is therefore locked under the approved ProductBlueprint without semantic deviation."
       },
-      "next_safe_action": "Probe the concrete cross-platform persistence adapter using stable Room KMP 2.8.4 with SQLite 2.6.2 behind domain-separated repository boundaries. Require Android and iOS build evidence plus deterministic database round-trip and migration/rollback tests before locking persistence. Then probe platform secure-key adapters behind SecureBlob. Do not import source-aware Foundry artifacts into the Product repository and do not begin dynamic-reference execution.",
+      "next_safe_action": "Probe the SecureBlob contract with product-owned authenticated envelope semantics and replaceable platform secure-key adapters. Require deterministic shared envelope/integrity/migration tests, Android Keystore build/runtime feasibility evidence, and Apple Keychain iOS Simulator build/runtime feasibility evidence before locking the crypto adapter. Keep long-lived wrapping keys non-exportable where the platform permits; do not import Foundry/source-aware artifacts and do not begin dynamic behavioral-reference execution.",
       "blockers": [],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",
