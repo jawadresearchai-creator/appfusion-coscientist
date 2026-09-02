@@ -4,18 +4,18 @@
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
   "lifecycle_state": "FOUNDRY_ANALYSIS",
-  "phase": "STATIC_RUNNER_ATTESTED_AWAITING_RETRIEVAL_IDENTITY",
-  "updated_at": "2026-09-02T16:54:44Z",
+  "phase": "SOURCE_CAPABILITY_RECONCILED_AWAITING_RETRIEVAL_IDENTITY",
+  "updated_at": "2026-09-02T17:08:30Z",
   "last_completed_event": {
-    "event_type": "UNTRUSTED_STATIC_RUNNER_ATTESTED",
-    "occurred_at": "2026-09-02T16:54:00Z",
-    "summary": "Static hostile-input lane attested at Foundry commit 0d60d991e495e5edd74c4057437eb0ef06ed9067. Foundry CI passed. GitHub Actions run 33657688890 proved network denial, cloud-metadata denial, absence of sensitive environment, read-only/no-capability container controls, traversal/symlink rejection, trusted positive-schema output validation, and GitHub-OIDC binding of the promotion-manifest digest. Evidence artifact 9857399979 has digest sha256:eec2d13d1c18bb620d9a19b954ec1b8b85b2afe46585a2356a57cafc762ee452. Dynamic execution remains disabled."
+    "event_type": "SOURCE_CAPABILITY_INVENTORY_COMPLETED",
+    "occurred_at": "2026-09-02T17:08:30Z",
+    "summary": "Authorized source-only capability inventory completed and preserved in Drive file 11R98Su9bqfrQ4ZOAwTA2nFQWbHsowDMA. It reconciles DocVault as the document/scanning/security incumbent and LastTime current source as the activity/cadence/reminder/memory incumbent, with overlap handled through bounded interfaces rather than duplicate vault/scheduler stacks. Drive-to-CI trusted-intake software scaffold is committed at 90b21f4eba7f3d24dffcd4a670e8fa9b1d9510ed and Foundry CI run 33658802014 passed. Real APK/APKM retrieval remains blocked until a Google Cloud WIF identity is provisioned."
   },
-  "next_safe_action": "Configure the narrow Drive-to-CI workload identity. After it is attested, retrieve and hash the authorized DocVault APK and CamScanner APKM chunks in the trusted intake coordinator, then pass only verified bytes into the attested static lane. Continue source-only Foundry analysis in parallel.",
+  "next_safe_action": "Provision the external Google Cloud Workload Identity Federation provider and dedicated Drive-reader service account, set the three APPFUSION_GCP_* repository variables, and share only the dedicated AppFusion intake workspace/exact staged files with that service account as reader. Then run the trusted Drive intake workflow for DocVault and CamScanner. Do not begin dynamic/emulator analysis or Product implementation.",
   "blockers": [
     {
       "id": "DRIVE_TO_CI_IDENTITY",
-      "summary": "Configure a narrow Drive-to-CI workload identity.",
+      "summary": "Provision and prove the short-lived Google Cloud WIF Drive-reader identity for trusted CI intake.",
       "url": "https://github.com/jawadresearchai-creator/appfusion-coscientist/issues/1"
     }
   ],
