@@ -12,6 +12,16 @@
 - Explicitly blocked untrusted analysis workflow.
 - Clean-room Product repository guard and CI.
 - Optional local mirrors with GitHub remotes.
+- Drive-first project registry and versioned `ApplicationState`/`SessionBootstrap` contracts.
+- Deterministic zero/one/multiple active-app selection for new sessions.
+- Essential-only GitHub routing, path-filtered CI, and cancellation of superseded runs.
+
+## Current resumable state
+
+- Registry revision: `2`.
+- Active Product applications: `0` (no Product Blueprint has been approved).
+- Next safe action: register the first rights-authorized APK after the Drive-to-CI identity and untrusted static-runner gates are satisfied.
+- Portable new-chat instructions: `docs/operations/NEW_CHAT_BOOTSTRAP.md` and the matching file in Drive `00_CONTROL`.
 
 ## Blocked before APK #1
 
