@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "event_id": "c14be19a-91ac-49c6-b1a2-8c8c6791a547",
+  "run_id": "b2381122-0198-4abb-9349-68241a5c501f",
+  "sequence": 14,
+  "event_type": "DOCUMENT_VAULT_CORE_CHECKPOINT_PASSED",
+  "occurred_at": "2026-09-03T05:04:00Z",
+  "actor": "appfusion-coscientist",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 13,
+    "registry_revision_after": 14,
+    "product_commit": "8076430eaa1b4d32d49c604c0f2d9b3b2bba3fd8",
+    "product_boundary_ci_run": 33716941887,
+    "product_construction_ci_run": 33716941898,
+    "drive_milestone_file_id": "1NY0VdykhqP4CNtXhN63wrjSkvWURY6S-",
+    "shared_document_vault_contracts": "PASS",
+    "android_runtime": "PASS",
+    "ios_simulator_runtime": "PASS",
+    "ciphertext_context_binding": "PASS",
+    "next_phase": "DOCUMENT_VAULT_CORE_LOCKED_PERSISTENT_BLOB_ADAPTER_PROBE"
+  }
+}

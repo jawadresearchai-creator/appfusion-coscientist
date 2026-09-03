@@ -4,14 +4,14 @@
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
   "lifecycle_state": "PRODUCT_CONSTRUCTION",
-  "phase": "SECUREBLOB_LOCKED_DOCUMENT_VAULT_SLICE",
-  "updated_at": "2026-09-03T04:40:02Z",
+  "phase": "DOCUMENT_VAULT_CORE_LOCKED_PERSISTENT_BLOB_ADAPTER_PROBE",
+  "updated_at": "2026-09-03T05:04:50Z",
   "last_completed_event": {
-    "event_type": "SECUREBLOB_CROSS_PLATFORM_FEASIBILITY_PASSED",
-    "occurred_at": "2026-09-03T04:31:57Z",
-    "summary": "SecureBlob cross-platform feasibility passed and is preserved in Drive file 1hOAfnEdrWRymFtgb6GoJp455snxmIAEi. Product commit 0b49de20b6b0653f8c66d7ebabc026012599d91d passed Product Boundary CI run 33715028074 and Product Construction CI run 33715028079. Shared contracts proved canonical authenticated envelopes, fresh per-blob AES-256-GCM keys, tamper and wrong-key rejection, and version 1→2 decrypt-and-re-encrypt migration. The Android API 35 runtime probe proved a non-exportable Keystore wrapping key. The Xcode-signed iOS Simulator ARM64 host proved Apple Keychain persistence, wrap/unwrap, SecureBlob round trip, tamper rejection, and cleanup. The Apple adapter remains replaceable; no physical-device Secure Enclave or non-exportability claim is made."
+    "event_type": "DOCUMENT_VAULT_CORE_CHECKPOINT_PASSED",
+    "occurred_at": "2026-09-03T05:04:00Z",
+    "summary": "The first bounded document_vault core checkpoint passed and is preserved in Drive file 1NY0VdykhqP4CNtXhN63wrjSkvWURY6S-. Product commit 8076430eaa1b4d32d49c604c0f2d9b3b2bba3fd8 passed Product Boundary CI run 33716941887 and Product Construction CI run 33716941898 on Android/JVM, Android API 35, and iOS Simulator ARM64. Room3 metadata now composes with immutable revision-addressed SecureBlob payloads for encrypted create/read/update/archive, authorized search and backup export, append-only lifecycle events, rollback-safe staged writes, strict backup decoding, and schema 1→2→3 migration/rollback. SecureBlob caller context binds ciphertext to blob identity and content type. Legacy rows fail closed as migration-required. This locks the shared core checkpoint only; production filesystem-backed blob persistence and crash recovery remain the next adapter gate."
   },
-  "next_safe_action": "Implement the first bounded document_vault module checkpoint by composing the locked Room3 persistence and SecureBlob boundaries through product-owned repository contracts. Cover encrypted create/read/update/archive lifecycle, metadata/ciphertext separation, atomic failure behavior, authorized search projection and activity-event emission, and versioned backup records with deterministic cross-platform tests. Keep camera, OCR, PDF export, UI, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside this slice. Treat the Apple key adapter as replaceable and do not claim physical-device Secure Enclave proof.",
+  "next_safe_action": "Implement replaceable Android and iOS filesystem-backed SecureBlobStore adapters using same-directory temporary writes, durable flush where supported, atomic replacement, startup recovery, path traversal rejection, and orphan revision cleanup. Prove crash/failure behavior with shared adapter contracts plus Android runtime and iOS Simulator tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
   "blockers": [],
   "artifact_locations": {
     "product_repository": "jawadresearchai-creator/appfusion-product",
