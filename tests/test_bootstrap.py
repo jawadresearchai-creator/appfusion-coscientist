@@ -155,17 +155,30 @@ def test_release_readiness_fails_closed_until_journeys_artifacts_and_defects_cle
     assert result["required_artifacts_pass"] is False
 
     completed = json.loads(json.dumps(plan))
+    completed["status"] = "ACTIVE"
     for journey in completed["user_journeys"]:
         journey["status"] = "PASS"
+        for criterion in journey["acceptance_criteria"]:
+            criterion["status"] = "PASS"
     for deliverable in completed["deliverables"]:
         if deliverable["required_for_train"]:
             deliverable["status"] = "PASS"
+            deliverable["evidence"] = ["Verified fixture evidence"]
     completed["defects"] = [
         {"defect_id": "SECURITY_BLOCKER", "severity": "CRITICAL", "status": "OPEN", "summary": "fixture"}
     ]
     assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is False
     completed["defects"][0]["status"] = "FIXED"
     assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is True
+
+    completed["status"] = "PAUSED"
+    assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is False
+    completed["status"] = "ACTIVE"
+    completed["user_journeys"][0]["acceptance_criteria"][0]["status"] = "NOT_STARTED"
+    assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is False
+    completed["user_journeys"][0]["acceptance_criteria"][0]["status"] = "PASS"
+    completed["deliverables"][0]["evidence"] = []
+    assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is False
 
 
 def test_source_bundle_is_valid_and_apkm_is_an_accepted_intake_format():

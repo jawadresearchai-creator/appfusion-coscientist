@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "9534bb01-ae31-4516-96f7-4ce68f15d395",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 20,
+  "event_type": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
+  "occurred_at": "2026-09-03T19:09:08Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "8cff7532-217c-4390-b566-e79af1ed1a8f",
+  "idempotency_key": "9534bb01-ae31-4516-96f7-4ce68f15d395",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 19,
+    "registry_revision_after": 20,
+    "application_state_revision_before": 19,
+    "application_state_revision_after": 20,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "product_merge_commit": "f1100e8907a5a0101b19a20452928335b478bdc9",
+    "tested_source_commit": "99e3e83bbbe92406b9010b56c9da05e8b8f0fea7",
+    "validation_executor": "OPTIONAL_LOCAL_WINDOWS_ANDROID_EMULATOR",
+    "passed_tests": {"jvm_contracts": 25, "android_device": 4, "python_boundary_and_harness": 8, "installed_android_j1": 1},
+    "hosted_ci_status": "NOT_STARTED_ACCOUNT_BILLING_OR_SPENDING_LIMIT",
+    "hosted_ci_runs": [33794502743, 33794502740],
+    "paid_overage_authorized": false,
+    "artifacts": {
+      "android_debug_apk": {"drive_file_id": "1o2zUqBzq_dVmKk9RRbvZfYf4aQ86BDrH", "sha256": "733f0bebdc48260efc4c53fe4dd1e45415353d3af0b4036466c218e967613137"},
+      "source_zip": {"drive_file_id": "1Zu-VIGNOH_tOVjliCslSwd94wu11qNpl", "sha256": "c8c058605cd09b6c57a6b836b317bfaf0262d4e360cb30118ab8ad30a0e2e12a"},
+      "evidence_zip": {"drive_file_id": "1c49tfSJozfdrg3ohd7kbzI1J0SViql43", "sha256": "5ee5b6d5d07a5df214eac0e4682d097b7c832001f3bab3cb24b59fc26ff09cfb"},
+      "screenshot": {"drive_file_id": "1F-_lWIb9I-mKpmTgceF2EaZSU6ej2pcL", "sha256": "143312badeb2a7a07b34650ae2a4211f39df73a0da6a3bb6cd94efc5ceef349e"},
+      "checksum_manifest": {"drive_file_id": "1gFqiOk4cjph8ejfiqQ0J9dMrFylzxO71"}
+    },
+    "next_lifecycle_state": "PAUSED",
+    "next_phase": "ANDROID_J1_PASSED_IOS_EXECUTOR_BLOCKED"
+  }
+}

@@ -182,12 +182,18 @@ def plan_transition(
 
 def evaluate_release_readiness(plan: dict[str, Any], *, evaluated_at: str) -> dict[str, Any]:
     required_journeys = set(plan["terminal_condition"]["required_journey_ids"])
-    passed_journeys = {item["journey_id"] for item in plan["user_journeys"] if item["status"] == "PASS"}
+    passed_journeys = {
+        item["journey_id"]
+        for item in plan["user_journeys"]
+        if item["status"] == "PASS"
+        and item["acceptance_criteria"]
+        and all(criterion["status"] == "PASS" for criterion in item["acceptance_criteria"])
+    }
     required_artifacts = set(plan["terminal_condition"]["required_artifact_kinds"])
     passed_artifacts = {
         item["artifact_kind"]
         for item in plan["deliverables"]
-        if item["required_for_train"] and item["status"] == "PASS"
+        if item["required_for_train"] and item["status"] == "PASS" and item["evidence"]
     }
     journeys_pass = required_journeys <= passed_journeys
     artifacts_pass = required_artifacts <= passed_artifacts
@@ -197,7 +203,10 @@ def evaluate_release_readiness(plan: dict[str, Any], *, evaluated_at: str) -> di
         if item["severity"] == "CRITICAL" and item["status"] == "OPEN"
     ]
     critical_clear = not open_critical_defects
+    plan_allows_release = plan["status"] in {"ACTIVE", "RELEASE_CANDIDATE", "RELEASED"}
     reasons: list[str] = []
+    if not plan_allows_release:
+        reasons.append("Delivery plan is not active for release: " + plan["status"])
     if not journeys_pass:
         reasons.append("Required journeys are incomplete: " + ", ".join(sorted(required_journeys - passed_journeys)))
     if not artifacts_pass:
@@ -212,7 +221,7 @@ def evaluate_release_readiness(plan: dict[str, Any], *, evaluated_at: str) -> di
         "required_journeys_pass": journeys_pass,
         "required_artifacts_pass": artifacts_pass,
         "zero_critical_defects": critical_clear,
-        "ready": journeys_pass and artifacts_pass and critical_clear,
+        "ready": plan_allows_release and journeys_pass and artifacts_pass and critical_clear,
         "reasons": reasons,
     }
 

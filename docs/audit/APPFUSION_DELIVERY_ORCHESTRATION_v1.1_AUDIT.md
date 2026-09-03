@@ -32,10 +32,17 @@ If implemented and verified, the amended system can deliver built Android and iO
 - Git hosting plan limitations may prevent native branch protection; fast-forward promotion and candidate branches must compensate.
 - ChatGPT/Drive connectors do not expose an atomic Drive content compare-and-swap primitive; therefore direct Drive state writes are prohibited.
 - The current Foundry still lacks deep APK decompilation and a compliant dynamic lane.
-- The current Product still lacks application shells and all three end-to-end journeys.
+- Milestones 009/010 now prove application shells and installed Android J1; iOS J1, J2 and J3 remain incomplete.
 - Persistent unattended coordination requires additional credentials and explicit model budget authorization.
 
 ## Lock recommendation
 
-Lock the amendment for implementation. Do not resume another Document Vault infrastructure checkpoint before state migration and the application-shell slice.
+The amendment is locked and implemented through the first delivery slices. Continue the release plan rather than inserting another infrastructure-only checkpoint.
 
+## Implementation verification — milestone 010
+
+The deadline produced real Android APK/AAB and iOS Simulator artifacts at milestone 009. Milestone 010 then passed installed Android J1, including an actual process force-stop/relaunch and visual inspection. The optional local executor completed Android validation when GitHub refused hosted job start because of billing/spending limits; source and evidence were preserved in GitHub/Drive. The system paused before the unavailable iOS executor instead of repeatedly dispatching blocked jobs or claiming a final release.
+
+Three additional false-completion paths were closed in the release-readiness implementation: paused/superseded plans cannot be ready, a journey-level PASS requires every acceptance criterion to pass, and a required artifact-level PASS requires nonempty evidence. The 14-test Foundry suite, bootstrap validation and orchestration-state validation pass with these regression assertions.
+
+This is concrete progress toward a working interactive-resumable CoScientist, not proof of fully unattended APK-to-final-app autonomy. The APK intelligence lane, persistent coordinator, remaining product journeys, signing and final release matrix are still required.

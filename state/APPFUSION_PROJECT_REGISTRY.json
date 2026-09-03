@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 19,
-  "updated_at": "2026-09-03T11:33:33Z",
+  "registry_revision": 20,
+  "updated_at": "2026-09-03T19:09:08Z",
   "state_authority": {
     "primary": "GIT_EVENT_LEDGER",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,16 +15,22 @@
   },
   "system": {
     "system_id": "appfusion-coscientist",
-    "status": "READY",
-    "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "FIRST_INSTALLABLE_APP_SHELL_ARTIFACTS_PASSED",
+    "status": "PAUSED",
+    "phase": "PAUSED",
+    "current_milestone": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
     "last_completed_event": {
-      "event_type": "FIRST_INSTALLABLE_APP_SHELL_ARTIFACTS_PASSED",
-      "occurred_at": "2026-09-03T11:33:33Z",
-      "summary": "Product milestone 009 produced an installable Android debug APK, an Android release APK and AAB that remain unsigned, and an iOS Simulator app from the clean-room Product repository. Product Boundary CI and all construction gates passed after one bounded repair. This proves the delivery pipeline emits concrete applications, while installed J1 UI validation and signed distribution remain outstanding."
+      "event_type": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
+      "occurred_at": "2026-09-03T19:09:08Z",
+      "summary": "Android Journey J1 passed through the installed UI on the optional Windows emulator executor: encrypted create, process force-stop, relaunch, search, decrypt, and reopen. The source, tested APK, screenshot, test evidence, and checksums are stored in cloud repositories/Drive. Product PR 3 merged after equivalent local gates passed; hosted jobs did not start because GitHub reported a billing/spending-limit condition. Cross-platform work is paused before iOS J1 until an authorized macOS executor is available."
     },
-    "next_safe_action": "Install the Android debug APK in the CI emulator and automate Journey J1 through create, restart, search, and reopen. Then wire the iOS shell to the same J1 workflow and validate it in the simulator. Do not mark J1 or the release train complete from build-only evidence.",
-    "blockers": []
+    "next_safe_action": "Restore GitHub Actions execution within the approved budget or provide an authorized macOS executor, then wire and validate iOS Journey J1. Preserve the accepted Android J1 evidence unless relevant source changes. Do not enable paid overage, repeat blocked hosted jobs, or call the release complete without the remaining journey and signing gates.",
+    "blockers": [
+      {
+        "id": "HOSTED_ACTIONS_BILLING_BLOCKED",
+        "summary": "GitHub refused job start because of an account payment/spending-limit condition. The available optional host is Windows and cannot run the remaining iOS Simulator gate. No paid overage is authorized.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-product/actions/runs/33794502740"
+      }
+    ]
   },
   "applications": [
     {
@@ -32,19 +38,25 @@
       "app_id": "docvault-lasttime-fusion",
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
-      "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "INSTALLABLE_SHELL_ARTIFACTS_PASSED_J1_UI_NEXT",
-      "updated_at": "2026-09-03T11:33:33Z",
-      "state_revision": 19,
-      "last_event_sequence": 19,
+      "lifecycle_state": "PAUSED",
+      "phase": "ANDROID_J1_PASSED_IOS_EXECUTOR_BLOCKED",
+      "updated_at": "2026-09-03T19:09:08Z",
+      "state_revision": 20,
+      "last_event_sequence": 20,
       "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
       "last_completed_event": {
-        "event_type": "FIRST_INSTALLABLE_APP_SHELL_ARTIFACTS_PASSED",
-        "occurred_at": "2026-09-03T11:33:33Z",
-        "summary": "Product milestone 009 produced an installable Android debug APK, an Android release APK and AAB that remain unsigned, and an iOS Simulator app from the clean-room Product repository. Product Boundary CI and all construction gates passed after one bounded repair. This proves the delivery pipeline emits concrete applications, while installed J1 UI validation and signed distribution remain outstanding."
+        "event_type": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
+        "occurred_at": "2026-09-03T19:09:08Z",
+        "summary": "Android Journey J1 passed through the installed UI on the optional Windows emulator executor: encrypted create, process force-stop, relaunch, search, decrypt, and reopen. The source, tested APK, screenshot, test evidence, and checksums are stored in cloud repositories/Drive. Product PR 3 merged after equivalent local gates passed; hosted jobs did not start because GitHub reported a billing/spending-limit condition. Cross-platform work is paused before iOS J1 until an authorized macOS executor is available."
       },
-      "next_safe_action": "Install the Android debug APK in the CI emulator and automate Journey J1 through create, restart, search, and reopen. Then wire the iOS shell to the same J1 workflow and validate it in the simulator. Do not mark J1 or the release train complete from build-only evidence.",
-      "blockers": [],
+      "next_safe_action": "Restore GitHub Actions execution within the approved budget or provide an authorized macOS executor, then wire and validate iOS Journey J1. Preserve the accepted Android J1 evidence unless relevant source changes. Do not enable paid overage, repeat blocked hosted jobs, or call the release complete without the remaining journey and signing gates.",
+      "blockers": [
+        {
+          "id": "HOSTED_ACTIONS_BILLING_BLOCKED",
+          "summary": "GitHub refused job start because of an account payment/spending-limit condition. The available optional host is Windows and cannot run the remaining iOS Simulator gate. No paid overage is authorized.",
+          "url": "https://github.com/jawadresearchai-creator/appfusion-product/actions/runs/33794502740"
+        }
+      ],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",
         "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",

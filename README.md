@@ -14,7 +14,7 @@ This private repository is the authoritative Capability Foundry and cloud contro
 
 ## Current bootstrap status
 
-The repositories and Drive workspace exist. Delivery Orchestration v1.1 adds conflict-safe state transitions, an explicit release train, end-to-end journey gates, bounded repair/audit loops, and fail-closed release readiness. Product milestone 009 produced a genuine Android application shell, installable debug APK, unsigned release APK and AAB, plus an iOS Simulator application shell. The product is still not release-ready: installed J1-J3 UI journeys, Android distribution signing, final reports, screenshots, source ZIP, and checksums remain gated. Untrusted dynamic APK execution remains blocked until a runner proves the required isolation and egress controls.
+The repositories and Drive workspace exist. Delivery Orchestration v1.1 adds conflict-safe state transitions, an explicit release train, end-to-end journey gates, bounded repair/audit loops, and fail-closed release readiness. Milestone 009 produced genuine Android and iOS application artifacts. Milestone 010 passed installed Android J1 on the optional local executor and stored the tested APK, source ZIP, screenshot, evidence and checksums in Drive. The train is paused before iOS J1 because hosted Actions report an account billing/spending-limit block and the available local host cannot run an iOS Simulator. J2/J3, signing and final cross-platform release gates remain incomplete. Untrusted dynamic APK execution remains blocked until a runner proves the required isolation and egress controls.
 
 Run locally only if desired:
 
