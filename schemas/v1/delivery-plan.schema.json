@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/delivery-plan.schema.json",
+  "title": "DeliveryPlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_id", "app_id", "release_train", "product_blueprint_sha256", "status", "scope_lock", "user_journeys", "deliverables", "defects", "loop_controls", "ci_policy", "terminal_condition", "updated_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "plan_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,127}$"},
+    "app_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
+    "release_train": {"type": "string", "minLength": 1},
+    "product_blueprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["ACTIVE", "PAUSED", "RELEASE_CANDIDATE", "RELEASED", "SUPERSEDED"]},
+    "scope_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "deferred", "new_capability_policy"],
+      "properties": {
+        "included": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "deferred": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "new_capability_policy": {"const": "SCORE_THEN_INCLUDE_REPLACE_COMBINE_BACKLOG_REJECT_OR_INCONCLUSIVE"}
+      }
+    },
+    "user_journeys": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/journey"}
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/deliverable"}
+    },
+    "defects": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/defect"}
+    },
+    "loop_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_consecutive_infrastructure_milestones", "max_repair_attempts_per_failure_signature", "max_audits_without_new_evidence", "first_installable_artifact_deadline_milestone", "on_limit"],
+      "properties": {
+        "max_consecutive_infrastructure_milestones": {"type": "integer", "minimum": 0, "maximum": 5},
+        "max_repair_attempts_per_failure_signature": {"type": "integer", "minimum": 1, "maximum": 5},
+        "max_audits_without_new_evidence": {"type": "integer", "minimum": 0, "maximum": 3},
+        "first_installable_artifact_deadline_milestone": {"type": "integer", "minimum": 1},
+        "on_limit": {"const": "FORCE_DELIVERY_SLICE_OR_PAUSE"}
+      }
+    },
+    "ci_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tiers", "expensive_jobs_require_preflight", "paid_overage_authorized"],
+      "properties": {
+        "tiers": {"type": "array", "const": ["TIER_0", "TIER_1", "TIER_2", "TIER_3"]},
+        "expensive_jobs_require_preflight": {"const": true},
+        "paid_overage_authorized": {"const": false}
+      }
+    },
+    "terminal_condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_journey_ids", "required_artifact_kinds", "zero_critical_defects"],
+      "properties": {
+        "required_journey_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "required_artifact_kinds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/artifactKind"}},
+        "zero_critical_defects": {"const": true}
+      }
+    },
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "status": {"enum": ["NOT_STARTED", "IN_PROGRESS", "PASS", "FAIL", "BLOCKED", "DEFERRED"]},
+    "artifactKind": {"enum": ["ANDROID_DEBUG_APK", "ANDROID_RELEASE_APK", "ANDROID_AAB", "IOS_SIMULATOR_APP", "IOS_ARCHIVE", "SOURCE_ZIP", "TEST_REPORT", "SECURITY_REPORT", "SCREENSHOTS", "CHECKSUMS"]},
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criterion_id", "statement", "evidence_kind", "status"],
+      "properties": {
+        "criterion_id": {"type": "string", "pattern": "^[A-Z0-9_-]{2,64}$"},
+        "statement": {"type": "string", "minLength": 1},
+        "evidence_kind": {"enum": ["UNIT_TEST", "CONTRACT_TEST", "ANDROID_DEVICE_TEST", "IOS_SIMULATOR_TEST", "UI_TEST", "ARTIFACT", "AUDIT"]},
+        "status": {"$ref": "#/$defs/status"}
+      }
+    },
+    "journey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["journey_id", "title", "status", "acceptance_criteria"],
+      "properties": {
+        "journey_id": {"type": "string", "pattern": "^J[0-9]+$"},
+        "title": {"type": "string", "minLength": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "acceptance_criteria": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/criterion"}}
+      }
+    },
+    "deliverable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_kind", "required_for_train", "status", "evidence"],
+      "properties": {
+        "artifact_kind": {"$ref": "#/$defs/artifactKind"},
+        "required_for_train": {"type": "boolean"},
+        "status": {"$ref": "#/$defs/status"},
+        "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "defect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defect_id", "severity", "status", "summary"],
+      "properties": {
+        "defect_id": {"type": "string", "pattern": "^[A-Z0-9_-]{2,64}$"},
+        "severity": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+        "status": {"enum": ["OPEN", "FIXED", "ACCEPTED", "INVALID"]},
+        "summary": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

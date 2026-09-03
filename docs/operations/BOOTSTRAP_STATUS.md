@@ -2,38 +2,30 @@
 
 ## Provisioned
 
-- Private Capability Foundry repository.
-- Private Product Foundry repository.
-- Private Google Drive root and intake/report/blueprint/release/audit folders.
-- Cloud-authoritative environment manifest.
-- Contract and policy validation package.
-- Initial schemas for intake, authorization, events, outcomes, dossiers, blueprints, approvals, approval events, attestations, and untrusted runner policy.
-- Trusted Foundry CI and request-registration workflow.
-- Explicitly blocked untrusted analysis workflow.
-- Clean-room Product repository guard and CI.
-- Optional local mirrors with GitHub remotes.
-- Drive-first project registry and versioned `ApplicationState`/`SessionBootstrap` contracts.
+- Private Capability Foundry and Product Foundry repositories.
+- Private Google Drive intake, report, blueprint, release, and audit workspace.
+- Conflict-safe Git control-state ledger with validated event sequence, application projection, delivery plan, optional local lease, and stale-revision rejection.
 - Deterministic zero/one/multiple active-app selection for new sessions.
-- Essential-only GitHub routing, path-filtered CI, and cancellation of superseded runs.
+- Authorization, exact-hash approval, clean-room, security, budget, and Product Boundary contracts.
+- Shared Document Vault core, persistent SecureBlob adapters, platform key probes, and startup reconciliation contracts.
+- Path-filtered CI and cancellation of superseded runs.
 
 ## Current resumable state
 
-- Registry revision: `4`.
-- Active provisional applications: `1` (`docvault-lasttime-fusion`).
-- Intake status: five deduplicated source artifacts are staged privately; analysis has not started.
-- Next safe action: record the explicit rights/analysis/reuse profile, then verify the Drive artifacts before capability analysis.
-- Portable new-chat instructions: `docs/operations/NEW_CHAT_BOOTSTRAP.md` and the matching file in Drive `00_CONTROL`.
+- Registry/application revision: `17`.
+- Event tail: `017-delivery-orchestration-v1-1-locked`.
+- Active applications: one (`docvault-lasttime-fusion`), selected automatically.
+- Delivery plan: `docvault-lasttime-fusion-v0.1`.
+- Release status: not ready; J1–J3 and all required installable/release artifacts are incomplete.
+- Next safe action: create Android and iOS app shells and make Journey J1 launchable. The first Android debug APK is due no later than Product milestone 009.
 
-## Blocked before APK #1
+## Remaining system-level gaps
 
-- `DRIVE_READER_IDENTITY`: requires Google workload identity or another approved cloud storage bridge.
-- `UNTRUSTED_STATIC_RUNNER_ATTESTATION`: requires an isolated analysis image/lane with tested network and metadata denial.
-- `RIGHTS_ATTESTATION`: supplied per APK through the intake request.
+- Real deep APK feature extraction/decompilation and isolated dynamic analysis are not yet implemented.
+- Android and iOS installed application journeys are not yet proven.
+- Persistent unattended reasoning requires an authorized coordinator identity, credentials, and metered budget.
+- Signed store distribution requires owner-provided Apple/Android signing credentials.
 
-## Not required for initial bootstrap
+## Optional local environment
 
-- Release signing secrets.
-- Apple Developer credentials.
-- Full autonomous Tool Acquisition.
-- Persistent metered-model coordinator.
-- A local Android SDK or local emulator.
+The local CLI may validate contracts and assist engineering, but it is not a state authority and cannot be the only location of an artifact. Android SDK/emulator and Xcode/simulator work may run locally or in reproducible CI according to cost and platform availability.

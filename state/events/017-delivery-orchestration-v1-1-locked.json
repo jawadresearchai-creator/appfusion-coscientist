@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 17,
+  "event_type": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
+  "occurred_at": "2026-09-03T10:40:55Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "d4ef8ded-757f-420d-a192-3862ccc03b8f",
+  "idempotency_key": "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 16,
+    "registry_revision_after": 17,
+    "application_state_revision_before": 16,
+    "application_state_revision_after": 17,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "blueprint": "docs/architecture/APPFUSION_DELIVERY_ORCHESTRATION_BLUEPRINT_v1.1.md",
+    "audit": "docs/audit/APPFUSION_DELIVERY_ORCHESTRATION_v1.1_AUDIT.md",
+    "next_phase": "DELIVERY_ORCHESTRATION_LOCKED_INSTALLABLE_SHELL_NEXT"
+  }
+}

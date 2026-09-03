@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "event_id": "d4ef8ded-757f-420d-a192-3862ccc03b8f",
+  "run_id": "f9d609a1-720d-49fa-9150-6bbacb4c004b",
+  "sequence": 16,
+  "event_type": "DOCUMENT_VAULT_STARTUP_COORDINATOR_CHECKPOINT_PASSED",
+  "occurred_at": "2026-09-03T08:16:13Z",
+  "actor": "appfusion-coscientist",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 15,
+    "registry_revision_after": 16,
+    "product_commit": "fef77ecf661607c1b8d1f6d759c77fe05d98bc03",
+    "product_boundary_ci_run": 33731737616,
+    "product_construction_ci_run": 33731737546,
+    "drive_milestone_file_id": "1qX6Q3lQGDUxMCUeD9bfANBw-akFd_g_C",
+    "shared_startup_contracts": "PASS",
+    "android_restart_runtime": "PASS",
+    "ios_restart_simulator_runtime": "PASS",
+    "next_phase": "STARTUP_COORDINATOR_LOCKED_BACKUP_RESTORE_PROBE"
+  }
+}

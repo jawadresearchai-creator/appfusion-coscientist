@@ -1,6 +1,10 @@
 import json
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
+
+import pytest
+from jsonschema import ValidationError
 
 from appfusion_foundry.bootstrap import bootstrap_check
 from appfusion_foundry.approval import create_approval_artifacts
@@ -8,6 +12,12 @@ from appfusion_foundry.contracts import STAGE_OUTCOMES, load_json, validate
 from appfusion_foundry.state import create_run
 from appfusion_foundry.static_inventory import inventory_apk
 from appfusion_foundry.project_registry import select_application
+from appfusion_foundry.orchestration import (
+    acquire_file_lease,
+    evaluate_release_readiness,
+    plan_transition,
+    validate_control_state,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -73,6 +83,89 @@ def test_project_registry_is_valid_and_auto_selects_the_staged_product():
     }
     application_state = load_json(ROOT / "state/applications/docvault-lasttime-fusion.json")
     validate(application_state, ROOT / "schemas/v1/application-state.schema.json")
+
+
+def test_delivery_control_state_is_contiguous_and_consistent():
+    assert validate_control_state(ROOT) == []
+
+
+def test_schema_format_checker_rejects_invalid_uuid():
+    event = load_json(ROOT / "state/events/017-delivery-orchestration-v1-1-locked.json")
+    event["event_id"] = "not-a-uuid"
+    with pytest.raises(ValidationError):
+        validate(event, ROOT / "schemas/v1/run-event.schema.json")
+
+
+def test_file_lease_prevents_concurrent_local_writers(tmp_path):
+    now = datetime(2026, 9, 3, 10, 40, 55, tzinfo=timezone.utc)
+    first = acquire_file_lease(tmp_path, "docvault-lasttime-fusion", "worker-a", now=now)
+    with pytest.raises(RuntimeError, match="leased by worker-a"):
+        acquire_file_lease(tmp_path, "docvault-lasttime-fusion", "worker-b", now=now)
+    first.release()
+    second = acquire_file_lease(tmp_path, "docvault-lasttime-fusion", "worker-b", now=now)
+    second.release()
+
+
+def test_transition_rejects_stale_state_and_updates_both_projections():
+    registry = load_json(ROOT / "state/APPFUSION_PROJECT_REGISTRY.json")
+    application = load_json(ROOT / "state/applications/docvault-lasttime-fusion.json")
+    transition = {
+        "schema_version": "1.0.0",
+        "transition_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+        "app_id": application["app_id"],
+        "holder_id": "test-worker",
+        "lease_token": "a456836a-c451-4a44-8aa3-77b45bf297f0",
+        "expected_registry_revision": registry["registry_revision"],
+        "expected_application_state_revision": application["state_revision"],
+        "event_sequence": application["last_event_sequence"] + 1,
+        "event_type": "INSTALLABLE_SHELL_STARTED",
+        "event_summary": "The installable shell delivery slice started.",
+        "occurred_at": "2026-09-03T11:00:00Z",
+        "actor": "appfusion-coscientist",
+        "next_lifecycle_state": "PRODUCT_CONSTRUCTION",
+        "next_phase": "INSTALLABLE_SHELL_IN_PROGRESS",
+        "next_safe_action": "Build and install the Android debug APK.",
+        "delivery_plan_id": application["delivery_plan_id"],
+        "evidence": ["state/delivery-plans/docvault-lasttime-fusion-v0.1.json"],
+    }
+    validate(transition, ROOT / "schemas/v1/state-transition-envelope.schema.json")
+    updated_registry, updated_application, event = plan_transition(
+        registry,
+        application,
+        transition,
+        "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+    )
+    assert updated_registry["registry_revision"] == 18
+    assert updated_application["state_revision"] == 18
+    assert updated_registry["applications"][0] == updated_application
+    assert updated_registry["system"]["current_milestone"] == "INSTALLABLE_SHELL_STARTED"
+    assert event["previous_event_id"] == "24ea0181-ed7c-43b2-99cd-2c6167be342e"
+
+    transition["expected_registry_revision"] = 16
+    with pytest.raises(ValueError, match="STALE_REGISTRY_REVISION"):
+        plan_transition(registry, application, transition, event["event_id"])
+
+
+def test_release_readiness_fails_closed_until_journeys_artifacts_and_defects_clear():
+    plan = load_json(ROOT / "state/delivery-plans/docvault-lasttime-fusion-v0.1.json")
+    result = evaluate_release_readiness(plan, evaluated_at="2026-09-03T11:00:00Z")
+    validate(result, ROOT / "schemas/v1/release-readiness.schema.json")
+    assert result["ready"] is False
+    assert result["required_journeys_pass"] is False
+    assert result["required_artifacts_pass"] is False
+
+    completed = json.loads(json.dumps(plan))
+    for journey in completed["user_journeys"]:
+        journey["status"] = "PASS"
+    for deliverable in completed["deliverables"]:
+        if deliverable["required_for_train"]:
+            deliverable["status"] = "PASS"
+    completed["defects"] = [
+        {"defect_id": "SECURITY_BLOCKER", "severity": "CRITICAL", "status": "OPEN", "summary": "fixture"}
+    ]
+    assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is False
+    completed["defects"][0]["status"] = "FIXED"
+    assert evaluate_release_readiness(completed, evaluated_at="2026-09-03T11:00:00Z")["ready"] is True
 
 
 def test_source_bundle_is_valid_and_apkm_is_an_accepted_intake_format():

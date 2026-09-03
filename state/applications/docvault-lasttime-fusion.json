@@ -1,17 +1,20 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "app_id": "docvault-lasttime-fusion",
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
   "lifecycle_state": "PRODUCT_CONSTRUCTION",
-  "phase": "DOCUMENT_VAULT_CORE_LOCKED_PERSISTENT_BLOB_ADAPTER_PROBE",
-  "updated_at": "2026-09-03T05:04:50Z",
+  "phase": "DELIVERY_ORCHESTRATION_LOCKED_INSTALLABLE_SHELL_NEXT",
+  "updated_at": "2026-09-03T10:40:55Z",
+  "state_revision": 17,
+  "last_event_sequence": 17,
+  "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
   "last_completed_event": {
-    "event_type": "DOCUMENT_VAULT_CORE_CHECKPOINT_PASSED",
-    "occurred_at": "2026-09-03T05:04:00Z",
-    "summary": "The first bounded document_vault core checkpoint passed and is preserved in Drive file 1NY0VdykhqP4CNtXhN63wrjSkvWURY6S-. Product commit 8076430eaa1b4d32d49c604c0f2d9b3b2bba3fd8 passed Product Boundary CI run 33716941887 and Product Construction CI run 33716941898 on Android/JVM, Android API 35, and iOS Simulator ARM64. Room3 metadata now composes with immutable revision-addressed SecureBlob payloads for encrypted create/read/update/archive, authorized search and backup export, append-only lifecycle events, rollback-safe staged writes, strict backup decoding, and schema 1→2→3 migration/rollback. SecureBlob caller context binds ciphertext to blob identity and content type. Legacy rows fail closed as migration-required. This locks the shared core checkpoint only; production filesystem-backed blob persistence and crash recovery remain the next adapter gate."
+    "event_type": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
+    "occurred_at": "2026-09-03T10:40:55Z",
+    "summary": "Delivery Orchestration v1.1 passed an independent blueprint audit and is now the controlling release plan. The correction moves small control state to a conflict-safe Git event ledger, keeps Drive as the bulky-artifact and projection layer, fixes three mandatory end-to-end user journeys, limits infrastructure-only milestones and repeated repairs, and requires installable Android and iOS artifacts before the release can be called complete."
   },
-  "next_safe_action": "Implement replaceable Android and iOS filesystem-backed SecureBlobStore adapters using same-directory temporary writes, durable flush where supported, atomic replacement, startup recovery, path traversal rejection, and orphan revision cleanup. Prove crash/failure behavior with shared adapter contracts plus Android runtime and iOS Simulator tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
+  "next_safe_action": "Create the minimum Android and iOS application shells around the proven shared core and make Journey J1 launchable. Produce the first Android debug APK no later than Product milestone 009. Do not add another backup, infrastructure, or audit-only checkpoint before an installable artifact unless a release-blocking defect makes the delivery slice impossible.",
   "blockers": [],
   "artifact_locations": {
     "product_repository": "jawadresearchai-creator/appfusion-product",

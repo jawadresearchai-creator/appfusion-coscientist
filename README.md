@@ -9,12 +9,12 @@ This private repository is the authoritative Capability Foundry and cloud contro
 - **Local optional:** no canonical workflow, schema, or artifact contains a required local path.
 - **Clean room:** raw/decompiled material remains in the Capability Foundry. The Product Foundry receives only an approved positive-schema `ProductBlueprint` and sanitized approval attestation.
 - **Honest autonomy:** the initial target is `FOUNDRY_VERTICAL_SLICE_ALPHA`; `SYSTEM_V1_UA` additionally requires a persistent metered reasoning coordinator.
-- **Session continuity:** every new control surface bootstraps from the Drive-first project registry; chat memory is never authoritative.
+- **Session continuity:** every new control surface bootstraps from the conflict-safe Git event ledger; Drive projections and chat memory are never allowed to overwrite a newer committed revision.
 - **Essential GitHub only:** reasoning and bulky working artifacts stay in ChatGPT/Drive, while GitHub is reserved for source, reproducible gates, checkpoints, and releases.
 
 ## Current bootstrap status
 
-The repositories and Drive workspace exist. Contract validation, deterministic run creation, static APK inventory, clean-room schemas, policy checks, and CI are bootstrapped. Untrusted dynamic execution remains blocked until a runner proves the required isolation and egress controls.
+The repositories and Drive workspace exist. Delivery Orchestration v1.1 adds conflict-safe state transitions, an explicit release train, end-to-end journey gates, bounded repair/audit loops, and fail-closed release readiness. The current product is not yet a releasable app: its shared SecureBlob and Document Vault startup contracts pass, while Android/iOS application shells and release artifacts remain the next delivery slice. Untrusted dynamic APK execution remains blocked until a runner proves the required isolation and egress controls.
 
 Run locally only if desired:
 
@@ -27,6 +27,8 @@ pytest
 Canonical documents:
 
 - `docs/architecture/APPFUSION_COSCIENTIST_SYSTEM_BLUEPRINT_v1.0_LOCKED.md`
+- `docs/architecture/APPFUSION_DELIVERY_ORCHESTRATION_BLUEPRINT_v1.1.md`
+- `docs/audit/APPFUSION_DELIVERY_ORCHESTRATION_v1.1_AUDIT.md`
 - `docs/audit/V0.12_LOCK_AUDIT.md`
 - `docs/operations/CHATGPT_WEB_OPERATOR.md`
 - `docs/operations/NEW_CHAT_BOOTSTRAP.md`

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 from .approval import write_approval_artifacts
@@ -8,6 +9,7 @@ from .bootstrap import bootstrap_check
 from .contracts import load_json, validate
 from .state import create_run
 from .static_inventory import write_inventory
+from .orchestration import evaluate_release_readiness, validate_control_state
 
 
 def repository_root() -> Path:
@@ -18,6 +20,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="appfusion")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("bootstrap-check")
+    sub.add_parser("orchestration-check")
+
+    readiness = sub.add_parser("release-readiness")
+    readiness.add_argument("delivery_plan", type=Path)
+    readiness.add_argument("--evaluated-at", required=True)
 
     create = sub.add_parser("create-run")
     create.add_argument("request", type=Path)
@@ -43,6 +50,21 @@ def main() -> int:
             return 1
         print("AppFusion bootstrap contracts: PASS")
         return 0
+    if args.command == "orchestration-check":
+        errors = validate_control_state(root)
+        if errors:
+            for error in errors:
+                print(f"ERROR: {error}")
+            return 1
+        print("AppFusion delivery orchestration state: PASS")
+        return 0
+    if args.command == "release-readiness":
+        plan = load_json(args.delivery_plan)
+        validate(plan, root / "schemas/v1/delivery-plan.schema.json")
+        readiness = evaluate_release_readiness(plan, evaluated_at=args.evaluated_at)
+        validate(readiness, root / "schemas/v1/release-readiness.schema.json")
+        print(json.dumps(readiness, sort_keys=True))
+        return 0 if readiness["ready"] else 3
     if args.command == "create-run":
         request = load_json(args.request)
         validate(request, root / "schemas" / "v1" / "intake-request.schema.json")

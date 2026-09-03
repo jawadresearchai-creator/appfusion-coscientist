@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
 
 
@@ -66,6 +66,10 @@ REQUIRED_SCHEMA_NAMES = frozenset(
         "ProjectRegistry",
         "SessionBootstrap",
         "SourceBundle",
+        "ApplicationLease",
+        "DeliveryPlan",
+        "StateTransitionEnvelope",
+        "ReleaseReadiness",
     }
 )
 
@@ -99,7 +103,11 @@ def validate(instance: Any, schema_path: Path) -> None:
         referenced = load_json(candidate)
         if "$id" in referenced:
             registry = registry.with_resource(referenced["$id"], Resource.from_contents(referenced))
-    Draft202012Validator(schema, registry=registry).validate(instance)
+    Draft202012Validator(
+        schema,
+        registry=registry,
+        format_checker=FormatChecker(),
+    ).validate(instance)
 
 
 def schema_catalog(schema_root: Path) -> dict[str, Path]:
