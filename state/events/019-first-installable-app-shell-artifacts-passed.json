@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "8cff7532-217c-4390-b566-e79af1ed1a8f",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 19,
+  "event_type": "FIRST_INSTALLABLE_APP_SHELL_ARTIFACTS_PASSED",
+  "occurred_at": "2026-09-03T11:33:33Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "91f0cc70-5a22-49c3-ac17-7c848146a21b",
+  "idempotency_key": "8cff7532-217c-4390-b566-e79af1ed1a8f",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 18,
+    "registry_revision_after": 19,
+    "application_state_revision_before": 18,
+    "application_state_revision_after": 19,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "product_repository": "jawadresearchai-creator/appfusion-product",
+    "product_pull_request": 2,
+    "product_merge_commit": "b1ccbd1b56bbd06a178d9f97a7209a8c154376d4",
+    "construction_ci_run": 33749114136,
+    "boundary_ci_run": 33749114150,
+    "artifacts": [
+      {"artifact_id": 9890952602, "kind": "ANDROID_BUILD_SET", "debug_apk_sha256": "9398df8ab497ffa6ef309bd2b6ef5638143c8877f75a8e27e694a8a7628a5ffb", "unsigned_release_apk_sha256": "d66d256040fe0ca9263431a734d08a54d8dc8312a996eacc5db0aaf5e06ee4f8", "unsigned_aab_sha256": "e3e6d86e470d24b323e01654232fba3404b93694dbc4093be8f60f7110838b50"},
+      {"artifact_id": 9891032519, "kind": "IOS_SIMULATOR_APP", "sha256": "e85d797d93d3ce417e411eb551b77c3c81a2ea56128ab2fd8f013aff34eca4d7"}
+    ],
+    "repair_attempts": [
+      {"failure_signature": "ANDROID_ROOM_ABI_COMPILE", "attempt": 1, "result": "PASS"}
+    ],
+    "next_phase": "INSTALLABLE_SHELL_ARTIFACTS_PASSED_J1_UI_NEXT"
+  }
+}
