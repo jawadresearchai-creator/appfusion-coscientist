@@ -4,7 +4,7 @@ AppFusion must remain usable when Codex and every local machine are offline.
 
 ## Session bootstrap and app selection
 
-At the start of every new chat, the operator reads `environment-manifest.json`, then reconciles the GitHub mirror at `state/APPFUSION_PROJECT_REGISTRY.json` with Drive registry file `15-oC17tb-17N_5h6vKsYGct7_D_xGGqI` in `00_CONTROL`. Chat history and model memory are convenience context, never state authority.
+At the start of every new chat, the operator reads `environment-manifest.json`, the committed registry, selected `ApplicationState`, DeliveryPlan, and Git event tail. The Git event ledger is authoritative for small control state. Drive registry file `15-oC17tb-17N_5h6vKsYGct7_D_xGGqI` in `00_CONTROL` is a projection and bulky-artifact index. Chat history and model memory are convenience context, never state authority.
 
 The registry drives selection: no active app is reported as such, one active app is resumed automatically, and multiple active apps are listed for explicit user selection. The operator reports the system/app phase, last completed event, blockers, and next safe action before continuing. The portable first-message prompt is in `NEW_CHAT_BOOTSTRAP.md`.
 
@@ -22,7 +22,7 @@ From ChatGPT web, an authenticated user may use the installed Google Drive and G
 
 All commands are versioned data contracts. The web chat is a control surface, not the state database.
 
-Every material transition appends a `RunEvent` and updates the Drive copy of the affected `ApplicationState` and project registry. The GitHub mirror is updated only at a code change, exact-hash approval, milestone, or release boundary.
+Every material transition appends a `RunEvent` and updates the committed `ApplicationState`, registry projection, and DeliveryPlan in one validated fast-forward change. Drive is projected afterward. A rejected push or stale expected revision stops the write and forces a reload; it never performs last-writer-wins replacement.
 
 If the reasoning session ends, completed deterministic CI work and all committed/event artifacts remain resumable. A later ChatGPT web or Codex session reads the same state and continues.
 
@@ -41,7 +41,7 @@ Until those credentials and budgets are configured, AppFusion reports `INTERACTI
 
 ## GitHub budget discipline
 
-ChatGPT performs reasoning, synthesis, comparison, and report drafting. Drive stores high-frequency working state, source inputs, reports, screenshots, videos, and other bulky artifacts. GitHub stores version-controlled source, policies, schemas, small checkpoint manifests, and releases; GitHub Actions runs only reproducible builds, tests, security gates, or release work that materially benefits from CI. Ordinary reasoning, document review, idle polling, and bulky artifact storage must not consume Actions minutes.
+ChatGPT performs reasoning, synthesis, comparison, and report drafting. Drive stores source inputs, reports, screenshots, videos, and other bulky artifacts. GitHub stores version-controlled source, the small conflict-safe control ledger, policies, schemas, checkpoint manifests, and releases; GitHub Actions runs only reproducible builds, tests, security gates, or release work that materially benefits from CI. Ordinary reasoning, document review, idle polling, and bulky artifact storage must not consume Actions minutes.
 
 ## No local dependency
 

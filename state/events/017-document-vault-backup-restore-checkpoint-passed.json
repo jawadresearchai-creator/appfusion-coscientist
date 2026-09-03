@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 17,
+  "event_type": "DOCUMENT_VAULT_BACKUP_RESTORE_CHECKPOINT_PASSED",
+  "occurred_at": "2026-09-03T10:17:24Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "d4ef8ded-757f-420d-a192-3862ccc03b8f",
+  "idempotency_key": "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 16,
+    "registry_revision_after": 17,
+    "application_state_revision_before": 16,
+    "application_state_revision_after": 17,
+    "product_commit": "8381eca64e8313d9253788a317f865d0b54ee0eb",
+    "product_boundary_ci_run": 33742784338,
+    "product_construction_ci_run": 33742784442,
+    "repair_attempts_for_gate": 2,
+    "shared_backup_restore_contracts": "PASS",
+    "android_backup_restore_runtime": "PASS",
+    "ios_backup_restore_simulator_runtime": "PASS",
+    "next_phase": "BACKUP_RESTORE_LOCKED_DELIVERY_ORCHESTRATION_MIGRATION"
+  }
+}

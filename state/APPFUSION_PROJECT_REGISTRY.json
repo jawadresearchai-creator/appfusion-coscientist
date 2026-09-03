@@ -1,44 +1,49 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 16,
-  "updated_at": "2026-09-03T09:52:30Z",
+  "registry_revision": 18,
+  "updated_at": "2026-09-03T10:40:55Z",
   "state_authority": {
-    "primary": "GOOGLE_DRIVE",
+    "primary": "GIT_EVENT_LEDGER",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
     "drive_registry_file_id": "15-oC17tb-17N_5h6vKsYGct7_D_xGGqI",
     "github_mirror": "jawadresearchai-creator/appfusion-coscientist:state/APPFUSION_PROJECT_REGISTRY.json",
-    "mirror_policy": "MILESTONE_APPROVAL_RELEASE",
-    "conflict_policy": "HIGHEST_VALID_REVISION_ELSE_PAUSE"
+    "git_event_ledger": "jawadresearchai-creator/appfusion-coscientist:state/events",
+    "drive_projection_policy": "AFTER_VALID_GIT_TRANSITION",
+    "mirror_policy": "DRIVE_PROJECTION_AFTER_GIT_COMMIT",
+    "conflict_policy": "FAST_FORWARD_EVENT_LEDGER_ELSE_PAUSE"
   },
   "system": {
     "system_id": "appfusion-coscientist",
     "status": "READY",
     "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "DOCUMENT_VAULT_STARTUP_COORDINATOR_LOCKED",
+    "current_milestone": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
     "last_completed_event": {
-      "event_type": "DOCUMENT_VAULT_STARTUP_COORDINATOR_CHECKPOINT_PASSED",
-      "occurred_at": "2026-09-03T08:16:13Z",
-      "summary": "Document Vault startup reconciliation is locked in Drive milestone report 1qX6Q3lQGDUxMCUeD9bfANBw-akFd_g_C. Product commit fef77ecf661607c1b8d1f6d759c77fe05d98bc03 passed Product Boundary CI run 33731737616 and Product Construction CI run 33731737546. Startup now enumerates Room references before recovery, protects active and archived non-legacy blobs, rejects unsafe or duplicate references, verifies stored identity/content type plus SecureBlob envelope/integrity and authenticated decryption context, reports missing/corrupt referenced evidence without deleting it, and rehydrates search only from verified active metadata. Shared/JVM contracts, Android API 35 restart/device tests, Android Keystore, iOS Simulator restart/contracts, and the simulator-installed Apple Keychain probe all passed."
+      "event_type": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
+      "occurred_at": "2026-09-03T10:40:55Z",
+      "summary": "Delivery Orchestration v1.1 passed an independent blueprint audit and is now the controlling release plan. The correction moves small control state to a conflict-safe Git event ledger, keeps Drive as the bulky-artifact and projection layer, fixes three mandatory end-to-end user journeys, limits infrastructure-only milestones and repeated repairs, and requires installable Android and iOS artifacts before the release can be called complete."
     },
-    "next_safe_action": "Implement a bounded DocumentVaultBackupRestoreCoordinator around the existing versioned DocumentBackupCodec and locked SecureBlob persistence contracts. Prove integrity-checked import, authenticated-context verification, transactional metadata/blob commit semantics, deterministic conflict handling, rollback and staged-blob cleanup on partial failure, archived-state preservation, and process-style restart verification on Android and iOS. Keep account/cloud sync, UI, camera, OCR, PDF export, Foundry/source-aware artifacts, dynamic behavioral-reference execution, and cross-domain backup orchestration outside the slice.",
+    "next_safe_action": "Create the minimum Android and iOS application shells around the proven shared core and make Journey J1 launchable. Produce the first Android debug APK no later than Product milestone 009. Do not add another backup, infrastructure, or audit-only checkpoint before an installable artifact unless a release-blocking defect makes the delivery slice impossible.",
     "blockers": []
   },
   "applications": [
     {
-      "schema_version": "1.0.0",
+      "schema_version": "1.1.0",
       "app_id": "docvault-lasttime-fusion",
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "STARTUP_COORDINATOR_LOCKED_BACKUP_RESTORE_PROBE",
-      "updated_at": "2026-09-03T09:52:30Z",
+      "phase": "DELIVERY_ORCHESTRATION_LOCKED_INSTALLABLE_SHELL_NEXT",
+      "updated_at": "2026-09-03T10:40:55Z",
+      "state_revision": 18,
+      "last_event_sequence": 18,
+      "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
       "last_completed_event": {
-        "event_type": "DOCUMENT_VAULT_STARTUP_COORDINATOR_CHECKPOINT_PASSED",
-        "occurred_at": "2026-09-03T08:16:13Z",
-        "summary": "Document Vault startup reconciliation is locked in Drive milestone report 1qX6Q3lQGDUxMCUeD9bfANBw-akFd_g_C. Product commit fef77ecf661607c1b8d1f6d759c77fe05d98bc03 passed Product Boundary CI run 33731737616 and Product Construction CI run 33731737546. Startup now enumerates Room references before recovery, protects active and archived non-legacy blobs, rejects unsafe or duplicate references, verifies stored identity/content type plus SecureBlob envelope/integrity and authenticated decryption context, reports missing/corrupt referenced evidence without deleting it, and rehydrates search only from verified active metadata. Shared/JVM contracts, Android API 35 restart/device tests, Android Keystore, iOS Simulator restart/contracts, and the simulator-installed Apple Keychain probe all passed."
+        "event_type": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
+        "occurred_at": "2026-09-03T10:40:55Z",
+        "summary": "Delivery Orchestration v1.1 passed an independent blueprint audit and is now the controlling release plan. The correction moves small control state to a conflict-safe Git event ledger, keeps Drive as the bulky-artifact and projection layer, fixes three mandatory end-to-end user journeys, limits infrastructure-only milestones and repeated repairs, and requires installable Android and iOS artifacts before the release can be called complete."
       },
-      "next_safe_action": "Implement a bounded DocumentVaultBackupRestoreCoordinator around the existing versioned DocumentBackupCodec and locked SecureBlob persistence contracts. Prove integrity-checked import, authenticated-context verification, transactional metadata/blob commit semantics, deterministic conflict handling, rollback and staged-blob cleanup on partial failure, archived-state preservation, and process-style restart verification on Android and iOS. Keep account/cloud sync, UI, camera, OCR, PDF export, Foundry/source-aware artifacts, dynamic behavioral-reference execution, and cross-domain backup orchestration outside the slice.",
+      "next_safe_action": "Create the minimum Android and iOS application shells around the proven shared core and make Journey J1 launchable. Produce the first Android debug APK no later than Product milestone 009. Do not add another backup, infrastructure, or audit-only checkpoint before an installable artifact unless a release-blocking defect makes the delivery slice impossible.",
       "blockers": [],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",

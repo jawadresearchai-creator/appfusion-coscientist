@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfusion.local/schemas/v1/release-readiness.schema.json",
+  "title": "ReleaseReadiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "app_id", "plan_id", "evaluated_at", "required_journeys_pass", "required_artifacts_pass", "zero_critical_defects", "ready", "reasons"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "app_id": {"type": "string"},
+    "plan_id": {"type": "string"},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "required_journeys_pass": {"type": "boolean"},
+    "required_artifacts_pass": {"type": "boolean"},
+    "zero_critical_defects": {"type": "boolean"},
+    "ready": {"type": "boolean"},
+    "reasons": {"type": "array", "items": {"type": "string"}}
+  }
+}

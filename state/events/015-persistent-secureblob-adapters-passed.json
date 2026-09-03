@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "event_id": "07d22344-8188-4aeb-bfb6-19d24d64018b",
+  "run_id": "8d6c908f-4510-4c0a-81eb-1a294e27993f",
+  "sequence": 15,
+  "event_type": "PERSISTENT_SECUREBLOB_ADAPTERS_PASSED",
+  "occurred_at": "2026-09-03T05:56:06Z",
+  "actor": "appfusion-coscientist",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 14,
+    "registry_revision_after": 15,
+    "product_commit": "35c8e078e44d88b1e5d8937bcd008255b9ca87fa",
+    "product_boundary_ci_run": 33720340472,
+    "product_construction_ci_run": 33720340413,
+    "drive_milestone_file_id": "14oph_EGYMuyMGANC_bZQu0k93m0TpQYN",
+    "shared_recovery_contracts": "PASS",
+    "android_filesystem_runtime": "PASS",
+    "ios_filesystem_simulator_runtime": "PASS",
+    "next_phase": "PERSISTENT_BLOB_ADAPTERS_LOCKED_STARTUP_RECONCILIATION_SLICE"
+  }
+}

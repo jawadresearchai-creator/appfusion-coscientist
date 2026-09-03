@@ -15,7 +15,7 @@
     "selection_policy"
   ],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"enum": ["1.0.0", "1.1.0"]},
     "registry_id": {"type": "string", "minLength": 1},
     "registry_revision": {"type": "integer", "minimum": 1},
     "updated_at": {"type": "string", "format": "date-time"},
@@ -24,12 +24,14 @@
       "additionalProperties": false,
       "required": ["primary", "drive_control_folder_id", "drive_registry_file_id", "github_mirror", "mirror_policy", "conflict_policy"],
       "properties": {
-        "primary": {"const": "GOOGLE_DRIVE"},
+        "primary": {"enum": ["GOOGLE_DRIVE", "GIT_EVENT_LEDGER"]},
         "drive_control_folder_id": {"type": "string", "minLength": 1},
         "drive_registry_file_id": {"type": "string", "minLength": 1},
         "github_mirror": {"type": "string", "minLength": 1},
-        "mirror_policy": {"const": "MILESTONE_APPROVAL_RELEASE"},
-        "conflict_policy": {"const": "HIGHEST_VALID_REVISION_ELSE_PAUSE"}
+        "git_event_ledger": {"type": "string", "minLength": 1},
+        "drive_projection_policy": {"const": "AFTER_VALID_GIT_TRANSITION"},
+        "mirror_policy": {"enum": ["MILESTONE_APPROVAL_RELEASE", "DRIVE_PROJECTION_AFTER_GIT_COMMIT"]},
+        "conflict_policy": {"enum": ["HIGHEST_VALID_REVISION_ELSE_PAUSE", "FAST_FORWARD_EVENT_LEDGER_ELSE_PAUSE"]}
       }
     },
     "system": {
@@ -81,5 +83,17 @@
         "multiple_active": {"const": "ASK_USER_TO_SELECT"}
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "1.1.0"}}},
+      "then": {
+        "properties": {
+          "state_authority": {
+            "required": ["git_event_ledger", "drive_projection_policy"]
+          }
+        }
+      }
+    }
+  ]
 }

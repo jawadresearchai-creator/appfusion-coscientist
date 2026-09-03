@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "docvault-lasttime-fusion-v0.1",
+  "app_id": "docvault-lasttime-fusion",
+  "release_train": "DOCVAULT_LASTTIME_V0_1_INSTALLABLE",
+  "product_blueprint_sha256": "2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc",
+  "status": "ACTIVE",
+  "scope_lock": {
+    "included": [
+      "encrypted document create, restart, search, and reopen",
+      "LastTime activity, cadence, reminder, restart, and timezone behavior",
+      "typed cross-module document-activity links and federated search",
+      "minimum usable Android and iOS application shells"
+    ],
+    "deferred": [
+      "scanner and OCR",
+      "PDF editing or export",
+      "office suite",
+      "cloud sync and accounts",
+      "memory graph",
+      "new input applications",
+      "signed store distribution without credentials"
+    ],
+    "new_capability_policy": "SCORE_THEN_INCLUDE_REPLACE_COMBINE_BACKLOG_REJECT_OR_INCONCLUSIVE"
+  },
+  "user_journeys": [
+    {
+      "journey_id": "J1",
+      "title": "Create an encrypted document, restart, find it, and reopen it",
+      "status": "IN_PROGRESS",
+      "acceptance_criteria": [
+        {"criterion_id": "J1_ANDROID_UI", "statement": "The Android app completes the journey through its installed UI after a process-style restart.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J1_IOS_UI", "statement": "The iOS simulator app completes the journey through its installed UI after relaunch.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J1_CRYPTO", "statement": "Stored document bytes are encrypted, context-bound, integrity checked, and readable after restart.", "evidence_kind": "CONTRACT_TEST", "status": "PASS"},
+        {"criterion_id": "J1_SEARCH", "statement": "Only authorized verified active metadata is searchable and opens the intended document.", "evidence_kind": "CONTRACT_TEST", "status": "PASS"}
+      ]
+    },
+    {
+      "journey_id": "J2",
+      "title": "Record activity, derive cadence, schedule a reminder, and survive restart and timezone change",
+      "status": "NOT_STARTED",
+      "acceptance_criteria": [
+        {"criterion_id": "J2_SHARED", "statement": "Deterministic shared contracts prove activity, cadence, scheduling, restart, and timezone behavior.", "evidence_kind": "CONTRACT_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J2_ANDROID_UI", "statement": "The installed Android app completes the activity and reminder journey.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J2_IOS_UI", "statement": "The installed iOS simulator app completes the activity and reminder journey.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"}
+      ]
+    },
+    {
+      "journey_id": "J3",
+      "title": "Link a document to an activity and find both through federated search",
+      "status": "NOT_STARTED",
+      "acceptance_criteria": [
+        {"criterion_id": "J3_SHARED", "statement": "Typed links and federated search are deterministic and authorization preserving.", "evidence_kind": "CONTRACT_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J3_ANDROID_UI", "statement": "The installed Android app creates a typed link and opens both linked records from search.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"},
+        {"criterion_id": "J3_IOS_UI", "statement": "The installed iOS simulator app creates a typed link and opens both linked records from search.", "evidence_kind": "UI_TEST", "status": "NOT_STARTED"}
+      ]
+    }
+  ],
+  "deliverables": [
+    {"artifact_kind": "ANDROID_DEBUG_APK", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "ANDROID_RELEASE_APK", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "ANDROID_AAB", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "IOS_SIMULATOR_APP", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "IOS_ARCHIVE", "required_for_train": false, "status": "DEFERRED", "evidence": ["Requires Apple signing credentials and provisioning not currently authorized."]},
+    {"artifact_kind": "SOURCE_ZIP", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "TEST_REPORT", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "SECURITY_REPORT", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "SCREENSHOTS", "required_for_train": true, "status": "NOT_STARTED", "evidence": []},
+    {"artifact_kind": "CHECKSUMS", "required_for_train": true, "status": "NOT_STARTED", "evidence": []}
+  ],
+  "defects": [],
+  "loop_controls": {
+    "max_consecutive_infrastructure_milestones": 2,
+    "max_repair_attempts_per_failure_signature": 2,
+    "max_audits_without_new_evidence": 1,
+    "first_installable_artifact_deadline_milestone": 9,
+    "on_limit": "FORCE_DELIVERY_SLICE_OR_PAUSE"
+  },
+  "ci_policy": {
+    "tiers": ["TIER_0", "TIER_1", "TIER_2", "TIER_3"],
+    "expensive_jobs_require_preflight": true,
+    "paid_overage_authorized": false
+  },
+  "terminal_condition": {
+    "required_journey_ids": ["J1", "J2", "J3"],
+    "required_artifact_kinds": ["ANDROID_DEBUG_APK", "ANDROID_RELEASE_APK", "ANDROID_AAB", "IOS_SIMULATOR_APP", "SOURCE_ZIP", "TEST_REPORT", "SECURITY_REPORT", "SCREENSHOTS", "CHECKSUMS"],
+    "zero_critical_defects": true
+  },
+  "updated_at": "2026-09-03T10:40:55Z"
+}
