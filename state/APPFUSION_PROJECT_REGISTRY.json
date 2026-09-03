@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 15,
-  "updated_at": "2026-09-03T07:56:33Z",
+  "registry_revision": 16,
+  "updated_at": "2026-09-03T09:52:30Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,13 +15,13 @@
     "system_id": "appfusion-coscientist",
     "status": "READY",
     "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "PERSISTENT_SECUREBLOB_ADAPTERS_LOCKED",
+    "current_milestone": "DOCUMENT_VAULT_STARTUP_COORDINATOR_LOCKED",
     "last_completed_event": {
-      "event_type": "PERSISTENT_SECUREBLOB_ADAPTERS_CHECKPOINT_PASSED",
-      "occurred_at": "2026-09-03T05:56:06Z",
-      "summary": "Persistent SecureBlob adapters are locked in Drive milestone report 14oph_EGYMuyMGANC_bZQu0k93m0TpQYN. Product commit 35c8e078e44d88b1e5d8937bcd008255b9ca87fa passed Product Boundary CI run 33720340472 and Product Construction CI run 33720340413. The strict versioned blob codec, traversal-safe canonical file naming, same-directory temporary writes, durable file flush, atomic replacement, interrupted-write cleanup, reference-based orphan cleanup, and corrupt-record preservation were proved by shared JVM contracts, Android API 35 runtime tests, and iOS Simulator ARM64 tests. This locks filesystem-backed encrypted payload persistence only; application startup orchestration, reference verification/decryption, and authorized search rehydration remain the next bounded checkpoint."
+      "event_type": "DOCUMENT_VAULT_STARTUP_COORDINATOR_CHECKPOINT_PASSED",
+      "occurred_at": "2026-09-03T08:16:13Z",
+      "summary": "Document Vault startup reconciliation is locked in Drive milestone report 1qX6Q3lQGDUxMCUeD9bfANBw-akFd_g_C. Product commit fef77ecf661607c1b8d1f6d759c77fe05d98bc03 passed Product Boundary CI run 33731737616 and Product Construction CI run 33731737546. Startup now enumerates Room references before recovery, protects active and archived non-legacy blobs, rejects unsafe or duplicate references, verifies stored identity/content type plus SecureBlob envelope/integrity and authenticated decryption context, reports missing/corrupt referenced evidence without deleting it, and rehydrates search only from verified active metadata. Shared/JVM contracts, Android API 35 restart/device tests, Android Keystore, iOS Simulator restart/contracts, and the simulator-installed Apple Keychain probe all passed."
     },
-    "next_safe_action": "Implement a DocumentVaultStartupCoordinator that enumerates every active and archived non-legacy blob reference from Room before recovery, invokes the locked adapter recovery contract, verifies every referenced file's identity and authenticated decryption context, reports missing/corrupt records without deleting evidence, and rehydrates the authorized search projection only from verified active metadata. Require deterministic shared contracts plus Android and iOS persistence/restart tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
+    "next_safe_action": "Implement a bounded DocumentVaultBackupRestoreCoordinator around the existing versioned DocumentBackupCodec and locked SecureBlob persistence contracts. Prove integrity-checked import, authenticated-context verification, transactional metadata/blob commit semantics, deterministic conflict handling, rollback and staged-blob cleanup on partial failure, archived-state preservation, and process-style restart verification on Android and iOS. Keep account/cloud sync, UI, camera, OCR, PDF export, Foundry/source-aware artifacts, dynamic behavioral-reference execution, and cross-domain backup orchestration outside the slice.",
     "blockers": []
   },
   "applications": [
@@ -31,14 +31,14 @@
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "PERSISTENT_SECUREBLOB_ADAPTERS_LOCKED_STARTUP_COORDINATOR_PROBE",
-      "updated_at": "2026-09-03T07:56:33Z",
+      "phase": "STARTUP_COORDINATOR_LOCKED_BACKUP_RESTORE_PROBE",
+      "updated_at": "2026-09-03T09:52:30Z",
       "last_completed_event": {
-        "event_type": "PERSISTENT_SECUREBLOB_ADAPTERS_CHECKPOINT_PASSED",
-        "occurred_at": "2026-09-03T05:56:06Z",
-        "summary": "Persistent SecureBlob adapters are locked in Drive milestone report 14oph_EGYMuyMGANC_bZQu0k93m0TpQYN. Product commit 35c8e078e44d88b1e5d8937bcd008255b9ca87fa passed Product Boundary CI run 33720340472 and Product Construction CI run 33720340413. The strict versioned blob codec, traversal-safe canonical file naming, same-directory temporary writes, durable file flush, atomic replacement, interrupted-write cleanup, reference-based orphan cleanup, and corrupt-record preservation were proved by shared JVM contracts, Android API 35 runtime tests, and iOS Simulator ARM64 tests. This locks filesystem-backed encrypted payload persistence only; application startup orchestration, reference verification/decryption, and authorized search rehydration remain the next bounded checkpoint."
+        "event_type": "DOCUMENT_VAULT_STARTUP_COORDINATOR_CHECKPOINT_PASSED",
+        "occurred_at": "2026-09-03T08:16:13Z",
+        "summary": "Document Vault startup reconciliation is locked in Drive milestone report 1qX6Q3lQGDUxMCUeD9bfANBw-akFd_g_C. Product commit fef77ecf661607c1b8d1f6d759c77fe05d98bc03 passed Product Boundary CI run 33731737616 and Product Construction CI run 33731737546. Startup now enumerates Room references before recovery, protects active and archived non-legacy blobs, rejects unsafe or duplicate references, verifies stored identity/content type plus SecureBlob envelope/integrity and authenticated decryption context, reports missing/corrupt referenced evidence without deleting it, and rehydrates search only from verified active metadata. Shared/JVM contracts, Android API 35 restart/device tests, Android Keystore, iOS Simulator restart/contracts, and the simulator-installed Apple Keychain probe all passed."
       },
-      "next_safe_action": "Implement a DocumentVaultStartupCoordinator that enumerates every active and archived non-legacy blob reference from Room before recovery, invokes the locked adapter recovery contract, verifies every referenced file's identity and authenticated decryption context, reports missing/corrupt records without deleting evidence, and rehydrates the authorized search projection only from verified active metadata. Require deterministic shared contracts plus Android and iOS persistence/restart tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
+      "next_safe_action": "Implement a bounded DocumentVaultBackupRestoreCoordinator around the existing versioned DocumentBackupCodec and locked SecureBlob persistence contracts. Prove integrity-checked import, authenticated-context verification, transactional metadata/blob commit semantics, deterministic conflict handling, rollback and staged-blob cleanup on partial failure, archived-state preservation, and process-style restart verification on Android and iOS. Keep account/cloud sync, UI, camera, OCR, PDF export, Foundry/source-aware artifacts, dynamic behavioral-reference execution, and cross-domain backup orchestration outside the slice.",
       "blockers": [],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",
