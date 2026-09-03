@@ -12,8 +12,8 @@
 
 ## Current resumable state
 
-- Registry/application revision: `17`.
-- Event tail: `017-delivery-orchestration-v1-1-locked`.
+- Registry/application revision: `18`.
+- Event tail: `018-delivery-orchestration-v1-1-locked`.
 - Active applications: one (`docvault-lasttime-fusion`), selected automatically.
 - Delivery plan: `docvault-lasttime-fusion-v0.1`.
 - Release status: not ready; J1–J3 and all required installable/release artifacts are incomplete.

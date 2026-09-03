@@ -1,4 +1,4 @@
-# Product Construction Milestone 007 — Delivery Orchestration v1.1 Locked
+# Product Construction Milestone 008 — Delivery Orchestration v1.1 Locked
 
 Application: `docvault-lasttime-fusion`
 
@@ -6,7 +6,7 @@ Occurred at: `2026-09-03T10:40:55Z`
 
 ## Decision
 
-Adopt Delivery Orchestration v1.1 as the controlling release plan. Small authoritative control state moves to the private Git event ledger with fast-forward conflict rejection. Google Drive remains the bulky-artifact store and receives projections only after a valid Git transition. The first release is bounded to three end-to-end journeys and concrete Android/iOS deliverables.
+Adopt Delivery Orchestration v1.1 as the controlling release plan after preserving the concurrently completed backup/restore evidence. Small authoritative control state moves to the private Git event ledger with fast-forward conflict rejection. Google Drive remains the bulky-artifact store and receives projections only after a valid Git transition. The first release is bounded to three end-to-end journeys and concrete Android/iOS deliverables.
 
 ## Audit result
 
@@ -17,8 +17,8 @@ Adopt Delivery Orchestration v1.1 as the controlling release plan. Small authori
 - No more than two consecutive infrastructure-only milestones.
 - No more than two repairs for the same failure signature.
 - No repeated audit without new evidence.
-- The first Android debug APK is due no later than Product milestone 009.
-- The next milestone must advance an installed user journey or artifact unless a release-blocking defect makes that impossible.
+- The first Android debug APK is due at Product milestone 009.
+- The next milestone must produce the installable shell artifact unless a release-blocking defect makes that impossible.
 
 ## Next safe action
 

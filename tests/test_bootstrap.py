@@ -90,7 +90,7 @@ def test_delivery_control_state_is_contiguous_and_consistent():
 
 
 def test_schema_format_checker_rejects_invalid_uuid():
-    event = load_json(ROOT / "state/events/017-delivery-orchestration-v1-1-locked.json")
+    event = load_json(ROOT / "state/events/018-delivery-orchestration-v1-1-locked.json")
     event["event_id"] = "not-a-uuid"
     with pytest.raises(ValidationError):
         validate(event, ROOT / "schemas/v1/run-event.schema.json")
@@ -133,15 +133,15 @@ def test_transition_rejects_stale_state_and_updates_both_projections():
         registry,
         application,
         transition,
-        "24ea0181-ed7c-43b2-99cd-2c6167be342e",
+        "91f0cc70-5a22-49c3-ac17-7c848146a21b",
     )
-    assert updated_registry["registry_revision"] == 18
-    assert updated_application["state_revision"] == 18
+    assert updated_registry["registry_revision"] == registry["registry_revision"] + 1
+    assert updated_application["state_revision"] == application["state_revision"] + 1
     assert updated_registry["applications"][0] == updated_application
     assert updated_registry["system"]["current_milestone"] == "INSTALLABLE_SHELL_STARTED"
-    assert event["previous_event_id"] == "24ea0181-ed7c-43b2-99cd-2c6167be342e"
+    assert event["previous_event_id"] == "91f0cc70-5a22-49c3-ac17-7c848146a21b"
 
-    transition["expected_registry_revision"] = 16
+    transition["expected_registry_revision"] = registry["registry_revision"] - 1
     with pytest.raises(ValueError, match="STALE_REGISTRY_REVISION"):
         plan_transition(registry, application, transition, event["event_id"])
 

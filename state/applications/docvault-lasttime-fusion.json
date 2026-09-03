@@ -6,8 +6,8 @@
   "lifecycle_state": "PRODUCT_CONSTRUCTION",
   "phase": "DELIVERY_ORCHESTRATION_LOCKED_INSTALLABLE_SHELL_NEXT",
   "updated_at": "2026-09-03T10:40:55Z",
-  "state_revision": 17,
-  "last_event_sequence": 17,
+  "state_revision": 18,
+  "last_event_sequence": 18,
   "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
   "last_completed_event": {
     "event_type": "DELIVERY_ORCHESTRATION_V1_1_LOCKED",
