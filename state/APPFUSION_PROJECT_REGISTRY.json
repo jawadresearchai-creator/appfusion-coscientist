@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 14,
-  "updated_at": "2026-09-03T05:04:50Z",
+  "registry_revision": 15,
+  "updated_at": "2026-09-03T07:56:33Z",
   "state_authority": {
     "primary": "GOOGLE_DRIVE",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,13 +15,13 @@
     "system_id": "appfusion-coscientist",
     "status": "READY",
     "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "DOCUMENT_VAULT_CORE_CHECKPOINT_LOCKED",
+    "current_milestone": "PERSISTENT_SECUREBLOB_ADAPTERS_LOCKED",
     "last_completed_event": {
-      "event_type": "DOCUMENT_VAULT_CORE_CHECKPOINT_PASSED",
-      "occurred_at": "2026-09-03T05:04:00Z",
-      "summary": "The first bounded document_vault core checkpoint passed and is preserved in Drive file 1NY0VdykhqP4CNtXhN63wrjSkvWURY6S-. Product commit 8076430eaa1b4d32d49c604c0f2d9b3b2bba3fd8 passed Product Boundary CI run 33716941887 and Product Construction CI run 33716941898 on Android/JVM, Android API 35, and iOS Simulator ARM64. Room3 metadata now composes with immutable revision-addressed SecureBlob payloads for encrypted create/read/update/archive, authorized search and backup export, append-only lifecycle events, rollback-safe staged writes, strict backup decoding, and schema 1→2→3 migration/rollback. SecureBlob caller context binds ciphertext to blob identity and content type. Legacy rows fail closed as migration-required. This locks the shared core checkpoint only; production filesystem-backed blob persistence and crash recovery remain the next adapter gate."
+      "event_type": "PERSISTENT_SECUREBLOB_ADAPTERS_CHECKPOINT_PASSED",
+      "occurred_at": "2026-09-03T05:56:06Z",
+      "summary": "Persistent SecureBlob adapters are locked in Drive milestone report 14oph_EGYMuyMGANC_bZQu0k93m0TpQYN. Product commit 35c8e078e44d88b1e5d8937bcd008255b9ca87fa passed Product Boundary CI run 33720340472 and Product Construction CI run 33720340413. The strict versioned blob codec, traversal-safe canonical file naming, same-directory temporary writes, durable file flush, atomic replacement, interrupted-write cleanup, reference-based orphan cleanup, and corrupt-record preservation were proved by shared JVM contracts, Android API 35 runtime tests, and iOS Simulator ARM64 tests. This locks filesystem-backed encrypted payload persistence only; application startup orchestration, reference verification/decryption, and authorized search rehydration remain the next bounded checkpoint."
     },
-    "next_safe_action": "Implement replaceable Android and iOS filesystem-backed SecureBlobStore adapters using same-directory temporary writes, durable flush where supported, atomic replacement, startup recovery, path traversal rejection, and orphan revision cleanup. Prove crash/failure behavior with shared adapter contracts plus Android runtime and iOS Simulator tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
+    "next_safe_action": "Implement a DocumentVaultStartupCoordinator that enumerates every active and archived non-legacy blob reference from Room before recovery, invokes the locked adapter recovery contract, verifies every referenced file's identity and authenticated decryption context, reports missing/corrupt records without deleting evidence, and rehydrates the authorized search projection only from verified active metadata. Require deterministic shared contracts plus Android and iOS persistence/restart tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
     "blockers": []
   },
   "applications": [
@@ -31,14 +31,14 @@
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "DOCUMENT_VAULT_CORE_LOCKED_PERSISTENT_BLOB_ADAPTER_PROBE",
-      "updated_at": "2026-09-03T05:04:50Z",
+      "phase": "PERSISTENT_SECUREBLOB_ADAPTERS_LOCKED_STARTUP_COORDINATOR_PROBE",
+      "updated_at": "2026-09-03T07:56:33Z",
       "last_completed_event": {
-        "event_type": "DOCUMENT_VAULT_CORE_CHECKPOINT_PASSED",
-        "occurred_at": "2026-09-03T05:04:00Z",
-        "summary": "The first bounded document_vault core checkpoint passed and is preserved in Drive file 1NY0VdykhqP4CNtXhN63wrjSkvWURY6S-. Product commit 8076430eaa1b4d32d49c604c0f2d9b3b2bba3fd8 passed Product Boundary CI run 33716941887 and Product Construction CI run 33716941898 on Android/JVM, Android API 35, and iOS Simulator ARM64. Room3 metadata now composes with immutable revision-addressed SecureBlob payloads for encrypted create/read/update/archive, authorized search and backup export, append-only lifecycle events, rollback-safe staged writes, strict backup decoding, and schema 1→2→3 migration/rollback. SecureBlob caller context binds ciphertext to blob identity and content type. Legacy rows fail closed as migration-required. This locks the shared core checkpoint only; production filesystem-backed blob persistence and crash recovery remain the next adapter gate."
+        "event_type": "PERSISTENT_SECUREBLOB_ADAPTERS_CHECKPOINT_PASSED",
+        "occurred_at": "2026-09-03T05:56:06Z",
+        "summary": "Persistent SecureBlob adapters are locked in Drive milestone report 14oph_EGYMuyMGANC_bZQu0k93m0TpQYN. Product commit 35c8e078e44d88b1e5d8937bcd008255b9ca87fa passed Product Boundary CI run 33720340472 and Product Construction CI run 33720340413. The strict versioned blob codec, traversal-safe canonical file naming, same-directory temporary writes, durable file flush, atomic replacement, interrupted-write cleanup, reference-based orphan cleanup, and corrupt-record preservation were proved by shared JVM contracts, Android API 35 runtime tests, and iOS Simulator ARM64 tests. This locks filesystem-backed encrypted payload persistence only; application startup orchestration, reference verification/decryption, and authorized search rehydration remain the next bounded checkpoint."
       },
-      "next_safe_action": "Implement replaceable Android and iOS filesystem-backed SecureBlobStore adapters using same-directory temporary writes, durable flush where supported, atomic replacement, startup recovery, path traversal rejection, and orphan revision cleanup. Prove crash/failure behavior with shared adapter contracts plus Android runtime and iOS Simulator tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
+      "next_safe_action": "Implement a DocumentVaultStartupCoordinator that enumerates every active and archived non-legacy blob reference from Room before recovery, invokes the locked adapter recovery contract, verifies every referenced file's identity and authenticated decryption context, reports missing/corrupt records without deleting evidence, and rehydrates the authorized search projection only from verified active metadata. Require deterministic shared contracts plus Android and iOS persistence/restart tests. Keep UI, camera, OCR, PDF export, Foundry/source-aware artifacts, and dynamic behavioral-reference execution outside the slice.",
       "blockers": [],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product",
