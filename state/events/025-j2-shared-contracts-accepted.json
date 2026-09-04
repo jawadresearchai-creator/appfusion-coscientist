@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "4d6ea3ab-68ea-44fe-bb6a-7eca3e9f6cd0",
+  "run_id": "90c30d01-48f5-415b-8efc-47d730afdce9",
+  "sequence": 25,
+  "event_type": "J2_SHARED_CONTRACTS_ACCEPTED",
+  "occurred_at": "2026-09-04T15:46:00Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "74a4d2fa-01e8-4f30-9b91-fab91b732a24",
+  "idempotency_key": "4d6ea3ab-68ea-44fe-bb6a-7eca3e9f6cd0",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 24,
+    "registry_revision_after": 25,
+    "application_state_revision_before": 24,
+    "application_state_revision_after": 25,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "accepted_criterion": "J2_SHARED",
+    "criterion_status": "PASS",
+    "journey_status": "IN_PROGRESS",
+    "product_commit": "820f98051468365d8510b16a062ada57282670d1",
+    "product_tree": "114b52b086c83162353775fd35835efe8bd2245e",
+    "product_pull_request": 3,
+    "candidate_ci": {
+      "run_id": 33861008128,
+      "conclusion": "success",
+      "head_sha": "820f98051468365d8510b16a062ada57282670d1"
+    },
+    "main_ci": {
+      "run_id": 33862384566,
+      "conclusion": "success",
+      "head_sha": "820f98051468365d8510b16a062ada57282670d1"
+    },
+    "product_ci_workflow": ".github/workflows/product-construction-ci.yml",
+    "product_ci_workflow_blob": "626e93ea794dd2654fd9b77a0c6094a8d8852b0a",
+    "product_workflow_count": 1,
+    "j1_regression_preserved": true,
+    "native_notification_delivery_accepted": false,
+    "android_j2_ui_accepted": false,
+    "ios_j2_ui_accepted": false,
+    "j2_fully_accepted": false,
+    "project_b_accessed": false,
+    "project_b_modified": false,
+    "spend_policy": "FREE_ONLY",
+    "new_service_charge_cap": 0,
+    "next_phase": "J2_NATIVE_UI_NOTIFICATION_IMPLEMENTATION_REQUIRED",
+    "evidence": [
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/commit/820f98051468365d8510b16a062ada57282670d1",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/pull/3",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33861008128",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33862384566",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/blob/820f98051468365d8510b16a062ada57282670d1/shared/J2_CONTRACT.md",
+      "state/events/024-project-a-workflow-restored-j2-resumed.json"
+    ],
+    "final_release_ready": false
+  }
+}

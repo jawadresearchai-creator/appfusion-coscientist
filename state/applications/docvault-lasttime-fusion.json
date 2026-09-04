@@ -4,17 +4,17 @@
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
   "lifecycle_state": "PRODUCT_CONSTRUCTION",
-  "phase": "J2_ACTIVITY_REMINDERS_IMPLEMENTATION_REQUIRED",
-  "updated_at": "2026-09-04T09:42:48Z",
-  "state_revision": 24,
-  "last_event_sequence": 24,
+  "phase": "J2_NATIVE_UI_NOTIFICATION_IMPLEMENTATION_REQUIRED",
+  "updated_at": "2026-09-04T15:46:00Z",
+  "state_revision": 25,
+  "last_event_sequence": 25,
   "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
   "last_completed_event": {
-    "event_type": "PROJECT_A_WORKFLOW_RESTORED_J2_RESUMED",
-    "occurred_at": "2026-09-04T09:42:48Z",
-    "summary": "Removed only .github/workflows/aleil-ios-test.yml from the public Project A Product repository under explicit user authorization, after the user reported Project B migration verified. Cleanup d8844ed95285117e6688dd0866974b7d74177d43 preserves product-construction-ci.yml byte-for-byte and restores the exact full Git tree tested at J1 source 1c6ab92f25a281a6776c7899645917d21695765f. All 24 local boundary/harness checks and hosted preflight 33859586693 pass. Unchanged platform jobs were intentionally skipped, not counted as new passes; revision 23 J1 evidence and release remain preserved. Project A resumes locked J2 construction. The dedicated Project B repository and Drive state were not accessed or modified."
+    "event_type": "J2_SHARED_CONTRACTS_ACCEPTED",
+    "occurred_at": "2026-09-04T15:46:00Z",
+    "summary": "Accepted the J2 shared activity/history/cadence/reminder reconciliation and persistence contracts at Product 820f98051468365d8510b16a062ada57282670d1. PR #3 was fast-forward merged; candidate CI 33861008128 and main CI 33862384566 both completed successfully, including shared contract tests, native-key probes and installed J1 regressions. The Product repository still has exactly one hosted workflow, product-construction-ci.yml, with its guarded standard-public route preserved. J2 remains IN_PROGRESS: native Android/iOS J2 screens and native notification delivery/reconciliation acceptance are unfinished. J3 and final security/signing/release gates remain outstanding. Project B/ALEIL worker repository and Drive state were not accessed or modified; no billing or paid execution was enabled."
   },
-  "next_safe_action": "Implement and verify locked J2 activity/cadence/reminder persistence, deterministic restart/timezone behavior, and installed Android/iOS journeys in the Project A public Product repository using its single guarded standard-public workflow. Preserve J1 and revision 23 evidence. After J2, continue J3 and final security/release gates. Do not access Project B/ALEIL worker repository or Drive state. No billing, paid services, private CI reactivation or mandatory local executor.",
+  "next_safe_action": "Implement and verify the remaining locked J2 native slice in the Project A public Product repository: Android and iOS activity/reminder screens, native notification permission/scheduling/delivery and restart/timezone reconciliation hooks, plus installed Android/iOS J2 journeys. Use only the single guarded standard-public workflow, preserve J1 and the accepted J2 shared contracts, and promote only after candidate and resulting main evidence pass. Then continue J3 and final security/release gates. Do not access Project B/ALEIL worker repository or Drive state. No billing, paid services, private CI reactivation or mandatory local executor.",
   "blockers": [],
   "artifact_locations": {
     "product_repository": "jawadresearchai-creator/appfusion-product-public",
