@@ -1,1 +1,294 @@
-{"schema_version":"1.0.0","plan_id":"docvault-lasttime-fusion-v0.1","app_id":"docvault-lasttime-fusion","release_train":"DOCVAULT_LASTTIME_V0_1_INSTALLABLE","product_blueprint_sha256":"2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc","status":"ACTIVE","scope_lock":{"included":["encrypted document create, restart, search, and reopen","LastTime activity, cadence, reminder, restart, and timezone behavior","typed cross-module document-activity links and federated search","minimum usable Android and iOS application shells"],"deferred":["scanner and OCR","PDF editing or export","office suite","cloud sync and accounts","memory graph","new input applications","signed store distribution without credentials"],"new_capability_policy":"SCORE_THEN_INCLUDE_REPLACE_COMBINE_BACKLOG_REJECT_OR_INCONCLUSIVE"},"user_journeys":[{"journey_id":"J1","title":"Create an encrypted document, restart, find it, and reopen it","status":"PASS","acceptance_criteria":[{"criterion_id":"J1_ANDROID_UI","statement":"The Android app completes the journey through its installed UI after a process-style restart.","evidence_kind":"UI_TEST","status":"PASS"},{"criterion_id":"J1_IOS_UI","statement":"The iOS simulator app completes the journey through its installed UI after relaunch.","evidence_kind":"UI_TEST","status":"PASS"},{"criterion_id":"J1_CRYPTO","statement":"Stored document bytes are encrypted, context-bound, integrity checked, and readable after restart.","evidence_kind":"CONTRACT_TEST","status":"PASS"},{"criterion_id":"J1_SEARCH","statement":"Only authorized verified active metadata is searchable and opens the intended document.","evidence_kind":"CONTRACT_TEST","status":"PASS"}]},{"journey_id":"J2","title":"Record activity, derive cadence, schedule a reminder, and survive restart and timezone change","status":"IN_PROGRESS","acceptance_criteria":[{"criterion_id":"J2_SHARED","statement":"Deterministic shared contracts prove activity, cadence, scheduling, restart, and timezone behavior.","evidence_kind":"CONTRACT_TEST","status":"PASS"},{"criterion_id":"J2_ANDROID_UI","statement":"The installed Android app completes the activity and reminder journey.","evidence_kind":"UI_TEST","status":"NOT_STARTED"},{"criterion_id":"J2_IOS_UI","statement":"The installed iOS simulator app completes the activity and reminder journey.","evidence_kind":"UI_TEST","status":"NOT_STARTED"}]},{"journey_id":"J3","title":"Link a document to an activity and find both through federated search","status":"NOT_STARTED","acceptance_criteria":[{"criterion_id":"J3_SHARED","statement":"Typed links and federated search are deterministic and authorization preserving.","evidence_kind":"CONTRACT_TEST","status":"NOT_STARTED"},{"criterion_id":"J3_ANDROID_UI","statement":"The installed Android app creates a typed link and opens both linked records from search.","evidence_kind":"UI_TEST","status":"NOT_STARTED"},{"criterion_id":"J3_IOS_UI","statement":"The installed iOS simulator app creates a typed link and opens both linked records from search.","evidence_kind":"UI_TEST","status":"NOT_STARTED"}]}],"deliverables":[{"artifact_kind":"ANDROID_DEBUG_APK","required_for_train":true,"status":"PASS","evidence":["Product CI run 33749114136; artifact 9890952602; androidApp-debug.apk; SHA-256 9398df8ab497ffa6ef309bd2b6ef5638143c8877f75a8e27e694a8a7628a5ffb.","Android J1 local fallback PASS at source 99e3e83bbbe92406b9010b56c9da05e8b8f0fea7; APK SHA-256 733f0bebdc48260efc4c53fe4dd1e45415353d3af0b4036466c218e967613137; Drive https://drive.google.com/file/d/1o2zUqBzq_dVmKk9RRbvZfYf4aQ86BDrH/view.","Public CI 33832218376 installed J1 PASS at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1. Published exact tested APK SHA-256 951baf38ad8074a773bd9e18e3fc9ef61bd6edb2c4cc254d985e5131ddbccaf6; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","Main CI 33837384267 installed Android J1 PASS at 1c6ab92f25a281a6776c7899645917d21695765f. Exact tested APK SHA-256 ac309066708633d95a300651a7d5a56033bbde3ca8417b272be1765e6dabde5b; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-Android-J1-debug.apk"]},{"artifact_kind":"ANDROID_RELEASE_APK","required_for_train":true,"status":"IN_PROGRESS","evidence":["Product CI run 33749114136 produced androidApp-release-unsigned.apk; SHA-256 d66d256040fe0ca9263431a734d08a54d8dc8312a996eacc5db0aaf5e06ee4f8. Signing and installed release validation remain outstanding."]},{"artifact_kind":"ANDROID_AAB","required_for_train":true,"status":"IN_PROGRESS","evidence":["Product CI run 33749114136 produced androidApp-release.aab; SHA-256 e3e6d86e470d24b323e01654232fba3404b93694dbc4093be8f60f7110838b50. Distribution signing remains outstanding."]},{"artifact_kind":"IOS_SIMULATOR_APP","required_for_train":true,"status":"PASS","evidence":["Product CI run 33749114136; artifact 9891032519; AppFusion-ios-simulator.zip; SHA-256 e85d797d93d3ce417e411eb551b77c3c81a2ea56128ab2fd8f013aff34eca4d7.","Public CI 33832218376 iOS contracts, Keychain runtime probe and signed simulator shell PASS. Published simulator ZIP SHA-256 10d2d910a28d6ef6cd26c9a3c910bcf6429507894fd2742126592ddc515801bc; not iPhone-installable and not iOS J1 acceptance; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","Main CI 33837384267 installed iOS J1 XCUITest PASS (one passed, zero failed/skipped), existing Keychain/shared gates PASS at 1c6ab92f25a281a6776c7899645917d21695765f. Exact tested simulator ZIP SHA-256 f8c2ffe18894088cbe10fd3194c39114d76ed2232a305803dcd656f8a827a3a1; not a physical-iPhone IPA; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-iOS-Simulator.zip"]},{"artifact_kind":"IOS_ARCHIVE","required_for_train":false,"status":"DEFERRED","evidence":["Requires Apple signing credentials and provisioning not currently authorized."]},{"artifact_kind":"SOURCE_ZIP","required_for_train":true,"status":"PASS","evidence":["Product merge f1100e8907a5a0101b19a20452928335b478bdc9; source ZIP SHA-256 c8c058605cd09b6c57a6b836b317bfaf0262d4e360cb30118ab8ad30a0e2e12a; Drive https://drive.google.com/file/d/1Zu-VIGNOH_tOVjliCslSwd94wu11qNpl/view.","Reviewed public-only source at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1; ZIP SHA-256 feca4ecb1eb4a342adca3223be34dc85743ef2b564fc7ea635816da1b070ff88; no old private history or documents; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","Public-only source at 1c6ab92f25a281a6776c7899645917d21695765f; SHA-256 b8c7bccd6731354c5466e1e4fb5a8370076847af5a93ff1627683689f1deb50c; excludes later conflicting workflow; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-public-source.zip"]},{"artifact_kind":"TEST_REPORT","required_for_train":true,"status":"IN_PROGRESS","evidence":["Android slice: 25 JVM contracts, 4 emulator runtime tests, 8 Python tests, and installed J1 passed. Cross-platform report remains incomplete. Evidence https://drive.google.com/file/d/1c49tfSJozfdrg3ohd7kbzI1J0SViql43/view.","Public development report confirms 17 Product boundary tests, shared JVM/iOS gates, four Android runtime tests, installed Android J1 and iOS Keychain/simulator shell. All four CI jobs PASS; final cross-platform journeys still incomplete; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","J1 cross-platform acceptance: 24 Product boundary/harness checks, Android runtime and installed UI, iOS shared/Keychain and installed UI PASS; seven published digests verified. Later workflow conflict and unfinished J2/J3/final gates explicitly documented; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/TEST_REPORT.md"]},{"artifact_kind":"SECURITY_REPORT","required_for_train":true,"status":"NOT_STARTED","evidence":[]},{"artifact_kind":"SCREENSHOTS","required_for_train":true,"status":"IN_PROGRESS","evidence":["Android J1 final screenshot visually verified: https://drive.google.com/file/d/1F-_lWIb9I-mKpmTgceF2EaZSU6ej2pcL/view. iOS and remaining journeys are outstanding.","Public Android J1 reopened-document screenshot visually checked; SHA-256 2c954e789135cc0503fbf9e6a696497fcaae25b298cc5f9091183a3e58fe59fa. In AppFusion-Android-J1-evidence.zip; iOS/remaining journeys still outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","Main-run Android and iOS J1 reopened-document screenshots visually verified. Android SHA-256 8523ddcf0b938ac0ac1489eebe8b235824b42727b798688b65a740616047f8d7; iOS SHA-256 f79c986e3d8d47b8f71ee5136741c791557d6123488419d09213764ba25704fa. Stored in platform evidence ZIPs at https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-j1-20260904; J2/J3 screenshots outstanding."]},{"artifact_kind":"CHECKSUMS","required_for_train":true,"status":"IN_PROGRESS","evidence":["Android milestone 010 snapshot checksums: https://drive.google.com/file/d/1gFqiOk4cjph8ejfiqQ0J9dMrFylzxO71/view. Final cross-platform release checksum set remains outstanding.","Published development checksum set and verified all six GitHub asset digests, including actual tested APK. Final release checksum set remains outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904","All seven development snapshot assets uploaded and SHA-256 digests verified; exact tested APK and embedded iOS executable matched runtime receipts. Final release checksum set remains outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/SHA256SUMS.txt"]}],"defects":[{"defect_id":"ANDROID_ROOM_ABI_COMPILE","severity":"HIGH","status":"FIXED","summary":"The Android shell initially lacked Room runtime and bundled SQLite ABI dependencies; repair attempt 1 added the required compile/runtime dependencies and the complete construction run passed."},{"defect_id":"ANDROID_SYSTEM_BAR_OVERLAP","severity":"MEDIUM","status":"FIXED","summary":"Visual inspection of the first installed J1 pass found header/status-bar overlap; platform insets were applied and the complete installed journey passed again."},{"defect_id":"IOS_J1_KEYBOARD_OBSCURES_SEARCH","severity":"HIGH","status":"FIXED","summary":"Run 33834830361 could not tap Search behind the keyboard. Keyboard-aware layout, an accessible Done action and visible-result assertions passed installed J1 on candidate and main."},{"defect_id":"ANDROID_LAUNCHER_ANR_TEST_INTERFERENCE","severity":"MEDIUM","status":"FIXED","summary":"Added one narrowly verified Pixel Launcher ANR dismissal with regression tests; application ANRs remain failures. Both accepted J1 runs required zero infrastructure recoveries."},{"defect_id":"IOS_NESTED_TEST_BUILD_HARNESS","severity":"MEDIUM","status":"FIXED","summary":"Removed recursive Xcode build-phase testing; existing guarded workflow runs named installed XCTest explicitly, retains failure evidence and packages the exact tested app."},{"defect_id":"IOS_SHARED_VAULT_CONCURRENT_ACCESS","severity":"HIGH","status":"FIXED","summary":"Serialized all mutable shared vault runtime calls and close on one queue; source-level regression assertion and installed journey passed. This is not a general concurrency stress-test claim."},{"defect_id":"PUBLIC_WORKFLOW_GUARD_REGRESSION","severity":"HIGH","status":"FIXED","summary":"After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted. Resolved under explicit user authorization by d8844ed; hosted preflight 33859586693 passed and exact J1 tree equivalence verified."}],"loop_controls":{"max_consecutive_infrastructure_milestones":2,"max_repair_attempts_per_failure_signature":2,"max_audits_without_new_evidence":1,"first_installable_artifact_deadline_milestone":9,"on_limit":"FORCE_DELIVERY_SLICE_OR_PAUSE"},"ci_policy":{"tiers":["TIER_0","TIER_1","TIER_2","TIER_3"],"expensive_jobs_require_preflight":true,"paid_overage_authorized":false},"terminal_condition":{"required_journey_ids":["J1","J2","J3"],"required_artifact_kinds":["ANDROID_DEBUG_APK","ANDROID_RELEASE_APK","ANDROID_AAB","IOS_SIMULATOR_APP","SOURCE_ZIP","TEST_REPORT","SECURITY_REPORT","SCREENSHOTS","CHECKSUMS"],"zero_critical_defects":true},"updated_at":"2026-09-04T15:46:00Z"}
+{
+  "schema_version": "1.0.0",
+  "plan_id": "docvault-lasttime-fusion-v0.1",
+  "app_id": "docvault-lasttime-fusion",
+  "release_train": "DOCVAULT_LASTTIME_V0_1_INSTALLABLE",
+  "product_blueprint_sha256": "2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc",
+  "status": "ACTIVE",
+  "scope_lock": {
+    "included": [
+      "encrypted document create, restart, search, and reopen",
+      "LastTime activity, cadence, reminder, restart, and timezone behavior",
+      "typed cross-module document-activity links and federated search",
+      "minimum usable Android and iOS application shells"
+    ],
+    "deferred": [
+      "scanner and OCR",
+      "PDF editing or export",
+      "office suite",
+      "cloud sync and accounts",
+      "memory graph",
+      "new input applications",
+      "signed store distribution without credentials"
+    ],
+    "new_capability_policy": "SCORE_THEN_INCLUDE_REPLACE_COMBINE_BACKLOG_REJECT_OR_INCONCLUSIVE"
+  },
+  "user_journeys": [
+    {
+      "journey_id": "J1",
+      "title": "Create an encrypted document, restart, find it, and reopen it",
+      "status": "PASS",
+      "acceptance_criteria": [
+        {
+          "criterion_id": "J1_ANDROID_UI",
+          "statement": "The Android app completes the journey through its installed UI after a process-style restart.",
+          "evidence_kind": "UI_TEST",
+          "status": "PASS"
+        },
+        {
+          "criterion_id": "J1_IOS_UI",
+          "statement": "The iOS simulator app completes the journey through its installed UI after relaunch.",
+          "evidence_kind": "UI_TEST",
+          "status": "PASS"
+        },
+        {
+          "criterion_id": "J1_CRYPTO",
+          "statement": "Stored document bytes are encrypted, context-bound, integrity checked, and readable after restart.",
+          "evidence_kind": "CONTRACT_TEST",
+          "status": "PASS"
+        },
+        {
+          "criterion_id": "J1_SEARCH",
+          "statement": "Only authorized verified active metadata is searchable and opens the intended document.",
+          "evidence_kind": "CONTRACT_TEST",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journey_id": "J2",
+      "title": "Record activity, derive cadence, schedule a reminder, and survive restart and timezone change",
+      "status": "IN_PROGRESS",
+      "acceptance_criteria": [
+        {
+          "criterion_id": "J2_SHARED",
+          "statement": "Deterministic shared contracts prove activity, cadence, scheduling, restart, and timezone behavior.",
+          "evidence_kind": "CONTRACT_TEST",
+          "status": "PASS"
+        },
+        {
+          "criterion_id": "J2_ANDROID_UI",
+          "statement": "The installed Android app completes the activity and reminder journey.",
+          "evidence_kind": "UI_TEST",
+          "status": "IN_PROGRESS"
+        },
+        {
+          "criterion_id": "J2_IOS_UI",
+          "statement": "The installed iOS simulator app completes the activity and reminder journey.",
+          "evidence_kind": "UI_TEST",
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "journey_id": "J3",
+      "title": "Link a document to an activity and find both through federated search",
+      "status": "NOT_STARTED",
+      "acceptance_criteria": [
+        {
+          "criterion_id": "J3_SHARED",
+          "statement": "Typed links and federated search are deterministic and authorization preserving.",
+          "evidence_kind": "CONTRACT_TEST",
+          "status": "NOT_STARTED"
+        },
+        {
+          "criterion_id": "J3_ANDROID_UI",
+          "statement": "The installed Android app creates a typed link and opens both linked records from search.",
+          "evidence_kind": "UI_TEST",
+          "status": "NOT_STARTED"
+        },
+        {
+          "criterion_id": "J3_IOS_UI",
+          "statement": "The installed iOS simulator app creates a typed link and opens both linked records from search.",
+          "evidence_kind": "UI_TEST",
+          "status": "NOT_STARTED"
+        }
+      ]
+    }
+  ],
+  "deliverables": [
+    {
+      "artifact_kind": "ANDROID_DEBUG_APK",
+      "required_for_train": true,
+      "status": "PASS",
+      "evidence": [
+        "Product CI run 33749114136; artifact 9890952602; androidApp-debug.apk; SHA-256 9398df8ab497ffa6ef309bd2b6ef5638143c8877f75a8e27e694a8a7628a5ffb.",
+        "Android J1 local fallback PASS at source 99e3e83bbbe92406b9010b56c9da05e8b8f0fea7; APK SHA-256 733f0bebdc48260efc4c53fe4dd1e45415353d3af0b4036466c218e967613137; Drive https://drive.google.com/file/d/1o2zUqBzq_dVmKk9RRbvZfYf4aQ86BDrH/view.",
+        "Public CI 33832218376 installed J1 PASS at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1. Published exact tested APK SHA-256 951baf38ad8074a773bd9e18e3fc9ef61bd6edb2c4cc254d985e5131ddbccaf6; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "Main CI 33837384267 installed Android J1 PASS at 1c6ab92f25a281a6776c7899645917d21695765f. Exact tested APK SHA-256 ac309066708633d95a300651a7d5a56033bbde3ca8417b272be1765e6dabde5b; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-Android-J1-debug.apk",
+        "Final main 33898157632 installed J1 and J2 Android activity UI slice PASS at 0f5d69ec2d71a5c43aea2b7d05a27aa88e0bc90c. Downloaded APK matched both receipts: SHA-256 659f30e4698d60fa9a36ea4d9790404e4c3219f695eb0ade27ba81e92127890b. Native notification delivery remains unfinished. https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-android-activity-20260904/AppFusion-Android-Activity-debug.apk"
+      ]
+    },
+    {
+      "artifact_kind": "ANDROID_RELEASE_APK",
+      "required_for_train": true,
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Product CI run 33749114136 produced androidApp-release-unsigned.apk; SHA-256 d66d256040fe0ca9263431a734d08a54d8dc8312a996eacc5db0aaf5e06ee4f8. Signing and installed release validation remain outstanding."
+      ]
+    },
+    {
+      "artifact_kind": "ANDROID_AAB",
+      "required_for_train": true,
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Product CI run 33749114136 produced androidApp-release.aab; SHA-256 e3e6d86e470d24b323e01654232fba3404b93694dbc4093be8f60f7110838b50. Distribution signing remains outstanding."
+      ]
+    },
+    {
+      "artifact_kind": "IOS_SIMULATOR_APP",
+      "required_for_train": true,
+      "status": "PASS",
+      "evidence": [
+        "Product CI run 33749114136; artifact 9891032519; AppFusion-ios-simulator.zip; SHA-256 e85d797d93d3ce417e411eb551b77c3c81a2ea56128ab2fd8f013aff34eca4d7.",
+        "Public CI 33832218376 iOS contracts, Keychain runtime probe and signed simulator shell PASS. Published simulator ZIP SHA-256 10d2d910a28d6ef6cd26c9a3c910bcf6429507894fd2742126592ddc515801bc; not iPhone-installable and not iOS J1 acceptance; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "Main CI 33837384267 installed iOS J1 XCUITest PASS (one passed, zero failed/skipped), existing Keychain/shared gates PASS at 1c6ab92f25a281a6776c7899645917d21695765f. Exact tested simulator ZIP SHA-256 f8c2ffe18894088cbe10fd3194c39114d76ed2232a305803dcd656f8a827a3a1; not a physical-iPhone IPA; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-iOS-Simulator.zip"
+      ]
+    },
+    {
+      "artifact_kind": "IOS_ARCHIVE",
+      "required_for_train": false,
+      "status": "DEFERRED",
+      "evidence": [
+        "Requires Apple signing credentials and provisioning not currently authorized."
+      ]
+    },
+    {
+      "artifact_kind": "SOURCE_ZIP",
+      "required_for_train": true,
+      "status": "PASS",
+      "evidence": [
+        "Product merge f1100e8907a5a0101b19a20452928335b478bdc9; source ZIP SHA-256 c8c058605cd09b6c57a6b836b317bfaf0262d4e360cb30118ab8ad30a0e2e12a; Drive https://drive.google.com/file/d/1Zu-VIGNOH_tOVjliCslSwd94wu11qNpl/view.",
+        "Reviewed public-only source at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1; ZIP SHA-256 feca4ecb1eb4a342adca3223be34dc85743ef2b564fc7ea635816da1b070ff88; no old private history or documents; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "Public-only source at 1c6ab92f25a281a6776c7899645917d21695765f; SHA-256 b8c7bccd6731354c5466e1e4fb5a8370076847af5a93ff1627683689f1deb50c; excludes later conflicting workflow; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/AppFusion-public-source.zip",
+        "Public-only Git archive at 0f5d69ec2d71a5c43aea2b7d05a27aa88e0bc90c; SHA-256 bbb0d409c628d8927a2e859b6f1e9fb85cf2fa5cb7cfef57ac678b486f910363; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-android-activity-20260904/AppFusion-public-source.zip"
+      ]
+    },
+    {
+      "artifact_kind": "TEST_REPORT",
+      "required_for_train": true,
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Android slice: 25 JVM contracts, 4 emulator runtime tests, 8 Python tests, and installed J1 passed. Cross-platform report remains incomplete. Evidence https://drive.google.com/file/d/1c49tfSJozfdrg3ohd7kbzI1J0SViql43/view.",
+        "Public development report confirms 17 Product boundary tests, shared JVM/iOS gates, four Android runtime tests, installed Android J1 and iOS Keychain/simulator shell. All four CI jobs PASS; final cross-platform journeys still incomplete; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "J1 cross-platform acceptance: 24 Product boundary/harness checks, Android runtime and installed UI, iOS shared/Keychain and installed UI PASS; seven published digests verified. Later workflow conflict and unfinished J2/J3/final gates explicitly documented; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/TEST_REPORT.md",
+        "Android activity UI slice accepted, not full J2: main 33898157632 and repair candidate 33897363864 passed affected Android gates. Unchanged iOS/shared evidence passed at 14c05a8 in 33896246998, whose overall failure and one bounded test-target repair are preserved. All 28 Product checks pass. https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-android-activity-20260904/TEST_REPORT.md"
+      ]
+    },
+    {
+      "artifact_kind": "SECURITY_REPORT",
+      "required_for_train": true,
+      "status": "NOT_STARTED",
+      "evidence": []
+    },
+    {
+      "artifact_kind": "SCREENSHOTS",
+      "required_for_train": true,
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Android J1 final screenshot visually verified: https://drive.google.com/file/d/1F-_lWIb9I-mKpmTgceF2EaZSU6ej2pcL/view. iOS and remaining journeys are outstanding.",
+        "Public Android J1 reopened-document screenshot visually checked; SHA-256 2c954e789135cc0503fbf9e6a696497fcaae25b298cc5f9091183a3e58fe59fa. In AppFusion-Android-J1-evidence.zip; iOS/remaining journeys still outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "Main-run Android and iOS J1 reopened-document screenshots visually verified. Android SHA-256 8523ddcf0b938ac0ac1489eebe8b235824b42727b798688b65a740616047f8d7; iOS SHA-256 f79c986e3d8d47b8f71ee5136741c791557d6123488419d09213764ba25704fa. Stored in platform evidence ZIPs at https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-j1-20260904; J2/J3 screenshots outstanding.",
+        "Final-main Android activity screenshot visually inspected after restart/timezone change; SHA-256 0b9df84ec8b1fa5f229efe23feccb4c6c2715a0839da06773da4addd54d07746. Compact evidence includes current receipts/screenshots and superseded failure evidence: https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-android-activity-20260904/AppFusion-test-evidence.zip"
+      ]
+    },
+    {
+      "artifact_kind": "CHECKSUMS",
+      "required_for_train": true,
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Android milestone 010 snapshot checksums: https://drive.google.com/file/d/1gFqiOk4cjph8ejfiqQ0J9dMrFylzxO71/view. Final cross-platform release checksum set remains outstanding.",
+        "Published development checksum set and verified all six GitHub asset digests, including actual tested APK. Final release checksum set remains outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+        "All seven development snapshot assets uploaded and SHA-256 digests verified; exact tested APK and embedded iOS executable matched runtime receipts. Final release checksum set remains outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-j1-20260904/SHA256SUMS.txt",
+        "All five Android activity development release asset digests verified, including actual tested APK. Final release remains incomplete. https://github.com/jawadresearchai-creator/appfusion-product-public/releases/download/dev-android-activity-20260904/SHA256SUMS.txt"
+      ]
+    }
+  ],
+  "defects": [
+    {
+      "defect_id": "ANDROID_ROOM_ABI_COMPILE",
+      "severity": "HIGH",
+      "status": "FIXED",
+      "summary": "The Android shell initially lacked Room runtime and bundled SQLite ABI dependencies; repair attempt 1 added the required compile/runtime dependencies and the complete construction run passed."
+    },
+    {
+      "defect_id": "ANDROID_SYSTEM_BAR_OVERLAP",
+      "severity": "MEDIUM",
+      "status": "FIXED",
+      "summary": "Visual inspection of the first installed J1 pass found header/status-bar overlap; platform insets were applied and the complete installed journey passed again."
+    },
+    {
+      "defect_id": "IOS_J1_KEYBOARD_OBSCURES_SEARCH",
+      "severity": "HIGH",
+      "status": "FIXED",
+      "summary": "Run 33834830361 could not tap Search behind the keyboard. Keyboard-aware layout, an accessible Done action and visible-result assertions passed installed J1 on candidate and main."
+    },
+    {
+      "defect_id": "ANDROID_LAUNCHER_ANR_TEST_INTERFERENCE",
+      "severity": "MEDIUM",
+      "status": "FIXED",
+      "summary": "Added one narrowly verified Pixel Launcher ANR dismissal with regression tests; application ANRs remain failures. Both accepted J1 runs required zero infrastructure recoveries."
+    },
+    {
+      "defect_id": "IOS_NESTED_TEST_BUILD_HARNESS",
+      "severity": "MEDIUM",
+      "status": "FIXED",
+      "summary": "Removed recursive Xcode build-phase testing; existing guarded workflow runs named installed XCTest explicitly, retains failure evidence and packages the exact tested app."
+    },
+    {
+      "defect_id": "IOS_SHARED_VAULT_CONCURRENT_ACCESS",
+      "severity": "HIGH",
+      "status": "FIXED",
+      "summary": "Serialized all mutable shared vault runtime calls and close on one queue; source-level regression assertion and installed journey passed. This is not a general concurrency stress-test claim."
+    },
+    {
+      "defect_id": "PUBLIC_WORKFLOW_GUARD_REGRESSION",
+      "severity": "HIGH",
+      "status": "FIXED",
+      "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted. Resolved under explicit user authorization by d8844ed; hosted preflight 33859586693 passed and exact J1 tree equivalence verified."
+    },
+    {
+      "defect_id": "ANDROID_J2_CLIPPED_HISTORY_TEST_TARGET",
+      "severity": "MEDIUM",
+      "status": "FIXED",
+      "summary": "First main 33896246998 clicked a clipped target at y=799 on an 800-pixel display, followed by a keyboard-obscured history timeout. Rejected navigation-edge test targets and added a regression fixture without changing app code or acceptance assertions. Repair candidate 33897363864 and main 33898157632 pass."
+    }
+  ],
+  "loop_controls": {
+    "max_consecutive_infrastructure_milestones": 2,
+    "max_repair_attempts_per_failure_signature": 2,
+    "max_audits_without_new_evidence": 1,
+    "first_installable_artifact_deadline_milestone": 9,
+    "on_limit": "FORCE_DELIVERY_SLICE_OR_PAUSE"
+  },
+  "ci_policy": {
+    "tiers": [
+      "TIER_0",
+      "TIER_1",
+      "TIER_2",
+      "TIER_3"
+    ],
+    "expensive_jobs_require_preflight": true,
+    "paid_overage_authorized": false
+  },
+  "terminal_condition": {
+    "required_journey_ids": [
+      "J1",
+      "J2",
+      "J3"
+    ],
+    "required_artifact_kinds": [
+      "ANDROID_DEBUG_APK",
+      "ANDROID_RELEASE_APK",
+      "ANDROID_AAB",
+      "IOS_SIMULATOR_APP",
+      "SOURCE_ZIP",
+      "TEST_REPORT",
+      "SECURITY_REPORT",
+      "SCREENSHOTS",
+      "CHECKSUMS"
+    ],
+    "zero_critical_defects": true
+  },
+  "updated_at": "2026-09-04T17:17:24Z"
+}

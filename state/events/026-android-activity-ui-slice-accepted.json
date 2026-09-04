@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "e6e9e59a-1aec-477a-ab5a-eae815251326",
+  "run_id": "4101b383-334b-4300-8e89-3b7af2587eb3",
+  "sequence": 26,
+  "event_type": "J2_ANDROID_ACTIVITY_UI_SLICE_ACCEPTED",
+  "occurred_at": "2026-09-04T17:17:24Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "4d6ea3ab-68ea-44fe-bb6a-7eca3e9f6cd0",
+  "idempotency_key": "e6e9e59a-1aec-477a-ab5a-eae815251326",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 25,
+    "registry_revision_after": 26,
+    "application_state_revision_before": 25,
+    "application_state_revision_after": 26,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "accepted_scope": "ANDROID_ACTIVITY_UI_SLICE_ONLY",
+    "android_j2_criterion_status": "IN_PROGRESS",
+    "j2_fully_accepted": false,
+    "native_notification_delivery_accepted": false,
+    "ios_j2_ui_accepted": false,
+    "product_commit": "0f5d69ec2d71a5c43aea2b7d05a27aa88e0bc90c",
+    "product_tree": "2113f2594bad101d9a714f8267aac5b97e75bb99",
+    "product_pull_requests": [
+      4,
+      5
+    ],
+    "initial_candidate_ci": 33894966082,
+    "first_main_ci": {
+      "run_id": 33896246998,
+      "conclusion": "failure",
+      "android_activity_test": "FAIL_CLIPPED_TARGET",
+      "ios_contracts_job": "PASS",
+      "android_jvm_job": "PASS"
+    },
+    "repair_candidate_ci": {
+      "run_id": 33897363864,
+      "conclusion": "success",
+      "android_device": "PASS",
+      "jvm": "SKIPPED_UNCHANGED",
+      "ios": "SKIPPED_UNCHANGED"
+    },
+    "main_ci": {
+      "run_id": 33898157632,
+      "conclusion": "success",
+      "android_device": "PASS",
+      "jvm": "SKIPPED_UNCHANGED",
+      "ios": "SKIPPED_UNCHANGED"
+    },
+    "repair_attempts": 1,
+    "product_checks_passed": 28,
+    "product_workflow_count": 1,
+    "product_workflow_blob": "6e1ded151a39f43ea81e8b02655ef9262ebaa348",
+    "j1_evidence_preserved": true,
+    "release_url": "https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-android-activity-20260904",
+    "artifact_sha256": {
+      "AppFusion-Android-Activity-debug.apk": "659f30e4698d60fa9a36ea4d9790404e4c3219f695eb0ade27ba81e92127890b",
+      "AppFusion-public-source.zip": "bbb0d409c628d8927a2e859b6f1e9fb85cf2fa5cb7cfef57ac678b486f910363",
+      "AppFusion-test-evidence.zip": "e03e62bbbeee812682ae8c5822939c290a91c20e82353d2827d691df60e51522",
+      "SHA256SUMS.txt": "7b04cfaa41a753e26e699569bd074c2465e709d3bba28796324e4a0f0d91b751",
+      "TEST_REPORT.md": "525fc41364c7437ef9ed17e949f9d0ff2aed3072b755ad6b0e1ad03af3c80b2d"
+    },
+    "project_b_accessed": false,
+    "project_b_modified": false,
+    "spend_policy": "FREE_ONLY",
+    "new_service_charge_cap": 0,
+    "next_phase": "J2_NATIVE_NOTIFICATIONS_AND_IOS_UI_REQUIRED",
+    "final_release_ready": false,
+    "evidence": [
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-android-activity-20260904",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33898157632",
+      "state/milestones/PRODUCT_CONSTRUCTION_MILESTONE_012_ANDROID_ACTIVITY_UI.md"
+    ]
+  }
+}
