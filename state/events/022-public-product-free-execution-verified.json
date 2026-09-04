@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "f86e0bda-2f18-4a6c-8f6b-f8e1366a5d22",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 22,
+  "event_type": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
+  "occurred_at": "2026-09-04T03:21:35Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "4d0347e6-f0d3-462e-97f9-5d8137d6c534",
+  "idempotency_key": "f86e0bda-2f18-4a6c-8f6b-f8e1366a5d22",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 21,
+    "registry_revision_after": 22,
+    "application_state_revision_before": 21,
+    "application_state_revision_after": 22,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "source_publication_authorized": true,
+    "authorization_scope": "Reviewed Android/iOS Product source, tests, workflows and development artifacts; no private inputs, Drive, history or credentials",
+    "product_repository": "jawadresearchai-creator/appfusion-product-public",
+    "public_root_commit": "14a3141a614a69fadfdf242894101f44a868164c",
+    "initial_public_ci": {
+      "run_id": 33831740559,
+      "conclusion": "success",
+      "jobs_passed": 4
+    },
+    "spend_policy": "FREE_ONLY",
+    "new_service_charge_cap": 0,
+    "private_hosted_workflows": "ALL_SEVEN_DISABLED",
+    "drive_visibility": "UNCHANGED_PRIVATE",
+    "evidence": [
+      "docs/operations/PUBLIC_PRODUCT_EXECUTION.md",
+      "state/execution-evidence/public-product-2026-09-04.json",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33831740559",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33832218376",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
+    ],
+    "next_phase": "IOS_J1_UI_IMPLEMENTATION_REQUIRED",
+    "public_verified_commit": "f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1",
+    "public_verified_ci": {
+      "run_id": 33832218376,
+      "conclusion": "success",
+      "jobs_passed": 4,
+      "url": "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33832218376"
+    },
+    "development_release": {
+      "url": "https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904",
+      "tag": "dev-public-20260904",
+      "prerelease": true,
+      "anonymous_access_verified": true,
+      "uploaded_assets": 6,
+      "all_uploaded_digests_match": true,
+      "android_apk_matches_installed_test": true,
+      "ios_artifact_kind": "SIMULATOR_APP_NOT_IPA",
+      "assets": [
+        {
+          "name": "AppFusion-Android-J1-debug.apk",
+          "sha256": "951baf38ad8074a773bd9e18e3fc9ef61bd6edb2c4cc254d985e5131ddbccaf6",
+          "size": 7063053
+        },
+        {
+          "name": "AppFusion-Android-J1-evidence.zip",
+          "sha256": "1240f98088a4922635a743188b6c96ea717e780b8a1c41ef8d920d5e8afaa752",
+          "size": 2615672
+        },
+        {
+          "name": "AppFusion-iOS-Simulator.zip",
+          "sha256": "10d2d910a28d6ef6cd26c9a3c910bcf6429507894fd2742126592ddc515801bc",
+          "size": 3635350
+        },
+        {
+          "name": "AppFusion-public-source.zip",
+          "sha256": "feca4ecb1eb4a342adca3223be34dc85743ef2b564fc7ea635816da1b070ff88",
+          "size": 116561
+        },
+        {
+          "name": "TEST_REPORT.md",
+          "sha256": "ab834c058280f88c6ba7a9024a3e795ddf07efcd42b188c22271b360d16fad37",
+          "size": 3111
+        }
+      ]
+    },
+    "validation": {
+      "foundry_tests": 38,
+      "product_boundary_tests": 17,
+      "android_device_tests": 4,
+      "android_installed_j1": "PASS",
+      "ios_contracts_and_keychain": "PASS",
+      "ios_j1": "NOT_STARTED",
+      "final_release_ready": false
+    },
+    "remaining_work": [
+      "IOS_J1_UI",
+      "J2_ACTIVITY_REMINDERS",
+      "J3_CROSS_MODULE_LINK_SEARCH",
+      "FINAL_SECURITY_AND_RELEASE_GATES"
+    ]
+  }
+}

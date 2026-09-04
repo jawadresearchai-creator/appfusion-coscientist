@@ -4,7 +4,7 @@
   "app_id": "docvault-lasttime-fusion",
   "release_train": "DOCVAULT_LASTTIME_V0_1_INSTALLABLE",
   "product_blueprint_sha256": "2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc",
-  "status": "PAUSED",
+  "status": "ACTIVE",
   "scope_lock": {
     "included": [
       "encrypted document create, restart, search, and reopen",
@@ -113,7 +113,8 @@
       "status": "PASS",
       "evidence": [
         "Product CI run 33749114136; artifact 9890952602; androidApp-debug.apk; SHA-256 9398df8ab497ffa6ef309bd2b6ef5638143c8877f75a8e27e694a8a7628a5ffb.",
-        "Android J1 local fallback PASS at source 99e3e83bbbe92406b9010b56c9da05e8b8f0fea7; APK SHA-256 733f0bebdc48260efc4c53fe4dd1e45415353d3af0b4036466c218e967613137; Drive https://drive.google.com/file/d/1o2zUqBzq_dVmKk9RRbvZfYf4aQ86BDrH/view."
+        "Android J1 local fallback PASS at source 99e3e83bbbe92406b9010b56c9da05e8b8f0fea7; APK SHA-256 733f0bebdc48260efc4c53fe4dd1e45415353d3af0b4036466c218e967613137; Drive https://drive.google.com/file/d/1o2zUqBzq_dVmKk9RRbvZfYf4aQ86BDrH/view.",
+        "Public CI 33832218376 installed J1 PASS at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1. Published exact tested APK SHA-256 951baf38ad8074a773bd9e18e3fc9ef61bd6edb2c4cc254d985e5131ddbccaf6; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     },
     {
@@ -137,7 +138,8 @@
       "required_for_train": true,
       "status": "PASS",
       "evidence": [
-        "Product CI run 33749114136; artifact 9891032519; AppFusion-ios-simulator.zip; SHA-256 e85d797d93d3ce417e411eb551b77c3c81a2ea56128ab2fd8f013aff34eca4d7."
+        "Product CI run 33749114136; artifact 9891032519; AppFusion-ios-simulator.zip; SHA-256 e85d797d93d3ce417e411eb551b77c3c81a2ea56128ab2fd8f013aff34eca4d7.",
+        "Public CI 33832218376 iOS contracts, Keychain runtime probe and signed simulator shell PASS. Published simulator ZIP SHA-256 10d2d910a28d6ef6cd26c9a3c910bcf6429507894fd2742126592ddc515801bc; not iPhone-installable and not iOS J1 acceptance; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     },
     {
@@ -153,7 +155,8 @@
       "required_for_train": true,
       "status": "PASS",
       "evidence": [
-        "Product merge f1100e8907a5a0101b19a20452928335b478bdc9; source ZIP SHA-256 c8c058605cd09b6c57a6b836b317bfaf0262d4e360cb30118ab8ad30a0e2e12a; Drive https://drive.google.com/file/d/1Zu-VIGNOH_tOVjliCslSwd94wu11qNpl/view."
+        "Product merge f1100e8907a5a0101b19a20452928335b478bdc9; source ZIP SHA-256 c8c058605cd09b6c57a6b836b317bfaf0262d4e360cb30118ab8ad30a0e2e12a; Drive https://drive.google.com/file/d/1Zu-VIGNOH_tOVjliCslSwd94wu11qNpl/view.",
+        "Reviewed public-only source at f1ec8d7e5bb363506a1f34550d4bb40f7a3ffda1; ZIP SHA-256 feca4ecb1eb4a342adca3223be34dc85743ef2b564fc7ea635816da1b070ff88; no old private history or documents; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     },
     {
@@ -161,7 +164,8 @@
       "required_for_train": true,
       "status": "IN_PROGRESS",
       "evidence": [
-        "Android slice: 25 JVM contracts, 4 emulator runtime tests, 8 Python tests, and installed J1 passed. Cross-platform report remains incomplete. Evidence https://drive.google.com/file/d/1c49tfSJozfdrg3ohd7kbzI1J0SViql43/view."
+        "Android slice: 25 JVM contracts, 4 emulator runtime tests, 8 Python tests, and installed J1 passed. Cross-platform report remains incomplete. Evidence https://drive.google.com/file/d/1c49tfSJozfdrg3ohd7kbzI1J0SViql43/view.",
+        "Public development report confirms 17 Product boundary tests, shared JVM/iOS gates, four Android runtime tests, installed Android J1 and iOS Keychain/simulator shell. All four CI jobs PASS; final cross-platform journeys still incomplete; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     },
     {
@@ -175,7 +179,8 @@
       "required_for_train": true,
       "status": "IN_PROGRESS",
       "evidence": [
-        "Android J1 final screenshot visually verified: https://drive.google.com/file/d/1F-_lWIb9I-mKpmTgceF2EaZSU6ej2pcL/view. iOS and remaining journeys are outstanding."
+        "Android J1 final screenshot visually verified: https://drive.google.com/file/d/1F-_lWIb9I-mKpmTgceF2EaZSU6ej2pcL/view. iOS and remaining journeys are outstanding.",
+        "Public Android J1 reopened-document screenshot visually checked; SHA-256 2c954e789135cc0503fbf9e6a696497fcaae25b298cc5f9091183a3e58fe59fa. In AppFusion-Android-J1-evidence.zip; iOS/remaining journeys still outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     },
     {
@@ -183,7 +188,8 @@
       "required_for_train": true,
       "status": "IN_PROGRESS",
       "evidence": [
-        "Android milestone 010 snapshot checksums: https://drive.google.com/file/d/1gFqiOk4cjph8ejfiqQ0J9dMrFylzxO71/view. Final cross-platform release checksum set remains outstanding."
+        "Android milestone 010 snapshot checksums: https://drive.google.com/file/d/1gFqiOk4cjph8ejfiqQ0J9dMrFylzxO71/view. Final cross-platform release checksum set remains outstanding.",
+        "Published development checksum set and verified all six GitHub asset digests, including actual tested APK. Final release checksum set remains outstanding; https://github.com/jawadresearchai-creator/appfusion-product-public/releases/tag/dev-public-20260904"
       ]
     }
   ],
@@ -237,5 +243,5 @@
     ],
     "zero_critical_defects": true
   },
-  "updated_at": "2026-09-04T02:46:15Z"
+  "updated_at": "2026-09-04T03:21:35Z"
 }

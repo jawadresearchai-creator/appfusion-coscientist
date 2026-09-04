@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import json
 
 import pytest
 from jsonschema import ValidationError
@@ -57,3 +58,15 @@ def test_budget_contract_cannot_authorize_paid_work():
     for patch in ({"paid_overage_authorized": True}, {"per_run_cap": 1}, {"cumulative_cap": 1}):
         with pytest.raises(ValidationError):
             validate(base | patch, schema)
+
+
+def test_active_product_routes_to_authorized_public_repo_without_local_dependency():
+    manifest = json.loads((ROOT / "environment-manifest.json").read_text())
+    application = json.loads((ROOT / "state/applications/docvault-lasttime-fusion.json").read_text())
+    repositories = manifest["canonical_state"]["repositories"]
+    assert repositories["product_foundry"] == "jawadresearchai-creator/appfusion-product-public"
+    assert application["artifact_locations"]["product_repository"] == repositories["product_foundry"]
+    assert repositories["historical_private_product"] == "jawadresearchai-creator/appfusion-product"
+    assert manifest["local_environment"]["required_for_operation"] is False
+    assert manifest["budgets"]["paid_overage_authorized"] is False
+    assert manifest["budgets"]["standard_runner_allowlist"] == ["ubuntu-24.04", "macos-15"]

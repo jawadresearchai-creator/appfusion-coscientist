@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 21,
-  "updated_at": "2026-09-04T02:46:15Z",
+  "registry_revision": 22,
+  "updated_at": "2026-09-04T03:21:35Z",
   "state_authority": {
     "primary": "GIT_EVENT_LEDGER",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,22 +15,16 @@
   },
   "system": {
     "system_id": "appfusion-coscientist",
-    "status": "PAUSED",
-    "phase": "PAUSED",
-    "current_milestone": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
+    "status": "READY",
+    "phase": "PRODUCT_CONSTRUCTION",
+    "current_milestone": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
     "last_completed_event": {
-      "event_type": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
-      "occurred_at": "2026-09-04T02:46:15Z",
-      "summary": "Free-only rule corrected: paid authorization and nonzero caps rejected; all seven hosted workflows disabled with exact-commit pre-allocation guards; 37 Foundry tests and 11 Product tests plus exact-hash transfer pass on existing hardware. Codemagic monthly tier rejected, no provider connected. Drive is storage, not compute. Android J1 evidence preserved; quota-independent cloud execution requires explicit public Product-source approval or existing authorized hardware."
+      "event_type": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
+      "occurred_at": "2026-09-04T03:21:35Z",
+      "summary": "User-authorized reviewed Android/iOS source is public in a fresh Product repository. Public standard Linux/macOS CI 33832218376 passed all four jobs, including installed Android J1/Keystore and iOS contracts/Keychain/simulator shell. Development prerelease dev-public-20260904 publishes the exact tested APK, iOS Simulator ZIP, public source, evidence, report and checksums; all six uploaded asset digests verified and anonymous release access confirmed. The two original repositories and Drive remain private; all seven original workflows remain disabled. No billing or paid service was enabled and no local build executor was required. iOS J1, J2/J3 and final security/release gates remain incomplete."
     },
-    "next_safe_action": "Ask whether the user authorizes publication of a reviewed Product-source subset for standard public GitHub runners, or provides an existing authorized Mac. Do not publish automatically, enable billing, buy services, or substitute monthly free tiers. Keep private analysis and Drive private. Preserve accepted Android evidence; final iOS and release gates remain pending.",
-    "blockers": [
-      {
-        "id": "QUOTA_FREE_PRIVATE_CLOUD_MACOS_UNAVAILABLE",
-        "summary": "No verified private, cloud-only, quota-independent zero-service-charge macOS executor is available. Public standard GitHub runners require explicit source publication approval; existing Mac execution changes availability assumptions. Drive cannot execute builds. Monthly tiers are not the permanent solution.",
-        "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
-      }
-    ]
+    "next_safe_action": "Continue iOS J1 UI implementation in jawadresearchai-creator/appfusion-product-public, then the locked J2/J3 journeys and final release/security gates. Use only the verified standard public workflow, retain private Foundry/Drive state, and do not enable private workflows, buy services, repeat this publication approval or mistake the simulator/development downloads for final iPhone distribution.",
+    "blockers": []
   },
   "applications": [
     {
@@ -38,27 +32,21 @@
       "app_id": "docvault-lasttime-fusion",
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
-      "lifecycle_state": "PAUSED",
-      "phase": "FREE_ONLY_EXECUTOR_DECISION_REQUIRED",
-      "updated_at": "2026-09-04T02:46:15Z",
-      "state_revision": 21,
-      "last_event_sequence": 21,
+      "lifecycle_state": "PRODUCT_CONSTRUCTION",
+      "phase": "IOS_J1_UI_IMPLEMENTATION_REQUIRED",
+      "updated_at": "2026-09-04T03:21:35Z",
+      "state_revision": 22,
+      "last_event_sequence": 22,
       "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
       "last_completed_event": {
-        "event_type": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
-        "occurred_at": "2026-09-04T02:46:15Z",
-        "summary": "Free-only rule corrected: paid authorization and nonzero caps rejected; all seven hosted workflows disabled with exact-commit pre-allocation guards; 37 Foundry tests and 11 Product tests plus exact-hash transfer pass on existing hardware. Codemagic monthly tier rejected, no provider connected. Drive is storage, not compute. Android J1 evidence preserved; quota-independent cloud execution requires explicit public Product-source approval or existing authorized hardware."
+        "event_type": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
+        "occurred_at": "2026-09-04T03:21:35Z",
+        "summary": "User-authorized reviewed Android/iOS source is public in a fresh Product repository. Public standard Linux/macOS CI 33832218376 passed all four jobs, including installed Android J1/Keystore and iOS contracts/Keychain/simulator shell. Development prerelease dev-public-20260904 publishes the exact tested APK, iOS Simulator ZIP, public source, evidence, report and checksums; all six uploaded asset digests verified and anonymous release access confirmed. The two original repositories and Drive remain private; all seven original workflows remain disabled. No billing or paid service was enabled and no local build executor was required. iOS J1, J2/J3 and final security/release gates remain incomplete."
       },
-      "next_safe_action": "Ask whether the user authorizes publication of a reviewed Product-source subset for standard public GitHub runners, or provides an existing authorized Mac. Do not publish automatically, enable billing, buy services, or substitute monthly free tiers. Keep private analysis and Drive private. Preserve accepted Android evidence; final iOS and release gates remain pending.",
-      "blockers": [
-        {
-          "id": "QUOTA_FREE_PRIVATE_CLOUD_MACOS_UNAVAILABLE",
-          "summary": "No verified private, cloud-only, quota-independent zero-service-charge macOS executor is available. Public standard GitHub runners require explicit source publication approval; existing Mac execution changes availability assumptions. Drive cannot execute builds. Monthly tiers are not the permanent solution.",
-          "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
-        }
-      ],
+      "next_safe_action": "Continue iOS J1 UI implementation in jawadresearchai-creator/appfusion-product-public, then the locked J2/J3 journeys and final release/security gates. Use only the verified standard public workflow, retain private Foundry/Drive state, and do not enable private workflows, buy services, repeat this publication approval or mistake the simulator/development downloads for final iPhone distribution.",
+      "blockers": [],
       "artifact_locations": {
-        "product_repository": "jawadresearchai-creator/appfusion-product",
+        "product_repository": "jawadresearchai-creator/appfusion-product-public",
         "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
         "source_bundle_manifest_file_id": "12Qjms57CorUzpMqPrQ9dh8TrS3slxN5M",
         "application_state_file_id": "1kurtVziDCgOGXvPujRaW5JrYPBQ9SkgX",

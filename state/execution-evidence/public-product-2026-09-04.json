@@ -1,0 +1,32 @@
+{
+  "provider": "GITHUB_PUBLIC_STANDARD",
+  "evidence_scope": "APPFUSION_PUBLIC_WORKFLOW_FREE_SERVICE_CATEGORY_NOT_ACCOUNT_BILLING_SETTINGS",
+  "repository": "jawadresearchai-creator/appfusion-product-public",
+  "repository_visibility": "public",
+  "publication_authorized": true,
+  "standard_runner": true,
+  "runner_labels": [
+    "ubuntu-24.04",
+    "macos-15"
+  ],
+  "monthly_compute_quota": false,
+  "private_source_proxy": false,
+  "access_authorized": true,
+  "billing_enabled": false,
+  "overage_enabled": false,
+  "hard_stop_at_free_limit": true,
+  "maximum_new_charge": 0,
+  "max_job_minutes": 25,
+  "verified_at": "2026-09-04T03:13:30Z",
+  "provider_evidence_ref": "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33831740559",
+  "provider_policy": "https://docs.github.com/en/billing/concepts/product-billing/github-actions",
+  "verification": [
+    "Authenticated repository readback: visibility public, admin access, read-only default workflow token.",
+    "Initial public workflow 33831740559 completed all four jobs successfully on standard ubuntu-24.04/macos-15 runners.",
+    "Every hosted job checks exact repository plus public visibility before allocation; no private source, credentials, larger runner, cache or paid route configured.",
+    "All seven original private workflows verified disabled_manually.",
+    "billing_enabled/overage_enabled=false apply to the selected free public job category only; account payment settings and unrelated charges are not asserted.",
+    "hard_stop_at_free_limit=true denotes the public-only pre-allocation route guard; there is no monthly compute allowance to consume in this category.",
+    "User explicitly approved the reviewed public Product source; Drive and original repositories remain private."
+  ]
+}

@@ -2,6 +2,12 @@
 
 AppFusion must remain usable when Codex and every local machine are offline.
 
+The active Product repository is `jawadresearchai-creator/appfusion-product-public`,
+explicitly authorized for public source and standard free Linux/macOS CI on
+2026-09-04. The private Foundry remains state authority; the old private Product
+is historical. Drive and input materials stay private. See `PUBLIC_PRODUCT_EXECUTION.md`.
+Do not enable any original private workflow or request payment to continue.
+
 ## Session bootstrap and app selection
 
 At the start of every new chat, the operator reads `environment-manifest.json`, the committed registry, selected `ApplicationState`, DeliveryPlan, and Git event tail. The Git event ledger is authoritative for small control state. Drive registry file `15-oC17tb-17N_5h6vKsYGct7_D_xGGqI` in `00_CONTROL` is a projection and bulky-artifact index. Chat history and model memory are convenience context, never state authority.
@@ -34,11 +40,11 @@ services. Use existing included/no-charge resources only; see FREE_ONLY_EXECUTIO
 
 Closing ChatGPT web ends interactive model reasoning. True unattended reasoning therefore requires the persistent coordinator described by `SYSTEM_V1_UA`, deployed outside the chat session with:
 
-- an authorized OpenAI API project/service identity;
+- an authorized reasoning runtime that incurs no new service charge;
 - a durable queue and leases;
 - GitHub App or narrowly scoped repository credentials;
 - Google workload identity or approved storage credentials;
-- explicit metered-model budget limits;
+- fail-closed zero-new-charge admission (metered runtime unavailable unless included at no charge);
 - approval/deviation enforcement.
 
 Until those credentials and budgets are configured, AppFusion reports `INTERACTIVE_RESUMABLE`, not unattended autonomy.

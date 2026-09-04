@@ -6,6 +6,13 @@
 
 ## Free-only audit correction — 2026-09-04
 
+**Subsequent resolution:** the user explicitly authorized a reviewed public
+Android/iOS Product repository. The active repo is `appfusion-product-public`;
+the original repositories and Drive remain private. Standard public Linux/macOS
+CI is the selected free route. See `docs/operations/PUBLIC_PRODUCT_EXECUTION.md`
+and the current event tail for observed verification. The following paragraph
+records the earlier paused checkpoint, not an outstanding publication request.
+
 The earlier recommendation to restore capacity under an approved budget was
 inconsistent with the user's no-billing/no-paid-services rule. Budget schemas
 now reject paid authorization and nonzero caps; manifests/policy require zero

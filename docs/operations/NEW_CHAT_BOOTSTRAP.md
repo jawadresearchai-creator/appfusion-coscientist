@@ -5,7 +5,11 @@ AppFusion continuity comes from the canonical cloud state, not from a chat trans
 **Mandatory cost rule:** no billing, paid service, paid trial, top-up or overage.
 Read `docs/operations/FREE_ONLY_EXECUTION.md` before any executor dispatch. Monthly
 free tiers are not the permanent solution. Do not request payment to resume.
-Drive is storage, not compute. Public-source CI requires separate publication approval.
+Drive is storage, not compute. Public Product source was explicitly approved on
+2026-09-04: `jawadresearchai-creator/appfusion-product-public` is the active Product
+repository. Read `PUBLIC_PRODUCT_EXECUTION.md`. Keep Foundry, the historical
+private Product repository, Drive and raw inputs private. Do not request this
+same publication approval again or re-enable private workflows.
 
 ## Recommended ChatGPT setup
 

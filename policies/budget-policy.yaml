@@ -17,6 +17,13 @@ unknown_cost: deny_execution
 public_repository_conversion_allowed: false
 monthly_free_tier_is_permanent_solution: false
 publication_candidate: separately_reviewed_product_source_only_after_explicit_user_approval
+authorized_public_product:
+  repository: jawadresearchai-creator/appfusion-product-public
+  authorization: explicit_user_source_publication_2026_09_04
+  history_policy: fresh_reviewed_product_history_only
+  runners: [ubuntu-24.04, macos-15]
+  private_inputs_or_private_source_proxy_allowed: false
+  private_foundry_and_historical_product_workflows: disabled
 new_provider_repository_access: requires_user_authorization
 github_usage:
   policy: ESSENTIAL_ONLY

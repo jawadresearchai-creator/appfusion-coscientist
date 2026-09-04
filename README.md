@@ -1,9 +1,11 @@
 # AppFusion CoScientist — Capability Foundry
 
 **Free-only correction (2026-09-04):** no billing, paid services or top-ups.
-Monthly free tiers are not the permanent solution. Hosted workflows are disabled;
-optional local gates remain usable. Quota-independent public Product CI requires
-explicit source-publication approval. See `docs/operations/FREE_ONLY_EXECUTION.md`.
+Monthly free tiers are not the permanent solution. The user authorized the new
+[public Product repository](https://github.com/jawadresearchai-creator/appfusion-product-public)
+for standard Linux/macOS CI. All original private workflows remain disabled;
+Drive and both original repositories remain private. Local execution is optional.
+See `docs/operations/PUBLIC_PRODUCT_EXECUTION.md` and the current event tail.
 
 This private repository is the authoritative Capability Foundry and cloud control plane for AppFusion. It accepts authorized application-analysis requests, records provenance, produces source-aware Foundry dossiers, and emits clean-room Product Blueprints for explicit human approval.
 
@@ -13,13 +15,13 @@ This private repository is the authoritative Capability Foundry and cloud contro
 - **Control-surface neutral:** ChatGPT web, Codex, a persistent API coordinator, and the optional local CLI all submit the same versioned request contracts.
 - **Local optional:** no canonical workflow, schema, or artifact contains a required local path.
 - **Clean room:** raw/decompiled material remains in the Capability Foundry. The Product Foundry receives only an approved positive-schema `ProductBlueprint` and sanitized approval attestation.
-- **Honest autonomy:** the initial target is `FOUNDRY_VERTICAL_SLICE_ALPHA`; `SYSTEM_V1_UA` additionally requires a persistent metered reasoning coordinator.
+- **Honest autonomy:** the initial target is `FOUNDRY_VERTICAL_SLICE_ALPHA`; `SYSTEM_V1_UA` additionally requires a persistent reasoning coordinator available without new service charges.
 - **Session continuity:** every new control surface bootstraps from the conflict-safe Git event ledger; Drive projections and chat memory are never allowed to overwrite a newer committed revision.
 - **Essential GitHub only:** reasoning and bulky working artifacts stay in ChatGPT/Drive, while GitHub is reserved for source, reproducible gates, checkpoints, and releases.
 
 ## Current bootstrap status
 
-The repositories and Drive workspace exist. Delivery Orchestration v1.1 adds conflict-safe state transitions, an explicit release train, end-to-end journey gates, bounded repair/audit loops, and fail-closed release readiness. Milestone 009 produced genuine Android and iOS application artifacts. Milestone 010 passed installed Android J1 on the optional local executor and stored the tested APK, source ZIP, screenshot, evidence and checksums in Drive. The train is paused before iOS J1 because hosted Actions report an account billing/spending-limit block and the available local host cannot run an iOS Simulator. J2/J3, signing and final cross-platform release gates remain incomplete. Untrusted dynamic APK execution remains blocked until a runner proves the required isolation and egress controls.
+The repositories and Drive workspace exist. Delivery Orchestration v1.1 adds conflict-safe state transitions, an explicit release train, end-to-end journey gates, bounded repair/audit loops, and fail-closed release readiness. Milestone 009 produced Android and iOS application artifacts; milestone 010 passed installed Android J1. The user has now authorized a reviewed public Product snapshot to remove the private Actions minute-quota dependency while retaining private inputs and state. Read the committed registry/event tail for the verified public build and release outcome. iOS J1, J2/J3, signing and final cross-platform release gates remain incomplete. Untrusted dynamic APK execution remains blocked until a runner proves the required isolation and egress controls.
 
 Run locally only if desired:
 

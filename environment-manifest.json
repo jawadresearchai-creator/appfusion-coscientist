@@ -5,7 +5,8 @@
     "authority": "CLOUD",
     "repositories": {
       "capability_foundry": "jawadresearchai-creator/appfusion-coscientist",
-      "product_foundry": "jawadresearchai-creator/appfusion-product"
+      "product_foundry": "jawadresearchai-creator/appfusion-product-public",
+      "historical_private_product": "jawadresearchai-creator/appfusion-product"
     },
     "drive": {
       "root_id": "16VrxDweS__ykJylsjGXk2lE1dYImzm71",
@@ -47,9 +48,11 @@
     "billing_activation_allowed": false,
     "paid_overage_authorized": false,
     "github_usage_policy": "ESSENTIAL_AND_VERIFIED_FREE_ONLY",
-    "github_hosted_execution": "DISABLED_UNTIL_FREE_ALLOWANCE_AND_ZERO_CHARGE_STOP_VERIFIED",
-    "quota_free_cloud_candidate": "PUBLIC_PRODUCT_STANDARD_GITHUB_RUNNERS",
-    "quota_free_cloud_candidate_status": "REQUIRES_EXPLICIT_SOURCE_PUBLICATION_APPROVAL",
+    "github_hosted_execution": "PUBLIC_PRODUCT_STANDARD_ONLY_PRIVATE_WORKFLOWS_DISABLED",
+    "quota_free_cloud_route": "GITHUB_PUBLIC_STANDARD",
+    "product_publication_status": "EXPLICITLY_AUTHORIZED_2026_09_04",
+    "standard_runner_allowlist": ["ubuntu-24.04", "macos-15"],
+    "publication_record": "docs/operations/PUBLIC_PRODUCT_EXECUTION.md",
     "monthly_free_tier_is_permanent_solution": false
   }
 }
