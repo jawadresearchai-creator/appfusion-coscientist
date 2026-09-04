@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "74a4d2fa-01e8-4f30-9b91-fab91b732a24",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 24,
+  "event_type": "PROJECT_A_WORKFLOW_RESTORED_J2_RESUMED",
+  "occurred_at": "2026-09-04T09:42:48Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "eced17c1-4cf5-4c0d-8cab-e8c3b9be4b23",
+  "idempotency_key": "74a4d2fa-01e8-4f30-9b91-fab91b732a24",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 23,
+    "registry_revision_after": 24,
+    "application_state_revision_before": 23,
+    "application_state_revision_after": 24,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "authorization": "Explicit user authorization to remove only the migrated ALEIL workflow from Project A, preserving Product CI and revision 23 J1 state/evidence. Project B repository/Drive access forbidden.",
+    "changed_product_paths": [
+      {
+        "path": ".github/workflows/aleil-ios-test.yml",
+        "change": "DELETE"
+      }
+    ],
+    "product_commit": "d8844ed95285117e6688dd0866974b7d74177d43",
+    "product_ci_workflow_preserved_blob": "626e93ea794dd2654fd9b77a0c6094a8d8852b0a",
+    "full_tree_equals_verified_j1_commit": "1c6ab92f25a281a6776c7899645917d21695765f",
+    "cleanup_ci": {
+      "run_id": 33859586693,
+      "conclusion": "success",
+      "preflight": "PASS",
+      "platform_jobs": "SKIPPED_UNCHANGED_TREE_NOT_NEW_TEST_PASSES"
+    },
+    "product_tests_passed": 24,
+    "j1_evidence_preserved": true,
+    "project_b_accessed": false,
+    "project_b_modified": false,
+    "spend_policy": "FREE_ONLY",
+    "new_service_charge_cap": 0,
+    "next_phase": "J2_ACTIVITY_REMINDERS_IMPLEMENTATION_REQUIRED",
+    "evidence": [
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/commit/d8844ed95285117e6688dd0866974b7d74177d43",
+      "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33859586693",
+      "state/events/023-cross-platform-j1-workflow-conflict.json"
+    ],
+    "final_release_ready": false
+  }
+}

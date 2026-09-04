@@ -3,25 +3,19 @@
   "app_id": "docvault-lasttime-fusion",
   "display_name": "DocVault + LastTime Fusion",
   "active_for_selection": true,
-  "lifecycle_state": "PAUSED",
-  "phase": "J1_ACCEPTED_CONCURRENT_WORKFLOW_RECONCILIATION_REQUIRED",
-  "updated_at": "2026-09-04T08:25:40Z",
-  "state_revision": 23,
-  "last_event_sequence": 23,
+  "lifecycle_state": "PRODUCT_CONSTRUCTION",
+  "phase": "J2_ACTIVITY_REMINDERS_IMPLEMENTATION_REQUIRED",
+  "updated_at": "2026-09-04T09:42:48Z",
+  "state_revision": 24,
+  "last_event_sequence": 24,
   "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
   "last_completed_event": {
-    "event_type": "CROSS_PLATFORM_J1_VERIFIED_CONCURRENT_WORKFLOW_PAUSED",
-    "occurred_at": "2026-09-04T08:25:40Z",
-    "summary": "Cross-platform document Journey J1 passed on the installed Android and iOS simulator applications at public Product 1c6ab92f25a281a6776c7899645917d21695765f. PR #2 was fast-forward merged; candidate CI 33836151702 and resulting main CI 33837384267 both passed all four jobs. Exact tested APK, simulator app, source, both evidence bundles, report and checksums are published as dev-j1-20260904; seven asset digests and anonymous access verified. A separate later commit c78b82beae06c194a77a4256610150689ea97447 re-added an unguarded duplicate ALEIL workflow; its preflight failed at 33838952381. J1 acceptance is preserved, but further Product construction is paused for concurrent-writer/workflow reconciliation. No billing or private workflow was enabled; J2/J3 and final security/signing remain incomplete."
+    "event_type": "PROJECT_A_WORKFLOW_RESTORED_J2_RESUMED",
+    "occurred_at": "2026-09-04T09:42:48Z",
+    "summary": "Removed only .github/workflows/aleil-ios-test.yml from the public Project A Product repository under explicit user authorization, after the user reported Project B migration verified. Cleanup d8844ed95285117e6688dd0866974b7d74177d43 preserves product-construction-ci.yml byte-for-byte and restores the exact full Git tree tested at J1 source 1c6ab92f25a281a6776c7899645917d21695765f. All 24 local boundary/harness checks and hosted preflight 33859586693 pass. Unchanged platform jobs were intentionally skipped, not counted as new passes; revision 23 J1 evidence and release remain preserved. Project A resumes locked J2 construction. The dedicated Project B repository and Drive state were not accessed or modified."
   },
-  "next_safe_action": "Resolve concurrent Product workflow ownership with the user before removing or replacing the independently re-added aleil-ios-test.yml. Preserve accepted J1 and the dev-j1-20260904 artifacts; do not repeat implementation or call current main green. After authorized reconciliation restores the single guarded standard-public workflow and verifies the resulting revision, continue locked J2 activity/cadence/reminders/restart/timezone behavior, then J3 and final security/release gates. Keep Drive and both original repositories private, all seven original workflows disabled, local execution optional and new service charges zero.",
-  "blockers": [
-    {
-      "id": "CONCURRENT_PUBLIC_WORKFLOW_CONFLICT",
-      "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted.",
-      "url": "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33838952381"
-    }
-  ],
+  "next_safe_action": "Implement and verify locked J2 activity/cadence/reminder persistence, deterministic restart/timezone behavior, and installed Android/iOS journeys in the Project A public Product repository using its single guarded standard-public workflow. Preserve J1 and revision 23 evidence. After J2, continue J3 and final security/release gates. Do not access Project B/ALEIL worker repository or Drive state. No billing, paid services, private CI reactivation or mandatory local executor.",
+  "blockers": [],
   "artifact_locations": {
     "product_repository": "jawadresearchai-creator/appfusion-product-public",
     "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",

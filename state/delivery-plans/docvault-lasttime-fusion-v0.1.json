@@ -4,7 +4,7 @@
   "app_id": "docvault-lasttime-fusion",
   "release_train": "DOCVAULT_LASTTIME_V0_1_INSTALLABLE",
   "product_blueprint_sha256": "2120f5989ec35562377bd42e032018bd0004916d5ea4c56005f8e7048414b6fc",
-  "status": "PAUSED",
+  "status": "ACTIVE",
   "scope_lock": {
     "included": [
       "encrypted document create, restart, search, and reopen",
@@ -239,8 +239,8 @@
     {
       "defect_id": "PUBLIC_WORKFLOW_GUARD_REGRESSION",
       "severity": "HIGH",
-      "status": "OPEN",
-      "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted."
+      "status": "FIXED",
+      "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted. Resolved under explicit user authorization by d8844ed; hosted preflight 33859586693 passed and exact J1 tree equivalence verified."
     }
   ],
   "loop_controls": {
@@ -279,5 +279,5 @@
     ],
     "zero_critical_defects": true
   },
-  "updated_at": "2026-09-04T08:25:40Z"
+  "updated_at": "2026-09-04T09:42:48Z"
 }
