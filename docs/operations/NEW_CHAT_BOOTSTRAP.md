@@ -28,4 +28,4 @@ Selection is deterministic:
 - one active app: select and resume it automatically;
 - two or more active apps: show a concise candidate list and ask the user to select one.
 
-The registry currently contains one active application, `docvault-lasttime-fusion`, so a new session should select it automatically. Its Product Blueprint is approved and construction is active under delivery plan `docvault-lasttime-fusion-v0.1`.
+The registry currently contains one application active for selection, `docvault-lasttime-fusion`, so a new session should select it automatically. Active for selection does not mean execution is unblocked. At revision 20, its approved Product Blueprint and delivery plan `docvault-lasttime-fusion-v0.1` are preserved, Android J1 has passed, and execution is paused at the iOS executor boundary. Always read the current committed state for the latest phase and blockers instead of treating this explanatory example as live state.
