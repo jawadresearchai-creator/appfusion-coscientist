@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   retrieve-hash-and-static-inventory:
+    if: ${{ vars.APPFUSION_FREE_APPROVED_SHA == github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:

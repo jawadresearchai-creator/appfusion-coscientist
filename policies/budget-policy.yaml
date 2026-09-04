@@ -1,12 +1,23 @@
 schema_version: 1.0.0
+spend_policy: FREE_ONLY
+maximum_new_service_charge: 0
 paid_overage_authorized: false
+billing_activation_allowed: false
+payment_method_addition_allowed: false
+paid_trials_allowed: false
+paid_upgrade_prompts_allowed: false
 classes:
-  CI_COMPUTE: {mode: quota_bound}
-  METERED_MODEL_RUNTIME: {mode: blocked_until_explicit_authorization}
-  STORAGE: {mode: quota_bound}
-  THIRD_PARTY_SERVICE: {mode: blocked_until_explicit_authorization}
-  SIGNING_DISTRIBUTION: {mode: blocked_until_explicit_authorization}
-on_exhaustion: preserve_state_and_pause
+  CI_COMPUTE: {mode: verified_free_only}
+  METERED_MODEL_RUNTIME: {mode: unavailable_unless_no_new_charge}
+  STORAGE: {mode: verified_free_only}
+  THIRD_PARTY_SERVICE: {mode: verified_free_only}
+  SIGNING_DISTRIBUTION: {mode: free_methods_only}
+on_exhaustion: route_to_verified_free_alternative_else_preserve_state
+unknown_cost: deny_execution
+public_repository_conversion_allowed: false
+monthly_free_tier_is_permanent_solution: false
+publication_candidate: separately_reviewed_product_source_only_after_explicit_user_approval
+new_provider_repository_access: requires_user_authorization
 github_usage:
   policy: ESSENTIAL_ONLY
   required_for:
@@ -24,7 +35,9 @@ github_usage:
     - path_filtered_workflows
     - cancel_superseded_runs
     - bounded_timeouts
-    - no_paid_overage_without_explicit_authorization
+    - no_billing_no_overages_no_paid_services
+    - fail_closed_before_runner_allocation
+    - no_automatic_paid_fallback
 routing:
   CHATGPT_WEB:
     - reasoning
@@ -32,7 +45,7 @@ routing:
     - planning_and_report_drafting
     - interactive_decisions_within_existing_authority
   GOOGLE_DRIVE:
-    - freshest_project_and_application_state
+    - projections_of_committed_git_control_state
     - apk_and_other_source_inputs
     - reports_and_evidence
     - screenshots_videos_and_large_artifacts
@@ -45,4 +58,4 @@ routing:
   OPTIONAL_LOCAL:
     - diagnostics
     - development_acceleration
-    - noncanonical_preflight_tests
+    - equivalent_build_and_test_gates_with_cloud_saved_evidence

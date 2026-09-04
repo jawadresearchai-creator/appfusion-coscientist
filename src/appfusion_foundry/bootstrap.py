@@ -72,6 +72,20 @@ def bootstrap_check(repository_root: Path) -> list[str]:
                     errors.append(f"Required local path token {token!r} found in {path.relative_to(repository_root)}")
 
     manifest = json.loads((repository_root / "environment-manifest.json").read_text(encoding="utf-8"))
+    budget = yaml.safe_load((repository_root / "policies/budget-policy.yaml").read_text(encoding="utf-8"))
+    if budget.get("spend_policy") != "FREE_ONLY" or budget.get("paid_overage_authorized") is not False:
+        errors.append("Free-only policy must prohibit paid overage")
+    if budget.get("maximum_new_service_charge") != 0 or budget.get("billing_activation_allowed") is not False:
+        errors.append("Billing activation and nonzero service charges are prohibited")
+    if manifest.get("budgets", {}).get("spend_policy") != "FREE_ONLY":
+        errors.append("Manifest must declare FREE_ONLY")
+    if manifest.get("canonical_state", {}).get("project_registry", {}).get("primary") != "GIT_EVENT_LEDGER":
+        errors.append("Manifest registry authority must match Git event ledger")
+    for workflow_path in (repository_root / ".github/workflows").glob("*.yml"):
+        workflow = yaml.safe_load(workflow_path.read_text(encoding="utf-8"))
+        for name, job in workflow.get("jobs", {}).items():
+            if "APPFUSION_FREE_APPROVED_SHA == github.sha" not in str(job.get("if", "")):
+                errors.append(f"Hosted job lacks pre-allocation free-only guard: {workflow_path.name}/{name}")
     if manifest.get("local_environment", {}).get("role") != "OPTIONAL_ADAPTER":
         errors.append("Local environment is not explicitly optional")
     if manifest.get("canonical_state", {}).get("authority") != "CLOUD":

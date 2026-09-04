@@ -10,6 +10,8 @@ from .contracts import load_json, validate
 from .state import create_run
 from .static_inventory import write_inventory
 from .orchestration import evaluate_release_readiness, validate_control_state
+from .free_execution import admit_free_execution
+from datetime import datetime, timezone
 
 
 def repository_root() -> Path:
@@ -21,6 +23,8 @@ def main() -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("bootstrap-check")
     sub.add_parser("orchestration-check")
+    free_check = sub.add_parser("free-execution-check")
+    free_check.add_argument("evidence", type=Path)
 
     readiness = sub.add_parser("release-readiness")
     readiness.add_argument("delivery_plan", type=Path)
@@ -42,6 +46,10 @@ def main() -> int:
 
     args = parser.parse_args()
     root = repository_root()
+    if args.command == "free-execution-check":
+        errors = admit_free_execution(load_json(args.evidence), now=datetime.now(timezone.utc))
+        print(json.dumps({"admitted": not errors, "reasons": errors}))
+        return 0 if not errors else 3
     if args.command == "bootstrap-check":
         errors = bootstrap_check(root)
         if errors:

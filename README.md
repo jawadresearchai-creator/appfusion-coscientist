@@ -1,5 +1,10 @@
 # AppFusion CoScientist — Capability Foundry
 
+**Free-only correction (2026-09-04):** no billing, paid services or top-ups.
+Monthly free tiers are not the permanent solution. Hosted workflows are disabled;
+optional local gates remain usable. Quota-independent public Product CI requires
+explicit source-publication approval. See `docs/operations/FREE_ONLY_EXECUTION.md`.
+
 This private repository is the authoritative Capability Foundry and cloud control plane for AppFusion. It accepts authorized application-analysis requests, records provenance, produces source-aware Foundry dossiers, and emits clean-room Product Blueprints for explicit human approval.
 
 ## Execution model

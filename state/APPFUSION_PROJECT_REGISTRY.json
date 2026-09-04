@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 20,
-  "updated_at": "2026-09-03T19:09:08Z",
+  "registry_revision": 21,
+  "updated_at": "2026-09-04T02:46:15Z",
   "state_authority": {
     "primary": "GIT_EVENT_LEDGER",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -17,18 +17,18 @@
     "system_id": "appfusion-coscientist",
     "status": "PAUSED",
     "phase": "PAUSED",
-    "current_milestone": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
+    "current_milestone": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
     "last_completed_event": {
-      "event_type": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
-      "occurred_at": "2026-09-03T19:09:08Z",
-      "summary": "Android Journey J1 passed through the installed UI on the optional Windows emulator executor: encrypted create, process force-stop, relaunch, search, decrypt, and reopen. The source, tested APK, screenshot, test evidence, and checksums are stored in cloud repositories/Drive. Product PR 3 merged after equivalent local gates passed; hosted jobs did not start because GitHub reported a billing/spending-limit condition. Cross-platform work is paused before iOS J1 until an authorized macOS executor is available."
+      "event_type": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
+      "occurred_at": "2026-09-04T02:46:15Z",
+      "summary": "Free-only rule corrected: paid authorization and nonzero caps rejected; all seven hosted workflows disabled with exact-commit pre-allocation guards; 37 Foundry tests and 11 Product tests plus exact-hash transfer pass on existing hardware. Codemagic monthly tier rejected, no provider connected. Drive is storage, not compute. Android J1 evidence preserved; quota-independent cloud execution requires explicit public Product-source approval or existing authorized hardware."
     },
-    "next_safe_action": "Restore GitHub Actions execution within the approved budget or provide an authorized macOS executor, then wire and validate iOS Journey J1. Preserve the accepted Android J1 evidence unless relevant source changes. Do not enable paid overage, repeat blocked hosted jobs, or call the release complete without the remaining journey and signing gates.",
+    "next_safe_action": "Ask whether the user authorizes publication of a reviewed Product-source subset for standard public GitHub runners, or provides an existing authorized Mac. Do not publish automatically, enable billing, buy services, or substitute monthly free tiers. Keep private analysis and Drive private. Preserve accepted Android evidence; final iOS and release gates remain pending.",
     "blockers": [
       {
-        "id": "HOSTED_ACTIONS_BILLING_BLOCKED",
-        "summary": "GitHub refused job start because of an account payment/spending-limit condition. The available optional host is Windows and cannot run the remaining iOS Simulator gate. No paid overage is authorized.",
-        "url": "https://github.com/jawadresearchai-creator/appfusion-product/actions/runs/33794502740"
+        "id": "QUOTA_FREE_PRIVATE_CLOUD_MACOS_UNAVAILABLE",
+        "summary": "No verified private, cloud-only, quota-independent zero-service-charge macOS executor is available. Public standard GitHub runners require explicit source publication approval; existing Mac execution changes availability assumptions. Drive cannot execute builds. Monthly tiers are not the permanent solution.",
+        "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
       }
     ]
   },
@@ -39,22 +39,22 @@
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
       "lifecycle_state": "PAUSED",
-      "phase": "ANDROID_J1_PASSED_IOS_EXECUTOR_BLOCKED",
-      "updated_at": "2026-09-03T19:09:08Z",
-      "state_revision": 20,
-      "last_event_sequence": 20,
+      "phase": "FREE_ONLY_EXECUTOR_DECISION_REQUIRED",
+      "updated_at": "2026-09-04T02:46:15Z",
+      "state_revision": 21,
+      "last_event_sequence": 21,
       "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
       "last_completed_event": {
-        "event_type": "ANDROID_J1_UI_PASSED_LOCAL_FALLBACK",
-        "occurred_at": "2026-09-03T19:09:08Z",
-        "summary": "Android Journey J1 passed through the installed UI on the optional Windows emulator executor: encrypted create, process force-stop, relaunch, search, decrypt, and reopen. The source, tested APK, screenshot, test evidence, and checksums are stored in cloud repositories/Drive. Product PR 3 merged after equivalent local gates passed; hosted jobs did not start because GitHub reported a billing/spending-limit condition. Cross-platform work is paused before iOS J1 until an authorized macOS executor is available."
+        "event_type": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
+        "occurred_at": "2026-09-04T02:46:15Z",
+        "summary": "Free-only rule corrected: paid authorization and nonzero caps rejected; all seven hosted workflows disabled with exact-commit pre-allocation guards; 37 Foundry tests and 11 Product tests plus exact-hash transfer pass on existing hardware. Codemagic monthly tier rejected, no provider connected. Drive is storage, not compute. Android J1 evidence preserved; quota-independent cloud execution requires explicit public Product-source approval or existing authorized hardware."
       },
-      "next_safe_action": "Restore GitHub Actions execution within the approved budget or provide an authorized macOS executor, then wire and validate iOS Journey J1. Preserve the accepted Android J1 evidence unless relevant source changes. Do not enable paid overage, repeat blocked hosted jobs, or call the release complete without the remaining journey and signing gates.",
+      "next_safe_action": "Ask whether the user authorizes publication of a reviewed Product-source subset for standard public GitHub runners, or provides an existing authorized Mac. Do not publish automatically, enable billing, buy services, or substitute monthly free tiers. Keep private analysis and Drive private. Preserve accepted Android evidence; final iOS and release gates remain pending.",
       "blockers": [
         {
-          "id": "HOSTED_ACTIONS_BILLING_BLOCKED",
-          "summary": "GitHub refused job start because of an account payment/spending-limit condition. The available optional host is Windows and cannot run the remaining iOS Simulator gate. No paid overage is authorized.",
-          "url": "https://github.com/jawadresearchai-creator/appfusion-product/actions/runs/33794502740"
+          "id": "QUOTA_FREE_PRIVATE_CLOUD_MACOS_UNAVAILABLE",
+          "summary": "No verified private, cloud-only, quota-independent zero-service-charge macOS executor is available. Public standard GitHub runners require explicit source publication approval; existing Mac execution changes availability assumptions. Drive cannot execute builds. Monthly tiers are not the permanent solution.",
+          "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
         }
       ],
       "artifact_locations": {

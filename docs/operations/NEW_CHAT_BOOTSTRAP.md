@@ -2,6 +2,11 @@
 
 AppFusion continuity comes from the canonical cloud state, not from a chat transcript or a local machine.
 
+**Mandatory cost rule:** no billing, paid service, paid trial, top-up or overage.
+Read `docs/operations/FREE_ONLY_EXECUTION.md` before any executor dispatch. Monthly
+free tiers are not the permanent solution. Do not request payment to resume.
+Drive is storage, not compute. Public-source CI requires separate publication approval.
+
 ## Recommended ChatGPT setup
 
 Create a ChatGPT project named **AppFusion CoScientist**, connect the GitHub and Google Drive plugins, and place the prompt below in the project instructions. Start future chats inside that project. If a chat is opened outside the project, paste the same prompt as its first message.

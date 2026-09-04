@@ -124,7 +124,7 @@ Rules:
 1. Expensive construction jobs depend on a passing clean-room/preflight job.
 2. Platform jobs use path/impact selection where correctness permits.
 3. Unchanged failed jobs may be rerun; code changes create one batched checkpoint rather than a series of speculative main-branch pushes.
-4. CI dispatch checks the configured budget ledger. Paid overage remains disabled without explicit authorization.
+4. CI dispatch requires verified free-only execution and zero new service charges. Billing activation, paid services, overages and payment requests are prohibited. Monthly free tiers are not a permanent solution. See `docs/operations/FREE_ONLY_EXECUTION.md` (2026-09-04 user correction).
 5. GitHub usage records runner/job minutes separately for Linux, Android emulator, and macOS.
 6. Direct pushes of unverified construction to `main` are prohibited. A candidate branch is tested, then promoted by fast-forward only if the expected base still matches.
 
@@ -179,7 +179,7 @@ True unattended execution additionally requires:
 - application leases and heartbeats;
 - authorized GitHub App/service identity;
 - approved Drive/object-storage identity;
-- metered model budget;
+- a reasoning runtime requiring no new service charge (paid metered APIs are not authorized);
 - retry classification and dead-letter handling;
 - approval/deviation enforcement;
 - demonstrated interruption recovery.
@@ -198,4 +198,3 @@ Until this is deployed, the truthful label remains `INTERACTIVE_RESUMABLE_DELIVE
 8. Implement typed cross-domain linkage and Journey J3.
 9. Complete release, security, license, and provenance gates.
 10. Resume deferred scanner/OCR/PDF capabilities after the first installable train.
-

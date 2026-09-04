@@ -8,9 +8,9 @@
   "properties": {
     "schema_version": {"const": "1.0.0"},
     "budget_class": {"enum": ["CI_COMPUTE", "METERED_MODEL_RUNTIME", "STORAGE", "THIRD_PARTY_SERVICE", "SIGNING_DISTRIBUTION"]},
-    "paid_overage_authorized": {"type": "boolean"},
+    "paid_overage_authorized": {"const": false},
     "currency": {"type": "string"},
-    "per_run_cap": {"type": "number", "minimum": 0},
-    "cumulative_cap": {"type": "number", "minimum": 0}
+    "per_run_cap": {"const": 0},
+    "cumulative_cap": {"const": 0}
   }
 }
