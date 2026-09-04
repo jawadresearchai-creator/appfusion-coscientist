@@ -37,4 +37,8 @@ Selection is deterministic:
 - one active app: select and resume it automatically;
 - two or more active apps: show a concise candidate list and ask the user to select one.
 
-The registry currently contains one application active for selection, `docvault-lasttime-fusion`, so a new session should select it automatically. Active for selection does not mean execution is unblocked. At revision 20, its approved Product Blueprint and delivery plan `docvault-lasttime-fusion-v0.1` are preserved, Android J1 has passed, and execution is paused at the iOS executor boundary. Always read the current committed state for the latest phase and blockers instead of treating this explanatory example as live state.
+Always derive the active application count, phase and blockers from the current committed registry. Active for selection does not mean execution is unblocked. Do not treat examples, older chat handoffs or older release notes as live state.
+
+## Resume work that has not reached a state transition
+
+Before starting a replacement implementation, inspect the selected Product repository's current main commit, open pull requests and relevant CI runs. An interrupted session may have pushed a candidate without advancing the canonical event ledger because its acceptance gate was still running. Reconcile that candidate with the live base and inspect its actual test evidence; do not duplicate it or assume a pending run passed. A pull-request run may test a synthetic merge commit: verify its tree matches the candidate selected for promotion. Promote only without overwriting concurrent changes, verify the resulting main-branch run, then commit the accepted state transition and project it to Drive. If main has advanced since the verified evidence, reconcile before promotion or recording acceptance.

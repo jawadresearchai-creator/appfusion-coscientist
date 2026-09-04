@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
   "registry_id": "appfusion-project-registry",
-  "registry_revision": 22,
-  "updated_at": "2026-09-04T03:21:35Z",
+  "registry_revision": 23,
+  "updated_at": "2026-09-04T08:25:40Z",
   "state_authority": {
     "primary": "GIT_EVENT_LEDGER",
     "drive_control_folder_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
@@ -15,16 +15,22 @@
   },
   "system": {
     "system_id": "appfusion-coscientist",
-    "status": "READY",
-    "phase": "PRODUCT_CONSTRUCTION",
-    "current_milestone": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
+    "status": "PAUSED",
+    "phase": "PAUSED",
+    "current_milestone": "CROSS_PLATFORM_J1_VERIFIED_CONCURRENT_WORKFLOW_PAUSED",
     "last_completed_event": {
-      "event_type": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
-      "occurred_at": "2026-09-04T03:21:35Z",
-      "summary": "User-authorized reviewed Android/iOS source is public in a fresh Product repository. Public standard Linux/macOS CI 33832218376 passed all four jobs, including installed Android J1/Keystore and iOS contracts/Keychain/simulator shell. Development prerelease dev-public-20260904 publishes the exact tested APK, iOS Simulator ZIP, public source, evidence, report and checksums; all six uploaded asset digests verified and anonymous release access confirmed. The two original repositories and Drive remain private; all seven original workflows remain disabled. No billing or paid service was enabled and no local build executor was required. iOS J1, J2/J3 and final security/release gates remain incomplete."
+      "event_type": "CROSS_PLATFORM_J1_VERIFIED_CONCURRENT_WORKFLOW_PAUSED",
+      "occurred_at": "2026-09-04T08:25:40Z",
+      "summary": "Cross-platform document Journey J1 passed on the installed Android and iOS simulator applications at public Product 1c6ab92f25a281a6776c7899645917d21695765f. PR #2 was fast-forward merged; candidate CI 33836151702 and resulting main CI 33837384267 both passed all four jobs. Exact tested APK, simulator app, source, both evidence bundles, report and checksums are published as dev-j1-20260904; seven asset digests and anonymous access verified. A separate later commit c78b82beae06c194a77a4256610150689ea97447 re-added an unguarded duplicate ALEIL workflow; its preflight failed at 33838952381. J1 acceptance is preserved, but further Product construction is paused for concurrent-writer/workflow reconciliation. No billing or private workflow was enabled; J2/J3 and final security/signing remain incomplete."
     },
-    "next_safe_action": "Continue iOS J1 UI implementation in jawadresearchai-creator/appfusion-product-public, then the locked J2/J3 journeys and final release/security gates. Use only the verified standard public workflow, retain private Foundry/Drive state, and do not enable private workflows, buy services, repeat this publication approval or mistake the simulator/development downloads for final iPhone distribution.",
-    "blockers": []
+    "next_safe_action": "Resolve concurrent Product workflow ownership with the user before removing or replacing the independently re-added aleil-ios-test.yml. Preserve accepted J1 and the dev-j1-20260904 artifacts; do not repeat implementation or call current main green. After authorized reconciliation restores the single guarded standard-public workflow and verifies the resulting revision, continue locked J2 activity/cadence/reminders/restart/timezone behavior, then J3 and final security/release gates. Keep Drive and both original repositories private, all seven original workflows disabled, local execution optional and new service charges zero.",
+    "blockers": [
+      {
+        "id": "CONCURRENT_PUBLIC_WORKFLOW_CONFLICT",
+        "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted.",
+        "url": "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33838952381"
+      }
+    ]
   },
   "applications": [
     {
@@ -32,19 +38,25 @@
       "app_id": "docvault-lasttime-fusion",
       "display_name": "DocVault + LastTime Fusion",
       "active_for_selection": true,
-      "lifecycle_state": "PRODUCT_CONSTRUCTION",
-      "phase": "IOS_J1_UI_IMPLEMENTATION_REQUIRED",
-      "updated_at": "2026-09-04T03:21:35Z",
-      "state_revision": 22,
-      "last_event_sequence": 22,
+      "lifecycle_state": "PAUSED",
+      "phase": "J1_ACCEPTED_CONCURRENT_WORKFLOW_RECONCILIATION_REQUIRED",
+      "updated_at": "2026-09-04T08:25:40Z",
+      "state_revision": 23,
+      "last_event_sequence": 23,
       "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
       "last_completed_event": {
-        "event_type": "PUBLIC_PRODUCT_FREE_EXECUTION_VERIFIED",
-        "occurred_at": "2026-09-04T03:21:35Z",
-        "summary": "User-authorized reviewed Android/iOS source is public in a fresh Product repository. Public standard Linux/macOS CI 33832218376 passed all four jobs, including installed Android J1/Keystore and iOS contracts/Keychain/simulator shell. Development prerelease dev-public-20260904 publishes the exact tested APK, iOS Simulator ZIP, public source, evidence, report and checksums; all six uploaded asset digests verified and anonymous release access confirmed. The two original repositories and Drive remain private; all seven original workflows remain disabled. No billing or paid service was enabled and no local build executor was required. iOS J1, J2/J3 and final security/release gates remain incomplete."
+        "event_type": "CROSS_PLATFORM_J1_VERIFIED_CONCURRENT_WORKFLOW_PAUSED",
+        "occurred_at": "2026-09-04T08:25:40Z",
+        "summary": "Cross-platform document Journey J1 passed on the installed Android and iOS simulator applications at public Product 1c6ab92f25a281a6776c7899645917d21695765f. PR #2 was fast-forward merged; candidate CI 33836151702 and resulting main CI 33837384267 both passed all four jobs. Exact tested APK, simulator app, source, both evidence bundles, report and checksums are published as dev-j1-20260904; seven asset digests and anonymous access verified. A separate later commit c78b82beae06c194a77a4256610150689ea97447 re-added an unguarded duplicate ALEIL workflow; its preflight failed at 33838952381. J1 acceptance is preserved, but further Product construction is paused for concurrent-writer/workflow reconciliation. No billing or private workflow was enabled; J2/J3 and final security/signing remain incomplete."
       },
-      "next_safe_action": "Continue iOS J1 UI implementation in jawadresearchai-creator/appfusion-product-public, then the locked J2/J3 journeys and final release/security gates. Use only the verified standard public workflow, retain private Foundry/Drive state, and do not enable private workflows, buy services, repeat this publication approval or mistake the simulator/development downloads for final iPhone distribution.",
-      "blockers": [],
+      "next_safe_action": "Resolve concurrent Product workflow ownership with the user before removing or replacing the independently re-added aleil-ios-test.yml. Preserve accepted J1 and the dev-j1-20260904 artifacts; do not repeat implementation or call current main green. After authorized reconciliation restores the single guarded standard-public workflow and verifies the resulting revision, continue locked J2 activity/cadence/reminders/restart/timezone behavior, then J3 and final security/release gates. Keep Drive and both original repositories private, all seven original workflows disabled, local execution optional and new service charges zero.",
+      "blockers": [
+        {
+          "id": "CONCURRENT_PUBLIC_WORKFLOW_CONFLICT",
+          "summary": "After J1 passed and PR #2 merged, a separate writer re-added aleil-ios-test.yml at c78b82beae06c194a77a4256610150689ea97447. It uses an unrestricted runner input and lacks the public-repository allocation guard, violating the locked single-workflow/free-execution rules. Product preflight 33838952381 failed. User direction/concurrent-writer coordination is required; the verified 1c6ab92 snapshot remains accepted.",
+          "url": "https://github.com/jawadresearchai-creator/appfusion-product-public/actions/runs/33838952381"
+        }
+      ],
       "artifact_locations": {
         "product_repository": "jawadresearchai-creator/appfusion-product-public",
         "drive_workspace_id": "1QGCWL7rabO2NuXm83xKXrNaGLvnXsvpt",
