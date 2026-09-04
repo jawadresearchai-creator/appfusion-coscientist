@@ -18,11 +18,11 @@
       "quarantine_id": "1nPKp-thVJEvezk0oBbGUnQ_cmyEgKDCV"
     },
     "project_registry": {
-      "primary": "GOOGLE_DRIVE",
+      "primary": "GIT_EVENT_LEDGER",
       "drive_control_id": "1yrcp--SXTWKXKPsimFVlgrMhKLKxftdw",
       "drive_file_id": "15-oC17tb-17N_5h6vKsYGct7_D_xGGqI",
       "github_mirror": "state/APPFUSION_PROJECT_REGISTRY.json",
-      "mirror_policy": "MILESTONE_APPROVAL_RELEASE"
+      "mirror_policy": "DRIVE_PROJECTION_AFTER_GIT_COMMIT"
     }
   },
   "control_surfaces": [
@@ -42,7 +42,14 @@
     "untrusted_dynamic_runner": "BLOCKED_SECURITY_ENVIRONMENT"
   },
   "budgets": {
+    "spend_policy": "FREE_ONLY",
+    "maximum_new_service_charge": 0,
+    "billing_activation_allowed": false,
     "paid_overage_authorized": false,
-    "github_usage_policy": "ESSENTIAL_ONLY"
+    "github_usage_policy": "ESSENTIAL_AND_VERIFIED_FREE_ONLY",
+    "github_hosted_execution": "DISABLED_UNTIL_FREE_ALLOWANCE_AND_ZERO_CHARGE_STOP_VERIFIED",
+    "quota_free_cloud_candidate": "PUBLIC_PRODUCT_STANDARD_GITHUB_RUNNERS",
+    "quota_free_cloud_candidate_status": "REQUIRES_EXPLICIT_SOURCE_PUBLICATION_APPROVAL",
+    "monthly_free_tier_is_permanent_solution": false
   }
 }

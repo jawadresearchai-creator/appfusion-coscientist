@@ -4,6 +4,20 @@
 **Audited artifact:** `APPFUSION_DELIVERY_ORCHESTRATION_BLUEPRINT_v1.1.md`  
 **Result:** PASS AFTER CORRECTIONS
 
+## Free-only audit correction — 2026-09-04
+
+The earlier recommendation to restore capacity under an approved budget was
+inconsistent with the user's no-billing/no-paid-services rule. Budget schemas
+now reject paid authorization and nonzero caps; manifests/policy require zero
+new service charges. All seven hosted workflows are disabled, and job guards
+require exact-commit approval before allocation. Optional local checks were used.
+Codemagic was researched but not connected and its monthly tier was rejected as
+the permanent solution. No repository was made public. Drive remains storage,
+not an Android/iOS executor. Public Product standard runners need explicit source
+publication approval; existing hardware is the other no-service-fee route. There
+is no verified private, cloud-only, quota-independent free macOS route currently
+available. The project cannot claim that constraint is solved by this correction.
+
 ## Audit question
 
 Would the amendment convert the existing careful but open-ended workflow into a system that converges on built, testable, ready-to-use applications?

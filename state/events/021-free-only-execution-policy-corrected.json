@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.1.0",
+  "event_id": "4d0347e6-f0d3-462e-97f9-5d8137d6c534",
+  "run_id": "50a09dcf-bdfc-461f-a052-d61f16860c67",
+  "sequence": 21,
+  "event_type": "FREE_ONLY_EXECUTION_POLICY_CORRECTED",
+  "occurred_at": "2026-09-04T02:46:15Z",
+  "actor": "appfusion-coscientist",
+  "stream_id": "docvault-lasttime-fusion",
+  "previous_event_id": "9534bb01-ae31-4516-96f7-4ce68f15d395",
+  "idempotency_key": "4d0347e6-f0d3-462e-97f9-5d8137d6c534",
+  "payload": {
+    "app_id": "docvault-lasttime-fusion",
+    "registry_revision_before": 20,
+    "registry_revision_after": 21,
+    "application_state_revision_before": 20,
+    "application_state_revision_after": 21,
+    "delivery_plan_id": "docvault-lasttime-fusion-v0.1",
+    "spend_policy": "FREE_ONLY",
+    "new_service_charge_cap": 0,
+    "monthly_free_tier_is_permanent_solution": false,
+    "github_hosted_workflows": "ALL_SEVEN_DISABLED",
+    "new_provider_connected": false,
+    "source_publication_authorized": false,
+    "evidence": [
+      "docs/operations/FREE_ONLY_EXECUTION.md",
+      "https://github.com/jawadresearchai-creator/appfusion-product/pull/4"
+    ],
+    "validation": {
+      "foundry_tests": 37,
+      "product_tests": 11,
+      "clean_room_transfer": "PASS"
+    },
+    "next_phase": "FREE_ONLY_EXECUTOR_DECISION_REQUIRED"
+  }
+}

@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   attest-static-lane:
+    if: ${{ vars.APPFUSION_FREE_APPROVED_SHA == github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

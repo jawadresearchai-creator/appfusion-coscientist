@@ -47,6 +47,9 @@ permissions:
 
 jobs:
   contracts:
+    # External operator verifies free quota AND zero-charge hard stop before approval.
+    # Unset/old approval skips before a hosted runner is allocated.
+    if: ${{ vars.APPFUSION_FREE_APPROVED_SHA == github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

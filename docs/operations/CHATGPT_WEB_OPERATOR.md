@@ -28,6 +28,10 @@ If the reasoning session ends, completed deterministic CI work and all committed
 
 ## Unattended operation
 
+Free-only override: no metered API purchase or new service payment is permitted.
+The requirements below describe capabilities, not authority to activate paid
+services. Use existing included/no-charge resources only; see FREE_ONLY_EXECUTION.md.
+
 Closing ChatGPT web ends interactive model reasoning. True unattended reasoning therefore requires the persistent coordinator described by `SYSTEM_V1_UA`, deployed outside the chat session with:
 
 - an authorized OpenAI API project/service identity;
